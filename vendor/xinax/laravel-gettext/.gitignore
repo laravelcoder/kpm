@@ -1,0 +1,6 @@
+/vendor
+/public
+composer.phar
+composer.lock
+.DS_Store
+doc/poedit-fw.png
