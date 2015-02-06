@@ -17,6 +17,7 @@ class BaseController extends Controller {
         {
             $this->layout = View::make($this->layout);
         }
+
         //share the config option to all the views
         View::share('cpanel', Config::get('cpanel::site_config'));
     }
