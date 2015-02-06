@@ -9,8 +9,8 @@ return array(
     'generic_permission' => array('view','create','update','delete'),
 
     'site_config' => array(
-        'site_name1'   => 'Кафедра прикладної математики та інформатики',
-        'title'       => 'Панель управління сайтом',
+        'site_name'   => 'Cpanel',
+        'title'       => 'My Admin Panel',
         'description' => 'Laravel 4 Admin Panel'
     ),
 

@@ -1,8 +1,11 @@
 @if ( Session::has('errors') )
-    <!-- <div class="row">
+    <div class="row">
         <div class="span12 margin-10-top">
             <div class="alert alert-error ">
                 <button type="button" class="close" data-dismiss="alert">×</button>
+                <p>
+                    <strong>Form Validation Failed : </strong> Change a few things up and try submitting again.
+                </p>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -10,7 +13,7 @@
                 </ul>
             </div>
         </div>
-    </div> -->
+    </div>
 @endif
 
 @if ( Session::has('success') )

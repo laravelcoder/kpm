@@ -24,7 +24,7 @@
                     <div class="btn-toolbar">
                         <a href="{{ route('cpanel.users.index') }}" class="btn btn-primary" rel="tooltip" title="Back">
                             <i class="icon-arrow-left"></i>
-                            До списку
+                            Back
                         </a>
                     </div>
 
@@ -48,11 +48,11 @@
                                 <table class="table table-striped">
                                     <tbody>
                                     <tr>
-                                        <td><strong>Імя</strong></td>
+                                        <td><strong>First Name</strong></td>
                                         <td>{{ $user->first_name }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Прізвище</strong></td>
+                                        <td><strong>Last Name</strong></td>
                                         <td>{{ $user->last_name }}</td>
                                     </tr>
                                     <tr>
@@ -60,7 +60,7 @@
                                         <td>{{ $user->email }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Групи:</strong></td>
+                                        <td><strong>Groups</strong></td>
                                         <td>
                                             @foreach($groups as $group)
                                             <span class="label">{{ $group->getName() }}</span>

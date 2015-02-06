@@ -9,11 +9,11 @@
     <title>{{ $cpanel['title'] }}</title>
     <meta name="description" content="{{ $cpanel['description'] }}">
     <meta name="viewport" content="width=device-width">
-    {{ HTML::style('packages/stevemo/cpanel/bootstrap/css/bootstrap.min.css') }}
-    {{ HTML::style('packages/stevemo/cpanel/font-awesome/css/font-awesome.min.css') }}
-    {{ HTML::style('packages/stevemo/cpanel/select2-3.4.5/select2.css') }}
-    {{ HTML::style('packages/stevemo/cpanel/css/theme.css') }}
-    {{ HTML::style('packages/stevemo/cpanel/js/fileupload/css/jquery.fileupload.css')}}
+    {{ HTML::style('public/packages/stevemo/cpanel/bootstrap/css/bootstrap.min.css') }}
+    {{ HTML::style('public/packages/stevemo/cpanel/font-awesome/css/font-awesome.min.css') }}
+    {{ HTML::style('public/packages/stevemo/cpanel/select2-3.4.5/select2.css') }}
+    {{ HTML::style('public/packages/stevemo/cpanel/css/theme.css') }}
+    {{ HTML::style('public/packages/stevemo/cpanel/js/fileupload/css/jquery.fileupload.css')}}
     @yield('style')
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -137,20 +137,20 @@
     </div>
     <!-- /#helpModal -->
 
-        {{ HTML::script('packages/stevemo/cpanel/js/vendor/jquery.1.10.0.min.js') }}
-        {{ HTML::script('packages/stevemo/cpanel/bootstrap/js/bootstrap.min.js') }}
-        {{ HTML::script('packages/stevemo/cpanel/select2-3.4.5/select2.min.js') }}
-        {{ HTML::script('packages/stevemo/cpanel/js/vendor/bootbox.min.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/vendor/jquery.1.10.0.min.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/bootstrap/js/bootstrap.min.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/select2-3.4.5/select2.min.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/vendor/bootbox.min.js') }}
 
-        {{ HTML::script('packages/stevemo/cpanel/js/vendor/speaking-url.js') }}
-        {{ HTML::script('packages/stevemo/cpanel/js/vendor/speaking-url.uk.js') }}
-        {{ HTML::script('packages/stevemo/cpanel/js/ckeditor/ckeditor.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/vendor/speaking-url.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/vendor/speaking-url.uk.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/ckeditor/ckeditor.js') }}
 
-        {{ HTML::script('packages/stevemo/cpanel/js/fileupload/js/vendor/jquery.ui.widget.js') }}
-        {{ HTML::script('packages/stevemo/cpanel/js/fileupload/js/jquery.iframe-transport.js') }}
-        {{ HTML::script('packages/stevemo/cpanel/js/fileupload/js/jquery.fileupload.js') }}
-        {{ HTML::script('packages/stevemo/cpanel/js/upload.js')}}
-        {{ HTML::script('packages/stevemo/cpanel/js/admin.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/fileupload/js/vendor/jquery.ui.widget.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/fileupload/js/jquery.iframe-transport.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/fileupload/js/jquery.fileupload.js') }}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/upload.js')}}
+        {{ HTML::script('public/packages/stevemo/cpanel/js/admin.js') }}
         @yield('script')
 </body>
 </html>

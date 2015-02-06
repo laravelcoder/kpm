@@ -3,6 +3,7 @@
 namespace Xinax\LaravelGettext\Commands;
 
 use Xinax\LaravelGettext\Exceptions\DirectoryNotFoundException;
+use Symfony\Component\Console\Input\InputOption;
 
 class GettextUpdate extends BaseCommand
 {
@@ -28,10 +29,8 @@ class GettextUpdate extends BaseCommand
      */
     public function fire()
     {
-        $domainPath = $this->getDomainPath();
 
-        // Compile views
-        $this->compileViews();
+        $domainPath = $this->fileSystem->getDomainPath();
 
         try {
 
@@ -43,6 +42,8 @@ class GettextUpdate extends BaseCommand
 
             $updatedCount = 0;
             $addedCount = 0;
+            $domains = $this->configuration->getAllDomains();
+
             foreach ($this->configuration->getSupportedLocales() as $locale) {
 
                 // We don't want a locale folder for the default language
@@ -50,16 +51,29 @@ class GettextUpdate extends BaseCommand
                     continue;
                 }
 
-                $localePath = $this->getDomainPath($locale);
+                $localePath = $this->fileSystem->getDomainPath($locale);
 
                 // New locale without .po file
                 if (!file_exists($localePath)) {
-                    $this->addLocale($localePath, $locale);
+                    
+                    $this->fileSystem->addLocale($localePath, $locale);
                     $this->comment("New locale was added: $locale ($localePath)");
                     $addedCount++;
+
                 } else {
-                    $this->updateLocale($localePath, $locale);
-                    $updatedCount++;
+
+                    // Domain by command line argument
+                    if ($this->option('domain')) {
+                        $domains = [$this->option('domain')];
+                    }
+
+                    // Update by domain(s)
+                    foreach ($domains as $domain) {
+                        $this->fileSystem->updateLocale($localePath, $locale, $domain);
+                        $this->comment("PO file for locale: $locale/$domain were updated successfuly");
+                        $updatedCount++;    
+                    }
+                    
                 }
 
             }
@@ -75,7 +89,7 @@ class GettextUpdate extends BaseCommand
             }
 
         } catch (\Exception $e) {
-            $this->error($e->getMessage());
+            $this->error($e->getFile() . ":" . $e->getLine() . " = " . $e->getMessage());
         }
     }
 
@@ -96,7 +110,17 @@ class GettextUpdate extends BaseCommand
      */
     protected function getOptions()
     {
-        return array();
+        $options = array(
+            array(
+                'domain',
+                '-d',
+                InputOption::VALUE_OPTIONAL, 
+                'Update files only for this domain',
+                null
+            )
+        );
+
+        return $options;
     }
 
 }

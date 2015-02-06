@@ -2,9 +2,10 @@
 
 namespace Xinax\LaravelGettext;
 
-use Xinax\LaravelGettext\Config\ConfigManager;
 use Xinax\LaravelGettext\Session\SessionHandler;
 use Xinax\LaravelGettext\Adapters\AdapterInterface;
+use Xinax\LaravelGettext\Config\Models\Config;
+use Xinax\LaravelGettext\Exceptions\UndefinedDomainException;
 
 use \Session;
 
@@ -35,16 +36,35 @@ class Gettext
     protected $adapter;
 
     /**
+     * File system helper
+     * @var FileSystem
+     */
+    protected $fileSystem;
+
+    /**
+     * @var String
+     */
+    protected $domain;
+
+    /**
      * Sets the configuration and session manager
      */
-    public function __construct(ConfigManager $configMan, SessionHandler $sessionHandler, AdapterInterface $adapter)
-    {
+    public function __construct(
+        Config $config,
+        SessionHandler $sessionHandler, 
+        AdapterInterface $adapter,
+        FileSystem $fileSystem
+    ){
         // Sets the package configuration and session handler
-        $this->configuration = $configMan->get();
+        $this->configuration = $config;
         $this->session = $sessionHandler;
         $this->adapter = $adapter;
+        $this->fileSystem = $fileSystem;
 
-        // Encoding is set on configuration
+        // General domain
+        $this->domain = $this->configuration->getDomain();
+
+        // Encoding is set from configuration
         $this->encoding = $this->configuration->getEncoding();
 
         // Sets defaults for boot
@@ -58,24 +78,21 @@ class Gettext
      */
     public function setLocale($locale)
     {
-
-        if (!$locale) {
-            return;
-        }
-
         if (!$this->isLocaleSupported($locale)) {
             throw new Exceptions\LocaleNotSupportedException(
                 "Locale $locale is not supported");
         }
 
         try {
-            $domain = $this->configuration->getDomain();
             $gettextLocale = $locale . "." . $this->encoding;
 
+            // All locale functions are updated: LC_COLLATE, LC_CTYPE,
+            // LC_MONETARY, LC_NUMERIC, LC_TIME and LC_MESSAGES
             putenv("LC_ALL=$gettextLocale");
             setlocale(LC_ALL, $gettextLocale);
-            bindtextdomain($domain, $this->getDomainPath());
-            textdomain($domain);
+
+            // Domain
+            $this->setDomain($this->domain);
 
             $this->locale = $locale;
             $this->session->set($locale);
@@ -107,28 +124,6 @@ class Gettext
     }
 
     /**
-     * Constructs and returns the full path to
-     * translation files
-     *
-     * @return String
-     */
-    protected function getDomainPath($append = null)
-    {
-        $path = array(
-            $this->adapter->getApplicationPath(),
-            $this->configuration->getTranslationsPath(),
-            "i18n"
-        );
-
-        if (!is_null($append)) {
-            array_push($path, $append);
-        }
-
-        return implode(DIRECTORY_SEPARATOR, $path);
-
-    }
-
-    /**
      * Returns a boolean that indicates if $locale
      * is supported by configuration
      *
@@ -136,44 +131,11 @@ class Gettext
      */
     public function isLocaleSupported($locale)
     {
-        return in_array($locale, $this->configuration->getSupportedLocales());
-    }
-
-
-    /**
-     * Checks the needed directory structure
-     *
-     * @throws Exceptions\DirectoryNotFoundException
-     * @return boolean
-     */
-    public function filesystemStructure()
-    {
-
-        $domainPath = $this->getDomainPath();
-
-        // Translation files base path
-        if (!file_exists($domainPath)) {
-            throw new Exceptions\DirectoryNotFoundException(
-                "Missing base required directory: $domainPath");
+        if ($locale) {
+            return in_array($locale, $this->configuration->getSupportedLocales());
         }
 
-        foreach ($this->configuration->getSupportedLocales() as $locale) {
-
-            // Default locale is not needed
-            if ($locale == $this->configuration->getLocale()) {
-                continue;
-            }
-
-            $localePath = $this->getDomainPath($locale);
-            if (!file_exists($localePath)) {
-                throw new Exceptions\DirectoryNotFoundException(
-                    "Missing locale required directory: $localePath");
-            }
-
-        }
-
-        return true;
-
+        return false;
     }
 
     /**
@@ -208,4 +170,35 @@ class Gettext
         $this->encoding = $encoding;
         return $this;
     }
+
+    /**
+     * Sets the current domain and updates gettext domain application
+     *
+     * @param   String                      $domain
+     * @throws  UndefinedDomainException    If domain is not defined
+     * @return  self
+     */
+    public function setDomain($domain)
+    {
+        if (!in_array($domain, $this->configuration->getAllDomains())) {
+            throw new UndefinedDomainException("Domain '$domain' is not registerd.");
+        }
+
+        bindtextdomain($domain, $this->fileSystem->getDomainPath());
+        $this->domain = textdomain($domain);
+
+        return $this;
+    }
+
+    /**
+     * Returns the current domain
+     *
+     * @return String
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+
+
 }

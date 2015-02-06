@@ -7,7 +7,8 @@
 		"laravel/framework": "4.2.*",
 		"xinax/laravel-gettext": "dev-master",
 		"stevemo/cpanel": "dev-master",
-		"way/generators": "~2.0"
+		"way/generators": "~2.0",
+		"intervention/image": "1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -16,8 +17,7 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php",
-			"workbench/sashko/blog"
+			"app/tests/TestCase.php"
 		]
 	},
 	"scripts": {

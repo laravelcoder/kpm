@@ -3,12 +3,12 @@
 @section('header')
     <h3>
         <i class="icon-user"></i>
-        Користувачі
+        Users
     </h3>
 @stop
 
 @section('help')
-    <p class="lead">Користувачі</p>
+    <p class="lead">Users</p>
     <p>
         From here you can create, edit or delete users. Also you can assign custom permissions to a single user.
     </p>
@@ -20,7 +20,7 @@
         <div class="span12">
 
             <div class="block">
-                <p class="block-heading">Користувачі</p>
+                <p class="block-heading">Users</p>
 
                 <div class="block-body">
 

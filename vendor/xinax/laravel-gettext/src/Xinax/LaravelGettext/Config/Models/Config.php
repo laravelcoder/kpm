@@ -294,4 +294,47 @@ class Config
         $this->syncLaravel = $syncLaravel;
         return $this;
     }
+
+    /**
+     * Returs an array with all domain names defined 
+     * @return Array
+     */
+    public function getAllDomains()
+    {
+        $domains = [ $this->domain ];
+        $userDomains = [];
+
+        foreach ($this->sourcePaths as $domain => $paths) {
+            if (is_array($paths)) {
+                array_push($userDomains, $domain);
+            }
+        }
+
+        return array_merge($domains, $userDomains);
+    }
+
+    /**
+     * Returns all routes from a single domain
+     * 
+     * @param  string $domain Domain name
+     * @return Array         
+     */
+    public function getSourcesFromDomain($domain) 
+    {
+        // Default domain
+        if ($domain == $this->domain) {
+            $rootPaths = [];
+            foreach ($this->sourcePaths as $domain => $path) {
+                if (!is_array($path)) {
+                    array_push($rootPaths, $path);
+                } 
+            }
+            return $rootPaths;
+        } else if (array_key_exists($domain, $this->sourcePaths)) {
+            return $this->sourcePaths[$domain];
+        } else {
+            return [];
+        }
+    }
+
 }

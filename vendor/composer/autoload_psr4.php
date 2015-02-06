@@ -8,5 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Laravel\\' => array($vendorDir . '/anahkiasen/former/src/Laravel'),
+    'HtmlObject\\' => array($vendorDir . '/anahkiasen/html-object/src'),
     'Former\\' => array($vendorDir . '/anahkiasen/former/src/Former', $vendorDir . '/anahkiasen/former/tests'),
 );

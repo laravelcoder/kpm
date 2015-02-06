@@ -133,11 +133,12 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Xinax\LaravelGettext\LaravelGettextServiceProvider',
-		'Sashko\Blog\BlogServiceProvider',
 		'Former\FormerServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'Stevemo\Cpanel\CpanelServiceProvider',
-		'Way\Generators\GeneratorsServiceProvider'
+		'Way\Generators\GeneratorsServiceProvider',
+		'Davzie\LaravelBootstrap\LaravelBootstrapServiceProvider',
+		'Intervention\Image\ImageServiceProvider'
 
 	),
 
@@ -206,7 +207,9 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Former'          => 'Former\Facades\Former',
-		'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry'
+		'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+		'Image' => 'Intervention\Image\Facades\Image',
+		'Access'   => 'Davzie\LaravelBootstrap\Access',
 
 	),
 
