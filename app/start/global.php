@@ -74,7 +74,7 @@ App::down(function()
 
 App::missing(function($exception)
 {
-    return Response::view('errors.missing', array(), 404);
+    return Response::view('laravel-bootstrap::errors.404', array(), 404);
 });
 
 /*
@@ -89,3 +89,4 @@ App::missing(function($exception)
 */
 
 require app_path().'/filters.php';
+require app_path().'/helpers.php';

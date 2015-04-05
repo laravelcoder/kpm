@@ -90,7 +90,7 @@ class EloquentBaseRepository
         $model = $this->getById($id);
 
         if ( ! $model) {
-            throw new EntityNotFoundException;
+            return false;
         }
 
         return $model;

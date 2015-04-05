@@ -66,10 +66,10 @@ class UserRepository extends EloquentBaseRepository implements UserInterface
         //
         $roles = [];
         $perms = [];
-        $usp = UsersHasRoles::where('user_id', '=', $user_id)->get();
+        $roles = UsersHasRoles::where('user_id', '=', $user_id)->lists('role_id');
 
-        foreach ($usp as $one) {
-            $roles[] = $one->role_id;
+        if (empty($roles)) {
+            return false;
         }
 
         $roles = Roles::whereIn('id', $roles)->get();

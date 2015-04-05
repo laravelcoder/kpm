@@ -6,6 +6,11 @@ use Davzie\LaravelBootstrap\Core\Exceptions\EntityNotFoundException;
 abstract class ObjectBaseController extends BaseController {
 
 	/**
+	 * language model instance
+	 */
+	public $lang_model;
+
+	/**
 	 * The model to work with for editing stuff
 	 */
 	protected $model;
@@ -58,11 +63,14 @@ abstract class ObjectBaseController extends BaseController {
 	 */
 	protected $deletable = true;
 
-	/**
-	 * The uploads model
-	 * @var UploadsInterface
-	 */
+
 	protected $uploads_model;
+
+	/**
+	 * storage model
+	 * @var object
+	 */
+	public $storage_model;
 
 	/**
 	 * By default a mass assignment is used to validate things on a model
@@ -85,7 +93,10 @@ abstract class ObjectBaseController extends BaseController {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->uploads_model = App::make('Davzie\LaravelBootstrap\Uploads\UploadsInterface');
+		$this->storage_model = App::make('Davzie\LaravelBootstrap\Storage\StorageInterface');
+		$this->lang_model    = App::make('Davzie\LaravelBootstrap\Langs\LangsInterface');
+
+		View::share('module', get_class($this));
 
 		$this->setHandyUrls();
 		$this->shareHandyUrls();
@@ -111,8 +122,9 @@ abstract class ObjectBaseController extends BaseController {
 	 * @return View
 	 */
 	public function getNew() {
-		if(!View::exists('laravel-bootstrap::'.$this->view_key.'.new'))
-			return App::abort(404, "View {$this->view_key}.new not found");
+		if(!View::exists('laravel-bootstrap::'.$this->view_key.'.new')) {
+			return App::abort(503, "View {$this->view_key}.new not found");
+		}
 
 		return View::make('laravel-bootstrap::'.$this->view_key.'.new');
 	}
@@ -206,25 +218,6 @@ abstract class ObjectBaseController extends BaseController {
 		return Redirect::to($this->object_url)->with('success' , new MessageBag(array('Зміни збережено')));
 	}
 
-	/**
-	 * Upload an image for this product ID
-	 * @return Response
-	 */
-	public function postUpload($id) {
-
-		// This should only be accessible via AJAX you know...
-		if(!Request::ajax() or !$this->model->getById($id))
-			Response::json('error', 400);
-
-		$key = $this->model->getModel()->getTableName();
-		$type = get_class($this->model->getModel());
-		$success = $this->uploads_model->doUpload($id , $type , $key);
-
-		if(!$success)
-			Response::json('error', 400);
-
-		return Response::json('success', 200);
-	}
 
 	/**
 	 * Set the order of the images
@@ -297,5 +290,32 @@ abstract class ObjectBaseController extends BaseController {
 			$this->uploadable = $this->model->getModel()->isUploadable();
 
 	}
+
+	/**
+     * toggle value of record column
+     */
+    public function postToggle($id)
+    {
+        if (!$record = $this->model->requireById($id)) {
+            return \App::abort(404);
+        }
+
+        $data['success'] = 0;
+
+        if (\Input::has('value') && \Input::has('column')) {
+            $value  = trim(\Input::get('value'));
+            $column = trim(\Input::get('column'));
+
+            if ($value == '1' || $value == '0') {
+                if (isset($record->$column)) {
+                    $record->$column = $value;
+                    $record->save();
+                    $data['success'] = 1;
+                }
+            }
+        }
+
+        return \Response::json($data);
+    }
 
 }

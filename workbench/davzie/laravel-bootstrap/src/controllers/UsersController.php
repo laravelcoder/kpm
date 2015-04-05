@@ -182,4 +182,98 @@ class UsersController extends ObjectBaseController {
         return \Redirect::to($this->object_url)->with('success' , new MessageBag(array('Пароль оновлено')));
     }
 
+    /**
+     * get profile
+     */
+    public function getProfile()
+    {
+        $id = \Auth::id();
+
+        $roles = $this->model->getRoles();
+        \View::share('roles', $roles);
+
+        if (!$item = $this->model->requireById($id)) {
+            \App::abort(404);
+        }
+
+        $group_roles = [];
+        foreach ($item->roles as $one)
+        {
+            $group_roles[] = $one->id;
+        }
+
+        $item->roles = $group_roles;
+
+        return \View::make('laravel-bootstrap::'.$this->view_key.'.profile')
+                    ->with('item' , $item);
+    }
+
+    /**
+     * get change own password
+     */
+    public function getOwnPassword()
+    {
+        $id = \Auth::id();
+
+        if (!$item = $this->model->requireById($id)) {
+            return \App::abort(404);
+        }
+
+        return \View::make('laravel-bootstrap::'.$this->view_key.'.own-password')
+                    ->with('item' , $item);
+    }
+
+    /**
+     * change password
+     */
+    public function postOwnPassword()
+    {
+        $id = \Auth::id();
+         // change model to UserPassword from User
+        $this->model->setModel(new UserPassword);
+
+        if (!$record = $this->model->requireById($id)) {
+            return \App::abort(404);
+        }
+
+        $record->fill(Input::all());
+
+        $valid = $record->isValid(Input::all());
+
+        if(!$valid) {
+            return Redirect::back()->with('errors' , $record->getErrors())->withInput();
+        }
+
+        // Run the hydration method that populates anything else that is required / runs any other
+        // model interactions and save it.
+        $record->hydrateRelations()->save();
+
+        return \Redirect::to($this->object_url .'/profile/')->with('success' , new MessageBag(array('Пароль оновлено')));
+    }
+
+    /**
+     * update profile
+     */
+    public function postProfile()
+    {
+        $id = \Auth::id();
+        if (!$record = $this->model->requireById($id)) {
+            return \App::abort(404);
+        }
+
+        $record->fill(Input::all());
+
+        $valid = $this->validateWithInput === true ? $record->isValid(Input::all()) : $record->isValid();
+
+        if(!$valid) {
+            return Redirect::to($this->edit_url.$id)->with('errors' , $record->getErrors())->withInput();
+        }
+
+        // Run the hydration method that populates anything else that is required / runs any other
+        // model interactions and save it.
+        $record->hydrateRelations()->save();
+
+        return \Redirect::to($this->object_url . '/profile/')->with('success' , new MessageBag(array('Інформацію оновлено')));
+    }
+
 }

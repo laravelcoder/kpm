@@ -7,16 +7,8 @@
 @section('content')
 
     <h1>Welcome To {{ $app_name }}</h1>
-    <p>Основні можливості управління:</p>
-    <ul>
-        <li>Предмети</li>
-        <li>Факультети</li>
-        <li>Кафедри</li>
-        <li>Викладачі</li>
-        <li>Групи</li>
-        <li>Розклад дзвінків</li>
-        <li>Розклад занятть</li>
-    </ul>
+    <p>Панель управління сайтом кафедри прикладної математики та інформатики СНУ ім. Лесі Українки</p>
+
     {{--<div class="form-actions">
     	<div class=" panel panel-default">
     		<div class="panel-body">

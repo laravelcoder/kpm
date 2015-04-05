@@ -10,11 +10,11 @@
 
 		<!-- Bootstrap core CSS -->
 		@section('css')
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/bootstrap.min.css') }}">
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/styles.css') }}">
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/jquery.tagsinput.min.css') }}">
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/redactor.css') }}">
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/select2.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/bootstrap.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/styles.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/jquery.tagsinput.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/redactor.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/select2.css') }}">
 			<link href="//rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 			<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 		@show
@@ -63,6 +63,8 @@
 					<div class="btn-group">
                         <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> {{$user->first_name}} <span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        	<li><a href="{{ url( $urlSegment.'/users/profile/' ) }}"><i class="icon icon-user"></i> Редагування профілю</a></li>
+                        	<li class="divider"></li>
                         	<li><a href="{{ url( $urlSegment.'/logout' ) }}">Вихід</a></li>
                         </ul>
                     </div>
@@ -85,7 +87,7 @@
 							@foreach($menu_items as $url=>$item)
 								@if (allowed($item['module'], 'index'))
 								<a class="list-group-item {{ Request::is( "$urlSegment/$url/*" ) ? 'active' : '' }}" href="{{ url( $urlSegment.'/'.$url ) }}">
-									<span class="glyphicon glyphicon-{{ $item['icon'] }}"></span> {{ $item['name'] }}
+									<span class="icon icon-{{ $item['icon'] }}"></span> {{ $item['name'] }}
 								</a>
 								@endif
 							@endforeach
@@ -121,12 +123,12 @@
 			<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 
 			<script src="https://select2.github.io/dist/js/select2.full.js"></script>
-			<script src="{{ asset('packages/davzie/laravel-bootstrap/js/redactor.min.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/redactor.min.js') }}"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<script src="//rawgit.com/Eonasdan/bootstrap-datetimepicker/master/src/js/bootstrap-datetimepicker.js"></script>
-			<script src="{{ asset('packages/davzie/laravel-bootstrap/js/modal-select.js') }}"></script>
-			<script src="{{ asset('packages/davzie/laravel-bootstrap/js/selector.js') }}"></script>
-			<script src="{{ asset('packages/davzie/laravel-bootstrap/js/main.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/modal-select.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/selector.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/main.js') }}"></script>
 		@show
 	</body>
 </html>

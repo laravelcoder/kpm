@@ -29,30 +29,53 @@ return array(
      * The menu items shown at the top and side of the application
      */
     'menu_items'=>array(
-        'posts'=>array(
-            'name'=>'Posts',
-            'icon'=>'list',
-            'top'=>true
+        'langs'=>array(
+            'name'=>'Мови',
+            'icon'=>'flag',
+            'top'=>true,
+            'module' => 'Langs'
         ),
-        'blocks'=>array(
-            'name'=>'Content Blocks',
-            'icon'=>'th-large',
-            'top'=>true
-        ),
-        'galleries'=>array(
-            'name'=>'Galleries',
-            'icon'=>'picture',
-            'top'=>true
+        'roles'=>array(
+            'name'=>'Ролі',
+            'icon'=>'group',
+            'top'=>false,
+            'module' => 'Roles'
         ),
         'users'=>array(
-            'name'=>'Users',
+            'name'=>'Користувачі',
             'icon'=>'user',
-            'top'=>true
+            'top'=>false,
+            'module' => 'Users'
+        ),
+        'storage'=>array(
+            'name'=>'Файли',
+            'icon'=>'hdd',
+            'top'=>false,
+            'module' => 'Storage'
         ),
         'settings'=>array(
-            'name'=>'Settings',
+            'name'=>'Налаштування',
             'icon'=>'cog',
-            'top'=>true
-        )
+            'top'=>true,
+            'module' => 'Settings'
+        ),
+        'rubrics' =>array(
+            'name'=>'Рубрики',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Rubrics'
+        ),
+        'news' =>array(
+            'name'=>'Новини',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'News'
+        ),
+        'pages' =>array(
+            'name'=>'Сторінки',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Pages'
+        ),
     )
 );

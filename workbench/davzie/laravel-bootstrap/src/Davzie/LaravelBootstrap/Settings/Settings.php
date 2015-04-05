@@ -3,6 +3,7 @@ use Davzie\LaravelBootstrap\Core\EloquentBaseModel;
 
 class Settings extends EloquentBaseModel
 {
+    public $timestamps = false;
 
     /**
      * The table to get the data from
@@ -14,11 +15,21 @@ class Settings extends EloquentBaseModel
      * These are the mass-assignable keys
      * @var array
      */
-    protected $fillable = array( 'id' , 'value');
+    protected $fillable = array('label', 'key', 'value');
 
     protected $validationRules = [
-        'id'      => 'required|exists:settings',
-        'value'   => 'required'
+        'label' => 'required',
+        'key'   => 'required',
+        'value' => 'required'
+    ];
+
+    /**
+     * Validation messages
+     */
+    protected $messages = [
+        'label.required' => 'Поле Назва обовязкове для заповнення',
+        'key.required'   => 'Поле Ключ обовязкове для заповнення',
+        'value.required' => 'Поле Значення обовязкове для заповнення',
     ];
 
 }

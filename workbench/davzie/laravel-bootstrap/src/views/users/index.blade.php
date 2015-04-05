@@ -11,12 +11,9 @@
 @section('content')
 
     <h1>Користувачі</h1>
-    <p>Users are people that have access to the CMS system. Manage them here.</p>
-    
-
     {{-- The error / success messaging partial --}}
     @include('laravel-bootstrap::partials.messaging')
-    
+
     @if( !$items->isEmpty() )
         <table class="table table-condensed">
             <thead>
@@ -41,6 +38,9 @@
                                     <i class="glyphicon glyphicon-edit"></i> Редагувати</a></li>
                                     <li><a href="{{$delete_url.$item->id}}" class="js-delete" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i> Видалити</a></li>
                             </div>
+                            @if (allowed('Users', 'toggle'))
+                                <button type="button" class="js-toggle-bool-value btn btn-sm @if ($item->is_active)btn-success @else btn-default @endif" data-url="{{action($module.'@postToggle', array($item->id))}}" data-column="is_active" data-value="@if ($item->is_active)0 @else 1  @endif">Активний</button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

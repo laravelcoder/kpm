@@ -13,8 +13,16 @@ Route::controller($urlSegment.'/settings'  , 'Davzie\LaravelBootstrap\Controller
 Route::controller($urlSegment.'/blocks'    , 'Davzie\LaravelBootstrap\Controllers\BlocksController');
 Route::controller($urlSegment.'/posts'     , 'Davzie\LaravelBootstrap\Controllers\PostsController');
 Route::controller($urlSegment.'/roles'     , 'Davzie\LaravelBootstrap\Controllers\RolesController');
-// Teachers routers
-Route::controller($urlSegment.'/teachers', 'Davzie\LaravelBootstrap\Controllers\TeachersController');
+
+Route::controller($urlSegment.'/langs', 'Davzie\LaravelBootstrap\Controllers\LangsController');
+
+Route::controller($urlSegment.'/rubrics', 'Davzie\LaravelBootstrap\Controllers\RubricsController');
+Route::controller($urlSegment.'/news'   , 'Davzie\LaravelBootstrap\Controllers\NewsController');
+Route::controller($urlSegment.'/pages'  , 'Davzie\LaravelBootstrap\Controllers\PagesController');
+
+
+Route::get($urlSegment.'/storage/{id}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\StorageController@getIndex'))->where(array('id' => '\d+'));
+Route::controller($urlSegment.'/storage', 'Davzie\LaravelBootstrap\Controllers\StorageController');
 
 Route::controller($urlSegment, 'Davzie\LaravelBootstrap\Controllers\DashController');
 
@@ -23,6 +31,3 @@ Route::controller($urlSegment, 'Davzie\LaravelBootstrap\Controllers\DashControll
 /** Include IOC Bindings **/
 include __DIR__.'/bindings.php';
 include __DIR__.'/access.php';
-
-use Davzie\LaravelBootstrap\Access;
-
