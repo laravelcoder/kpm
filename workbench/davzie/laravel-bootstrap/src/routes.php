@@ -19,6 +19,9 @@ Route::controller($urlSegment.'/langs', 'Davzie\LaravelBootstrap\Controllers\Lan
 Route::controller($urlSegment.'/rubrics', 'Davzie\LaravelBootstrap\Controllers\RubricsController');
 Route::controller($urlSegment.'/news'   , 'Davzie\LaravelBootstrap\Controllers\NewsController');
 Route::controller($urlSegment.'/pages'  , 'Davzie\LaravelBootstrap\Controllers\PagesController');
+Route::controller($urlSegment.'/adverts'   , 'Davzie\LaravelBootstrap\Controllers\AdvertsController');
+Route::controller($urlSegment.'/feedback'  , 'Davzie\LaravelBootstrap\Controllers\FeedbackController');
+Route::controller($urlSegment.'/teachers'  , 'Davzie\LaravelBootstrap\Controllers\TeachersController');
 
 
 Route::get($urlSegment.'/storage/{id}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\StorageController@getIndex'))->where(array('id' => '\d+'));

@@ -85,8 +85,8 @@
 					@if($menu_items)
 						<div class="list-group">
 							@foreach($menu_items as $url=>$item)
-								@if (allowed($item['module'], 'index'))
-								<a class="list-group-item {{ Request::is( "$urlSegment/$url/*" ) ? 'active' : '' }}" href="{{ url( $urlSegment.'/'.$url ) }}">
+								@if (allowed($item['module'], 'index') && !$item['top'])
+								<a class="list-group-item {{ Request::is( "$urlSegment/$url*" ) ? 'active' : '' }}" href="{{ url( $urlSegment.'/'.$url ) }}">
 									<span class="icon icon-{{ $item['icon'] }}"></span> {{ $item['name'] }}
 								</a>
 								@endif
@@ -126,9 +126,12 @@
 			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/redactor.min.js') }}"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<script src="//rawgit.com/Eonasdan/bootstrap-datetimepicker/master/src/js/bootstrap-datetimepicker.js"></script>
-			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/modal-select.js') }}"></script>
-			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/selector.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/fileupload/js/vendor/jquery.ui.widget.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/fileupload/js/jquery.fileupload.js') }}"></script>
+			{{ HTML::script('public/packages/davzie/laravel-bootstrap/js/vendor/speaking-url.js') }}
+        {{ HTML::script('public/packages/davzie/laravel-bootstrap/js/vendor/speaking-url.uk.js') }}
 			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/main.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/upload.js') }}"></script>
 		@show
 	</body>
 </html>

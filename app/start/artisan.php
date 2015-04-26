@@ -11,5 +11,7 @@
 |
 */
 
-Artisan::add(new DavzieCommand);
+Artisan::add(new DavzieModelCommand);
+Artisan::add(new DavzieControllerCommand);
+Artisan::add(new DavzieViewCommand);
 

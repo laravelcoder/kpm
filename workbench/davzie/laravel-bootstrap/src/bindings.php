@@ -51,3 +51,17 @@ App::bind('Davzie\LaravelBootstrap\News\NewsInterface', function(){
 App::bind('Davzie\LaravelBootstrap\Pages\PagesInterface', function(){
 	return new Davzie\LaravelBootstrap\Pages\PagesRepository( new Davzie\LaravelBootstrap\Pages\Pages );
 });
+
+// The Teachers Bindings
+App::bind('Davzie\LaravelBootstrap\Teachers\TeachersInterface', function(){
+	return new Davzie\LaravelBootstrap\Teachers\TeachersRepository( new Davzie\LaravelBootstrap\Teachers\Teachers );
+});
+
+// The Adverts Bindings
+App::bind('Davzie\LaravelBootstrap\Adverts\AdvertsInterface', function(){
+	return new Davzie\LaravelBootstrap\Adverts\AdvertsRepository( new Davzie\LaravelBootstrap\Adverts\Adverts );
+});
+// The Feedback Bindings
+App::bind('Davzie\LaravelBootstrap\Feedback\FeedbackInterface', function(){
+	return new Davzie\LaravelBootstrap\Feedback\FeedbackRepository( new Davzie\LaravelBootstrap\Feedback\Feedback );
+});

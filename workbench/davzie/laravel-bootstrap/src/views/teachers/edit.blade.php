@@ -1,76 +1,69 @@
-@extends('laravel-bootstrap::layouts.interface-edit-multi')
+@extends('laravel-bootstrap::layouts.interface-edit')
 
 @section('title')
     Редагування інформації про викладача
 @stop
 
 @section('breadcrumbs')
-    <li><a href="{{route('universities')}}">Університети</a></li>
-    <li class="active">{{$department->faculty->university->name}}</li>
-    <li class=""><a href="{{route('faculties', $department->faculty->university->id)}}">Факультети</a></li>
-    <li class=""><a href="{{route('departments', $department->faculty->id)}}">Кафедри</a></li>
-    <li class=""><a href="{{route('teachers', $department->id)}}">Список викладачів</a></li>
+    <li><a href="{{action($module . '@getIndex')}}">Викладачі</a></li>
     <li class="active">Редагування інформації про викладача</li>
 @stop
 
-@section('side-menu')
-    @if (allowed('teachers', 'edit'))<li class="active"><a href="#">Редагування</a></li>@endif
-    @if (allowed('teachers', 'subjects'))<li><a href="{{$object_url.'/subjects/'.$item->id}}">Предмети</a></li>@endif
-@stop
-
 @section('heading')
-    <h1>Редагування інформації про викладача <br /><small>{{$department->title}}</small></h1>
+    <h1>Редагування інформації про викладача</h1>
 @stop
 
 @section('form-items')
-    {{ Form::open( array( 'url'=>$edit_url.$item->id , 'class'=>'form-horizontal form-top-margin' , 'role'=>'form', 'id'=>'item-form' ) ) }}
 
-        {{-- The error / success messaging partial --}}
-        @include('laravel-bootstrap::partials.messaging')
-
-        <div class="tab-content">
-            <div class="tab-pane active" id="main">
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        {{Form::hidden('department_id', Input::old("department_id", $department->id),array( 'class'=>'form-control'))}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ Form::label( "surname" , 'Прізвище' , array( 'class'=>'col-lg-2 control-label' ) ) }}
-                    <div class="col-lg-10">
-                        {{ Form::text( "surname" , Input::old( "surname", $item->surname) , array( 'class'=>'form-control' , 'placeholder'=>'Прізвище' ) ) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ Form::label( "name" , 'Ім`я' , array( 'class'=>'col-lg-2 control-label' ) ) }}
-                    <div class="col-lg-10">
-                        {{ Form::text( "name" , Input::old( "name", $item->name) , array( 'class'=>'form-control' , 'placeholder'=>'Ім`я' ) ) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ Form::label( "last_name" , 'По-батькові' , array( 'class'=>'col-lg-2 control-label' ) ) }}
-                    <div class="col-lg-10">
-                        {{ Form::text( "last_name" , Input::old( "last_name", $item->last_name) , array( 'class'=>'form-control' , 'placeholder'=>'По-батькові' ) ) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ Form::label( "graduate" , 'Вчений ступінь' , array( 'class'=>'col-lg-2 control-label' ) ) }}
-                    <div class="col-lg-10">
-                        {{ Form::text( "graduate" , Input::old( "graduate", $item->graduate) , array( 'class'=>'form-control' , 'placeholder'=>'Вчений ступінь' ) ) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ Form::label( "about" , 'Додаткова інформація' , array( 'class'=>'col-lg-2 control-label' ) ) }}
-                    <div class="col-lg-10">
-                        {{ Form::textarea( "about" , Input::old( "about", $item->about) , array( 'class'=>'form-control rich' , 'placeholder'=>'Додаткова інформація' ) ) }}
-                    </div>
-                </div>
-            </div>
+    <div class="form-group">
+        {{ Form::label( "surname" , 'Прізвище' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{ Form::text( "surname" , Input::old( "surname", $item->surname ) , array( 'class'=>'form-control' , 'placeholder'=>'Прізвище' ) ) }}
         </div>
+    </div>
 
-        <a href="{{route('teachers', $department->id)}}" class="btn btn-danger">Назад</a>
-        {{ Form::submit('Зберегти' , array('class'=>'btn btn-large btn-primary')) }}
+    <div class="form-group">
+        {{ Form::label( "name" , 'Імя' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{ Form::text( "name" , Input::old( "name", $item->name ) , array( 'class'=>'form-control' , 'placeholder'=>'Імя' ) ) }}
+        </div>
+    </div>
 
-    {{ Form::close() }}
+    <div class="form-group">
+        {{ Form::label( "second_name" , 'По батькові' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{ Form::text( "second_name" , Input::old( "second_name", $item->second_name ) , array( 'class'=>'form-control' , 'placeholder'=>'По батькові' ) ) }}
+        </div>
+    </div>
+
+    {{Form::hidden('lang_id', Input::old('lang_id', $item->lang_id), array())}}
+
+    @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'value' => $item->photo_storage_id, 'dir' => 'adverts'])
+
+    <div class="form-group">
+        {{ Form::label( "birthdate" , 'Дата народження' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{ Form::text( "birthdate" , Input::old( "birthdate", $item->birthdate ) , array( 'class'=>'form-control datepicker' , 'placeholder'=>'Дата народження' ) ) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ Form::label( "about" , 'Інформація' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{ Form::textarea( "about" , Input::old( "about", $item->about ) , array( 'class'=>'form-control rich' , 'placeholder'=>'Інформація', 'rows' => 30 ) ) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ Form::label( "is_active" , 'Активна' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{Form::hidden('is_active', 0)}}
+            {{ Form::checkbox( "is_active" , Input::old("is_active", 1), $item->is_active) }}
+        </div>
+    </div>
+
 @stop
 
+@section('form-additional-block')
+    <a href="{{action($module . '@getIndex')}}" class="btn btn-danger">Назад</a>
+@stop

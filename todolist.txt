@@ -1,0 +1,16 @@
+Admin Module
+
++1) create langs model + langs repository
++2) create langs controller, settings controller
++) create BaseLangsInfterface for saving data with lang. Methods:
+	- save
+	- update
+	- create record on base lang
+	- update common fields for all langs
+
++4) models repositories with lang extends EloquentBaseRepo and Implements BaseLangsInfterface ()
++5) create rubrics controller, then news and pages
++6) storage model and controller, file manager+uploader
++7) add all modules to access list+roles!!!+Users managment
+8) create other features
+9) Auth and connection to profile with social networks

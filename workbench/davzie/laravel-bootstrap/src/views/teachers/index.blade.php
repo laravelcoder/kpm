@@ -1,21 +1,16 @@
 @extends('laravel-bootstrap::layouts.interface')
 
 @section('title')
-    Список викладачів
+    Викладачі
 @stop
 
 @section('breadcrumbs')
-    <li><a href="{{route('universities')}}">Університети</a></li>
-    <li class="active">{{$department->faculty->university->name}}</li>
-    <li class=""><a href="{{route('faculties', $department->faculty->university->id)}}">Факультети</a></li>
-    <li class=""><a href="{{route('departments', $department->faculty->id)}}">Кафедри</a></li>
-    <li class="active">Список викладачів</li>
+    <li class="active">Викладачі</li>
 @stop
 
 @section('content')
 
-    <h1>Список викладачів: <small>{{$department->title}}</small></h1>
-    <h2>Факультет: {{$department->faculty->title}}</h2>
+    <h1>Викладачі</h1>
 
     {{-- The error / success messaging partial --}}
     @include('laravel-bootstrap::partials.messaging')
@@ -24,26 +19,27 @@
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th>П. І. Б.</th>
+                    <th>Фото</th>
+                    <th>ПІБ</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($items as $item)
                     <tr>
-                        <td><a href="{{$edit_url.$item->id}}">{{$item->surname}} {{$item->name}} {{$item->last_name}}</a>
-                        </td>
+                        <td><img src="{{$item->thumbs['100x']}}" alt="" width="60" height="60" class="thumbnail"></td>
+                        <td>{{$item->surname}} {{$item->name}} {{$item->second_name}}</td>
                         <td>
                             <div class="btn-group">
-                                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Опції <span class="caret"></span></button>
-                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                    @if (allowed('teachers', 'edit'))
-                                    <li><a href="{{$edit_url.$item->id}}">
-                                    <i class="glyphicon glyphicon-edit"></i> Редагувати</a></li>
-                                    @endif
-                                    @if (allowed('teachers', 'delete'))
-                                    <li><a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i> Видалити</a></li>
-                                    @endif
+                            	@if (allowed('teachers', 'view'))
+                                	<a href="{{action($module.'@getView', array($item->id))}}" class="btn btn-default btn-xs"><i class="icon icon-eye-open"></i></a>
+                                @endif
+                                @if (allowed('teachers', 'edit'))
+                                    <a href="{{$edit_url.$item->id}}" class="btn btn-default btn-xs"><i class="icon icon-pencil"></i></a>
+                                @endif
+                                @if (allowed('teachers', 'delete'))
+                                	<a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete btn btn-danger btn-xs" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i></a>
+                                @endif
                             </div>
                         </td>
                     </tr>
@@ -60,7 +56,7 @@
     </div>
     <div class="pull-right">
         @if (allowed('teachers', 'new'))
-        <a href="{{route('teacherAdd', $id)}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
+        <a href="{{action($module .'@getNew')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
         @endif
     </div>
 @stop

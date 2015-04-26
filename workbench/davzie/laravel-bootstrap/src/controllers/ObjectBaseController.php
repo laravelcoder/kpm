@@ -112,8 +112,9 @@ abstract class ObjectBaseController extends BaseController {
 	 */
 	public function getIndex()
 	{
-		return View::make('laravel-bootstrap::'.$this->view_key.'.index')
-					 ->with('items' , $this->model->getAll());
+		View::share('items', $this->model->getAll());
+
+		return View::make('laravel-bootstrap::'.$this->view_key.'.index');
 	}
 
 	/**
@@ -177,6 +178,7 @@ abstract class ObjectBaseController extends BaseController {
 	 */
 	public function postNew()
 	{
+
 		$record = $this->model->getNew(Input::all());
 
 		$valid = $this->validateWithInput === true ? $record->isValid(Input::all()) : $record->isValid();
@@ -316,6 +318,19 @@ abstract class ObjectBaseController extends BaseController {
         }
 
         return \Response::json($data);
+    }
+
+    /**
+     *
+     */
+    public function getView($id)
+    {
+    	if (!$item = $this->model->requireById($id)) {
+    		return \App::abort(404);
+    	}
+
+    	return View::make('laravel-bootstrap::'.$this->view_key.'.view')
+					->with('item' , $item);
     }
 
 }

@@ -12,57 +12,23 @@ class TeachersRepository extends EloquentBaseRepository implements TeachersInter
      */
     public function __construct(Teachers $model)
     {
+        parent::__construct();
         $this->model = $model;
     }
 
     /**
-     * get teachers by department id
+     * Get everything (active only)
+     * @return Eloquent
      */
-    public function getByDepartmentId($id)
+    public function getAll()
     {
-        return $this->model->where('department_id', '=', $id)->with('department')->paginate(\Config::get('app.limit'));
-    }
+        $lang = $this->lang_model->defaultLang();
+        $items = $this->model->where('lang_id', '=', $lang->id)->paginate(\Config::get('app.limit'));
 
-    /**
-     *
-     */
-    public function getDepartment($id)
-    {
-        if (!$group = Departments::find($id)) {
-            return false;
+        foreach ($items as &$item) {
+            $item->thumbs = $this->storage_model->getThumbs($item->photo ? $item->photo->hashname : '');
         }
 
-        return Departments::with('faculty')->find($id);
-    }
-
-    /**
-     *
-     */
-    public function getDepartments()
-    {
-        $faculties = Departments::all();
-        $res = [];
-
-        foreach ($faculties as $faculty) {
-            $res[$faculty->id] = $faculty->name;
-        }
-
-        return $res;
-    }
-
-    /**
-     * get teacher subjects
-     */
-    public function getSubjects($id)
-    {
-        return TeachersHasSubjects::where('teacher_id', '=', $id)->with('subject')->get();
-    }
-
-    /**
-     * delete teacher subject
-     */
-    public function deleteTeacherSubject($id, $subject_id)
-    {
-        return TeachersHasSubjects::where('teacher_id', '=', $id)->where('subject_id', '=', $subject_id)->delete();
+        return $items;
     }
 }

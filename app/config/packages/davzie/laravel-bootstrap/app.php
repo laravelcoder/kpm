@@ -18,7 +18,7 @@ return array(
     /**
      * The base path to put uploads into
      */
-    'upload_base_path'=>'uploads/',
+    'upload_base_path'=>'public/files',
 
     /**
      * The URL key to access the main admin area
@@ -38,13 +38,13 @@ return array(
         'roles'=>array(
             'name'=>'Ролі',
             'icon'=>'group',
-            'top'=>false,
+            'top'=>true,
             'module' => 'Roles'
         ),
         'users'=>array(
             'name'=>'Користувачі',
             'icon'=>'user',
-            'top'=>false,
+            'top'=>true,
             'module' => 'Users'
         ),
         'storage'=>array(
@@ -76,6 +76,24 @@ return array(
             'icon'=>'',
             'top'=>false,
             'module' => 'Pages'
+        ),
+        'adverts' =>array(
+            'name'=>'Оголошення',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Adverts'
+        ),
+        'teachers' =>array(
+            'name'=>'Викладачі',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Teachers'
+        ),
+        'feedback' =>array(
+            'name'=>'Зворотній зв`язок',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Feedback'
         ),
     )
 );

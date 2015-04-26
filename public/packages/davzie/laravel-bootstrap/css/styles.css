@@ -1,0 +1,73 @@
+/* Generic Shit */
+.alert { text-align:left; }
+.alert p { margin-bottom:0; padding-bottom:0; }
+
+/* Main Interface Area */
+body.interface{
+    padding-top:71px;
+}
+
+.form-top-margin{
+    margin-top:15px;
+}
+.thumbnail .image-container{ height:150px; overflow:hidden; display:block; }
+.thumbnail .image-container img{  max-height:150px; display:block; margin:0 auto; border-radius:3px; }
+.thumbnail .caption {  font-size:12px; }
+.left-border {border-left: 1px solid #eee;}
+.storage .folder.icon {
+	font-size: 28px;
+}
+
+table.storage tr td {
+	vertical-align: middle;
+	height: 50px;
+}
+
+.progress-bar-block {
+	margin-top: 18px;
+	margin-bottom: 6px;
+	height: 5px;
+}
+.js-remove-file-id {
+	display: block;
+	margin-top: 6px;
+	position: relative;
+}
+
+.fileinput-button, .fileinput-button input {
+	width: 300px;
+	text-align: left;
+	height: 90px;
+	cursor: pointer;
+}
+
+.fileinput-button * {
+	cursor: pointer;
+}
+
+.simple-up.fileinput-button, .simple-up.fileinput-button input {
+	width: 165px;
+	text-align: left;
+	height: 32px;
+}
+
+img.upload-cover {
+	height: 75px;
+	width: 75px;
+	margin-right: 6px;
+	margin-left: -6px;
+}
+
+#fileupload {
+	opacity: 0;
+	display: inline;
+	position: absolute;
+	margin-top: -7px;
+	width: 210px;
+}
+
+.simple-up #fileupload {
+	width: 148px;
+	cursor: pointer;
+
+}

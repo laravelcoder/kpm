@@ -1,0 +1,19 @@
+<?php namespace Davzie\LaravelBootstrap\{{class}};
+use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
+use Davzie\LaravelBootstrap\{{class}}\{{class}};
+use Davzie\LaravelBootstrap\Departments\Departments;
+
+class {{class}}Repository extends EloquentBaseRepository implements {{class}}Interface
+{
+
+    /**
+     * Construct Shit
+     * @param {{class}} $model
+     */
+    public function __construct({{class}} $model)
+    {
+    	parent::__construct();
+        $this->model = $model;
+    }
+
+}
