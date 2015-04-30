@@ -48,7 +48,7 @@ class StorageController extends ObjectBaseController {
         foreach ($items as $item) {
             $item->is_image = $this->model->isImg($item->mime);
             if (!$item->is_dir) {
-                $item->thumbs   = $this->model->getThumbs($item->hashname);
+                $item->thumbs   = $this->model->getThumbs($item);
                 $item->path     = 'http://'.\Request::server('HTTP_HOST').$this->model->getFilepath($item->id);
             }
         }

@@ -86,7 +86,7 @@ class DashController extends BaseController {
 				if ($user->is_active == 0) {
 					Auth::logout();
 					return Redirect::back()
-							->with('errors', new MessageBag(array('Даний користувач заблокований')))
+							->with('errors', new MessageBag(array('Цей користувач заблокований')))
 							->withInput();
 				}
 

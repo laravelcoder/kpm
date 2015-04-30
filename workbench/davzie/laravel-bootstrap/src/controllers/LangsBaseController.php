@@ -6,6 +6,19 @@ use Davzie\LaravelBootstrap\Core\Exceptions\EntityNotFoundException;
 abstract class LangsBaseController extends ObjectBaseController {
 
 	/**
+	 *
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+
+		if (!$lang = $this->lang_model->defaultLang()) {
+			throw new Exception("Відсутня мова за замовчуванням", 1);
+		}
+
+	}
+
+	/**
 	 * add new item with lang
 	 */
 	public function getNew($lang_code = null, $id = null)
@@ -116,7 +129,8 @@ abstract class LangsBaseController extends ObjectBaseController {
 		$record->save();
 
 		$this->model->createHidden($record->id, Input::all());
-		// $this->model->updateCommon($record->id, Input::all());
+		$this->model->updateCommon($record->id, Input::all());
+		$this->model->saveRelations($record->id);
 
 		// Redirect that shit man! You did good! Validated and saved, man mum would be proud!
 		return Redirect::to($this->object_url)->with('success' , new MessageBag(array('Запис додано')));
@@ -147,6 +161,7 @@ abstract class LangsBaseController extends ObjectBaseController {
 
 		$this->model->update($id, $lang->id, $data);
 		$this->model->updateCommon($id, Input::all());
+		$this->model->updateRelations($id);
 
 		// Redirect that shit man! You did good! Validated and saved, man mum would be proud!
 		return Redirect::to($this->object_url)->with('success' , new MessageBag(array('Зміни збережено')));

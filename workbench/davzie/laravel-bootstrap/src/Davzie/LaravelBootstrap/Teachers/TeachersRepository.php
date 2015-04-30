@@ -26,7 +26,7 @@ class TeachersRepository extends EloquentBaseRepository implements TeachersInter
         $items = $this->model->where('lang_id', '=', $lang->id)->paginate(\Config::get('app.limit'));
 
         foreach ($items as &$item) {
-            $item->thumbs = $this->storage_model->getThumbs($item->photo ? $item->photo->hashname : '');
+            $item->thumbs = $this->storage_model->getThumbs($item->photo);
         }
 
         return $items;

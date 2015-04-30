@@ -111,4 +111,26 @@ class News extends EloquentBaseModel
         return $this->belongsTo('Davzie\LaravelBootstrap\Storage\Storage', 'photo_storage_id', 'id');
     }
 
+    /**
+     *
+     */
+    public function rubrics()
+    {
+        return $this->belongsToMany('Davzie\LaravelBootstrap\Rubrics\Rubrics', 'news_has_rubrics', 'new_id', 'rubric_id');
+    }
+
+    /**
+     *
+     */
+    public function rubrics_ids()
+    {
+        $list = [];
+
+        foreach ($this->rubrics as $rubric) {
+            $list[] = $rubric->id;
+        }
+
+        return $list;
+    }
+
 }

@@ -64,6 +64,7 @@
                         <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> {{$user->first_name}} <span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         	<li><a href="{{ url( $urlSegment.'/users/profile/' ) }}"><i class="icon icon-user"></i> Редагування профілю</a></li>
+                        	<li><a href="{{site_url()}}" target="_blank">Перейти на сайт</a></li>
                         	<li class="divider"></li>
                         	<li><a href="{{ url( $urlSegment.'/logout' ) }}">Вихід</a></li>
                         </ul>

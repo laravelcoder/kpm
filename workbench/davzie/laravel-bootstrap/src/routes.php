@@ -6,6 +6,7 @@ $urlSegment = Config::get('laravel-bootstrap::app.access_url');
 
 // Filter all requests ensuring a user is logged in when this filter is called
 Route::filter('adminFilter', 'Davzie\LaravelBootstrap\Filters\Admin');
+Route::filter('langFilter', 'Davzie\LaravelBootstrap\Filters\Lang');
 
 Route::controller($urlSegment.'/users'     , 'Davzie\LaravelBootstrap\Controllers\UsersController');
 Route::controller($urlSegment.'/galleries' , 'Davzie\LaravelBootstrap\Controllers\GalleriesController');

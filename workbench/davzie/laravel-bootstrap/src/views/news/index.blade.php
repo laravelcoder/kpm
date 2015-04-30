@@ -34,11 +34,10 @@
                         <td>
                             <div class="btn-group">
                                     @if (allowed('rubrics', 'edit'))
-                                    <a href="{{$edit_url.$item->id}}" class="btn btn-default btn-xs">
-                                    <i class="icon icon-pencil"></i></a>
+                                        <a href="{{$edit_url.$item->id}}" class="btn btn-default btn-xs"><i class="icon icon-pencil"></i></a>
                                     @endif
                                     @if (allowed('rubrics', 'delete'))
-                                    <a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete btn btn-danger btn-xs" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i></a>
+                                        <a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete btn btn-danger btn-xs" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i></a>
                                     @endif
                             </div>
                         </td>
@@ -56,7 +55,7 @@
     </div>
     <div class="pull-right">
         @if (allowed('rubrics', 'new'))
-        <a href="{{action($module .'@getNew')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
+            <a href="{{action($module .'@getNew')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
         @endif
     </div>
 @stop

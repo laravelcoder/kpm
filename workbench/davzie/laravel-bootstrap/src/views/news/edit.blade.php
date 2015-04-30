@@ -62,6 +62,12 @@
         </div>
     </div>
     <div class="form-group">
+        {{ Form::label( "rubrics" , 'Рубрики' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{ Form::select( "rubrics[]" , $rubrics, Input::old( "rubrics", $item->rubrics_ids() ) , array( 'class'=>'form-control sel2', 'multiple') ) }}
+        </div>
+    </div>
+    <div class="form-group">
         {{ Form::label( "is_active" , 'Активна' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">
             {{Form::hidden('is_active', 0)}}

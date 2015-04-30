@@ -368,10 +368,11 @@ class StorageRepository extends EloquentBaseRepository implements StorageInterfa
 	/**
 	 * get filename thumbs
 	 */
-	public function getThumbs($filename)
+	public function getThumbs($file = null)
 	{
-		$thumbs = Config::get('app.thumbs');
-		$result = [];
+		$filename = $file ? $file->hashname : '';
+		$thumbs   = Config::get('app.thumbs');
+		$result   = [];
 
 		foreach ($thumbs as $thumb) {
 			list($width, $height) = explode('x', $thumb);

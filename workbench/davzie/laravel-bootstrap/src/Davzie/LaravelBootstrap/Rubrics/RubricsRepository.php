@@ -24,4 +24,20 @@ class RubricsRepository extends EloquentBaseRepository implements RubricsInterfa
     	return $this->model->where('lang_id', '=', $lang->id)->paginate(\Config::get('app.limit'));
     }
 
+    /**
+     * get rubrics list for html select
+     */
+    public function getList()
+    {
+        $lang = $this->lang_model->defaultLang();
+        $rubrics = $this->model->where('lang_id', '=', $lang->id)->get();
+        $list = [];
+
+        foreach ($rubrics as $rubric) {
+            $list[$rubric->id] = $rubric->title;
+        }
+
+        return $list;
+    }
+
 }

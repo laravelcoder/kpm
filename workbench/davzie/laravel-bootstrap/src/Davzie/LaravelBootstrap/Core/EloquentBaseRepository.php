@@ -276,4 +276,16 @@ class EloquentBaseRepository
 
     }
 
+    /**
+     *
+     */
+    public function saveRelations($id)
+    {}
+
+    /**
+     *
+     */
+    public function updateRelations($id)
+    {}
+
 }
