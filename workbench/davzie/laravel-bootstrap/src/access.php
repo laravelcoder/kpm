@@ -16,6 +16,7 @@ Access::module('Adverts', 'Оголошення', false);
 Access::module('Teachers', 'Викладачі', false);
 Access::module('Feedback', 'Зворотній зв`язок', false);
 Access::module('Galleries', 'Фотогалареї', false);
+Access::module('Menu', 'Меню', false);
 
 
 
@@ -32,6 +33,8 @@ Access::storage('editDir', 'Редагування папок', false);
 Access::storage('upload', 'Завантаження', true);
 Access::storage('image', 'Image', true);
 Access::storage('file', 'Перегляд файлу', false);
+Access::menu('sort', 'Сортування меню', false);
+Access::langs('changeDefault', 'Зміна мови', true);
 
 // to all modules
 Access::toAll('toggle', 'Кнопки-триггери', false);

@@ -1,32 +1,50 @@
 @extends('laravel-bootstrap::layouts.interface-new')
 
 @section('title')
-    Create New Image Gallery
+    Додавання галереї
+@stop
+
+@section('breadcrumbs')
+    <li><a href="{{action($module . '@getIndex')}}">Галереї</a></li>
+    <li class="active">Додавання галереї</li>
 @stop
 
 @section('heading')
-    <h1>Create New Image Gallery</h1>
+    <h1>Додавання галереї</h1>
 @stop
 
 @section('form-items')
 
     <div class="form-group">
-        {{ Form::label( "title" , 'Gallery Title' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        {{ Form::label( "title" , 'Назва' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">
-            {{ Form::text( "title" , Input::old( "title" ) , array( 'class'=>'form-control' , 'placeholder'=>'Gallery Title' ) ) }}
+            {{ Form::text( "title" , Input::old( "title" ) , array( 'class'=>'form-control' , 'placeholder'=>'Назва' ) ) }}
         </div>
     </div>
+
+    {{Form::hidden('lang_id', Input::old('lang_id', $lang_id), array())}}
+    {{Form::hidden('id', Input::old('id', $id), array())}}
+
+    @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'dir' => 'galleries', 'value' => $default->photo_storage_id ? $default->photo_storage_id : ''])
+
     <div class="form-group">
-        {{ Form::label( "slug" , 'Gallery Key' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        {{ Form::label( "descr" , 'Короткий опис' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">
-            {{ Form::text( "slug" , Input::old( "slug" ) , array( 'class'=>'form-control' , 'placeholder'=>'Gallery Slug' ) ) }}
+            {{ Form::textarea( "descr" , Input::old( "descr" ) , array( 'class'=>'form-control' , 'placeholder'=>'Короткий опис', 'rows' => 10 ) ) }}
         </div>
     </div>
+
     <div class="form-group">
-        {{ Form::label( "description" , 'Gallery Content' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        {{ Form::label( "is_active" , 'Активна' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">
-            {{ Form::textarea( "description" , Input::old( "description" ) , array( 'class'=>'form-control rich' , 'placeholder'=>'Gallery Description' ) ) }}
+            {{Form::hidden('is_active', 0)}}
+            {{ Form::checkbox( "is_active" , Input::old("is_active", 1), $default->is_active) }}
         </div>
     </div>
-    
+
+@stop
+
+@section('form-additional-block')
+    <a href="{{action($module . '@getIndex')}}" class="btn btn-danger">Назад</a>
+    {{ Form::submit('Створити та продовжити' , array('class'=>'btn btn-large btn-primary ', 'name' => '_stay', 'value' => 1)) }}
 @stop

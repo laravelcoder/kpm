@@ -1,5 +1,7 @@
 <?php namespace Davzie\LaravelBootstrap\Controllers;
 use Davzie\LaravelBootstrap\Langs\LangsInterface;
+use Illuminate\Support\MessageBag;
+use Redirect;
 
 class LangsController extends ObjectBaseController {
 
@@ -44,6 +46,22 @@ class LangsController extends ObjectBaseController {
 		}
 
 		return parent::postEdit($id);
+	}
+
+	/**
+	 *
+	 */
+	public function getChangeDefault()
+	{
+		$lang_code = \Input::get('lang');
+
+		if (!$lang = $this->model->getByCode($lang_code)) {
+			return Redirect::back()->with('errors' , new MessageBag(array('Вибраної мови не існує')));
+		}
+
+		$this->model->changeDefault($lang);
+
+		return Redirect::back()->with('success' , new MessageBag(array('Мову за замовчуванням змінено')));
 	}
 
 }

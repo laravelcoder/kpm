@@ -56,6 +56,7 @@ img.upload-cover {
 	width: 75px;
 	margin-right: 6px;
 	margin-left: -6px;
+	display: inline-block !important;
 }
 
 #fileupload {
@@ -70,4 +71,29 @@ img.upload-cover {
 	width: 148px;
 	cursor: pointer;
 
+}
+
+#fileupload-gallery {
+	margin-left: -38px;
+	opacity: 0;
+	display: inline;
+	position: absolute;
+	width: 90px;
+}
+
+.progress-bar-block2 {
+	margin-top: -12px;
+	height: 5px;
+}
+
+.options-200 {
+	width: 200px;
+}
+
+.options-250 {
+	width: 250px;
+}
+
+.transporent-9 {
+	background: rgba(255, 255, 255, .93);
 }

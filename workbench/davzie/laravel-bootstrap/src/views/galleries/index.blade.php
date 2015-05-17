@@ -1,39 +1,51 @@
 @extends('laravel-bootstrap::layouts.interface')
 
 @section('title')
-    Manage Image Galleries
+    Галереї
+@stop
+
+@section('breadcrumbs')
+    <li class="active">Галереї</li>
 @stop
 
 @section('content')
 
-    <h1>Manage Image Galleries</h1>
-    <p>Image galleries are images separated into their own little section.</p>
-    
+    <div class="pull-right">
+        @if (allowed('galleries', 'new'))
+            <a href="{{action($module .'@getNew')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
+        @endif
+    </div>
+
+    <h1>Галереї</h1>
 
     {{-- The error / success messaging partial --}}
     @include('laravel-bootstrap::partials.messaging')
-    
+
     @if( !$items->isEmpty() )
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Slug</th>
-                    <th>Created</th>
-                    <th>&nbsp;</th>
+                    <th>Фото</th>
+                    <th>Назва</th>
+                    <th class="options-200">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($items as $item)
                     <tr>
-                        <td><a href="{{ $edit_url.$item->id }}">{{ $item->id }}</a></td>
-                        <td><a href="{{ $edit_url.$item->id }}">{{ $item->title }}</a></td>
-                        <td><a href="{{ $edit_url.$item->id }}">{{ $item->slug }}</a></td>
-                        <td><a href="{{ $edit_url.$item->id }}">{{ $item->created_at }}</a></td>
+                        <td><img src="{{$item->thumbs['100x']}}" alt="" width="60" height="60" class="thumbnail"></td>
+                        <td><a href="{{$edit_url . $item->id}}">{{$item->title}}</a>
                         <td>
-                            <div class="pull-right">
-                                <a href="{{ $edit_url.$item->id }}" class="btn btn-sm btn-primary">Edit Item</a> <a href="{{ $delete_url.$item->id }}" class="btn btn-sm btn-danger">Delete Item</a>
+                            <div class="btn-group">
+                                @if (allowed('galleries', 'edit'))
+                                    <a href="{{$edit_url.$item->id}}" class="btn btn-default btn-xs"><i class="icon icon-pencil"></i></a>
+                                @endif
+                                @if (allowed('galleries', 'delete'))
+                                    <a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete btn btn-danger btn-xs" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i></a>
+                                @endif
+                                @if ($item->lang_id == $hidden_lang->id)
+                                    <a href="{{action($module.'@getNew', ['lang_code' => $default_lang->code, 'id' => $item->id])}}" class="btn btn-xs btn-default"><i class="icon icon-plus"> Створити запис</i></a>
+                                @endif
                             </div>
                         </td>
                     </tr>
@@ -42,8 +54,10 @@
         </table>
     @else
         <div class="alert alert-info">
-            <strong>No Items Yet:</strong> You don't have any items here just yet. Add one using the button below.
+            <strong>Список порожній</strong>
         </div>
     @endif
-    <a href="{{ $new_url }}" class="btn btn-primary pull-right">New Item</a>
+    <div class="pull-left">
+        {{$items->links()}}
+    </div>
 @stop

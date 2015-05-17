@@ -77,7 +77,7 @@ return array(
             'top'=>false,
             'module' => 'Pages'
         ),
-        'adverts' =>array(
+        'informing' =>array(
             'name'=>'Оголошення',
             'icon'=>'',
             'top'=>false,
@@ -94,6 +94,18 @@ return array(
             'icon'=>'',
             'top'=>false,
             'module' => 'Feedback'
+        ),
+        'galleries' =>array(
+            'name'=>'Галереї',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Galleries'
+        ),
+        'menu' =>array(
+            'name'=>'Меню',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Menu'
         ),
     )
 );

@@ -74,4 +74,14 @@ class LangsRepository extends EloquentBaseRepository implements LangsInterface
         return $lang;
     }
 
+    /**
+     *
+     */
+    public function changeDefault($lang)
+    {
+        //
+        $this->model->update(array('is_default' => 0));
+        $this->model->where('id', $lang->id)->update(['is_default' => 1]);
+    }
+
 }

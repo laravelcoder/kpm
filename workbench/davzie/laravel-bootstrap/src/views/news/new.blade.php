@@ -31,7 +31,7 @@
             {{ Form::text( "slug" , Input::old( "slug", $default->slug ) , array( 'class'=>'form-control' , 'placeholder'=>'Аліас' ) ) }}
         </div>
     </div>
-    @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'dir' => 'news'])
+    @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'dir' => 'news', 'value' => $default->photo_storage_id ? $default->photo_storage_id : ''])
     <div class="form-group">
         {{ Form::label( "descr" , 'Короткий опис' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">

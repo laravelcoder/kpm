@@ -247,6 +247,78 @@ $(function () {
 	$body.on('click', '.js-get-path', function (e) {
 		e.preventDefault();
 		prompt('Шлях до файлу:', $(this).attr('data-path'));
-	})
+	});
+
+	Hbs = function (id, data) {
+
+		if (!Handlebars) {
+			return false;
+		}
+
+		var source   = $("#" + id).html();
+		var template = Handlebars.compile(source);
+
+		return template(data);
+	};
+
+	$body.on('click', '.js-remove-from-gallery', function (e) {
+		e.preventDefault();
+		var $this = $(this);
+		var gallery_id = $this.attr('data-gallery-id');
+		var storage_id = $this.attr('data-storage-id');
+		var url = $this.attr('data-url');
+
+		if (confirm('Видалити це фото')) {
+			$.ajax({
+				url: url,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					gallery_id: gallery_id,
+					storage_id: storage_id
+				},
+				success: function (data) {
+					if (data.success) {
+						$this.parent().remove();
+					}
+				}
+			});
+		}
+
+	});
+
+	// sortable
+	$("#sortable").sortable({
+		placeholder: "ui-state-highlight",
+		update: function (event, ui) {
+			var $this = $(this);
+			var url   = $this.attr('data-url');
+			var $form = $(this).parent('form');
+
+			$.ajax({
+				url: url,
+				data: $form.serialize(),
+				dataType: 'json',
+				type: 'POST'
+			});
+		}
+    });
+
+    $body.on('click', '.js-toggle-element', function (e) {
+    	e.preventDefault();
+
+    	var target = $(this).attr('data-target');
+    	var $target = $(target);
+
+    	$target.toggle();
+    });
+
+    $body.on('change', '.js-select-to', function () {
+    	var $this = $(this);
+    	var value = $this.val();
+    	var $target = $($this.attr('data-target'));
+
+    	$target.val(value);
+    });
 
 });

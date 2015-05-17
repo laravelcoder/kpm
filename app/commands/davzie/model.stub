@@ -17,6 +17,11 @@ class {{class}} extends EloquentBaseModel
     protected $fillable = array();
 
     /**
+     *
+     */
+    protected $common_fields = array();
+
+    /**
      * Validation rules
      */
     protected $validationRules = [

@@ -20,8 +20,15 @@ class RubricsRepository extends EloquentBaseRepository implements RubricsInterfa
      */
     public function getAll()
     {
-    	$lang = $this->lang_model->defaultLang();
-    	return $this->model->where('lang_id', '=', $lang->id)->paginate(\Config::get('app.limit'));
+    	$lang       = $this->lang_model->defaultLang();
+        $hidden     = $this->lang_model->getHidden();
+        $exists_ids = $this->model->where('lang_id', $lang->id)->lists('id');
+
+        if (empty($exists_ids)) {
+            return $this->model->where('lang_id', $hidden->id)->orderBy('id', 'DESC')->groupBy('id')->paginate(\Config::get('app.limit'));
+        } else {
+            return $this->model->where('lang_id', $lang->id)->orWhereNotIn('id', $exists_ids)->where('lang_id', $hidden->id)->orderBy('id', 'DESC')->groupBy('id')->paginate(\Config::get('app.limit'));
+        }
     }
 
     /**

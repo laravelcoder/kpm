@@ -19,7 +19,7 @@ class Pages extends EloquentBaseModel
     /**
      *
      */
-    protected $common_fields = array('slug', 'is_active');
+    protected $common_fields = array('slug', 'is_active', 'parent_id');
 
     /**
      * Validation rules
@@ -49,7 +49,14 @@ class Pages extends EloquentBaseModel
     public function fill(array $attributes)
     {
         parent::fill($attributes);
-        $this->time_add = time();
+
+        if (!$this->exists) {
+            $this->time_add = time();
+        }
+
+        if (empty($this->parent_id)) {
+            $this->parent_id = null;
+        }
     }
 
 }

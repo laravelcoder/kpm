@@ -37,9 +37,9 @@
 		            <tbody>
 		                @foreach($items as $item)
 		                    <tr>
-		                        <td>{{$item->subject}}</a></td>
-		                        <td>{{$item->from}}</a></td>
-		                        <td>{{$item->mail}}</a></td>
+		                        <td>{{$item->subject}}</td>
+		                        <td>{{$item->from}}</td>
+		                        <td>{{$item->mail}}</td>
 		                        <td>
 		                            <div class="btn-group">
 		                            	@if (allowed('feedback', 'view'))

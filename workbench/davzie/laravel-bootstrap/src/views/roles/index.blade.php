@@ -10,6 +10,11 @@
 
 @section('content')
 
+    <div class="pull-right">
+        @if (allowed('roles', 'new'))
+        <a href="{{$new_url}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
+        @endif
+    </div>
     <h1>Ролі</h1>
 
     {{-- The error / success messaging partial --}}
@@ -21,7 +26,7 @@
                 <tr>
                     <th>Назва</th>
                     <th>Ключ</th>
-                    <th>&nbsp;</th>
+                    <th class="options-200">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,20 +37,15 @@
                         </td>
                         <td>
                             <div class="btn-group">
-                                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Опції <span class="caret"></span></button>
-                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                    @if (allowed('roles', 'edit'))
-                                    <li><a href="{{$edit_url.$item->id}}">
-                                    <i class="glyphicon glyphicon-edit"></i> Редагувати</a></li>
-                                    @endif
-                                    @if (allowed('roles', 'delete'))
-                                    <li><a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}"><i class="glyphicon glyphicon-trash"></i> Видалити</a></li>
-                                    @endif
-                                    <li class="divider"></li>
-                                    @if (allowed('roles', 'permissions'))
-                                    <li><a href="{{$object_url.'/permissions/'.$item->id}}">Права</a></li>
-                                    @endif
-                                </ul>
+                                @if (allowed('roles', 'edit'))
+                                    <a href="{{$edit_url.$item->id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-edit"></i></a>
+                                @endif
+                                @if (allowed('roles', 'delete'))
+                                    <a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                                @endif
+                                @if (allowed('roles', 'permissions'))
+                                    <a href="{{$object_url.'/permissions/'.$item->id}}" class="btn btn-xs btn-primary">Права</a>
+                                @endif
                             </div>
                         </td>
                     </tr>
@@ -59,10 +59,5 @@
     @endif
     <div class="pull-left">
         {{$items->links()}}
-    </div>
-    <div class="pull-right">
-        @if (allowed('roles', 'new'))
-        <a href="{{$new_url}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
-        @endif
     </div>
 @stop

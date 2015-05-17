@@ -252,7 +252,7 @@ class EloquentBaseRepository
 
         foreach ($fields as $field) {
             if (strpos($field, 'storage_id') != false) {
-                if (Input::has('$field')) {
+                if (Input::has($field)) {
                     $path[$field] = $this->storage_model->getFilepath(\Input::old($field));
                 } elseif (isset($data[$field])) {
                     $path[$field] = $this->storage_model->getFilepath($data[$field]);
@@ -270,9 +270,11 @@ class EloquentBaseRepository
      */
     public function update($id, $lang_id, $data)
     {
-        $table = $this->model->getTable();
+        // $table = $this->model->getTable();
+        // var_dump($data);die;
 
-        return \DB::table($table)->where('id', $id)->where('lang_id', $lang_id)->update($data);
+        // return \DB::table($table)->where('id', $id)->where('lang_id', $lang_id)->update($data);
+        return $this->model->where('id', $id)->where('lang_id', $lang_id)->update($data);
 
     }
 

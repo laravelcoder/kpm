@@ -14,6 +14,7 @@
 @stop
 
 @section('form-items')
+
     <div class="form-group">
         {{ Form::label( "title" , 'Назва' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">
@@ -24,7 +25,7 @@
     {{Form::hidden('lang_id', Input::old('lang_id', $lang_id), array())}}
     {{Form::hidden('id', Input::old('id', $id), array())}}
 
-    @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'dir' => 'adverts'])
+    @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'dir' => 'adverts', 'value' => $default->photo_storage_id ? $default->photo_storage_id : ''])
 
     <div class="form-group">
         {{ Form::label( "descr" , 'Короткий опис' , array( 'class'=>'col-lg-2 control-label' ) ) }}

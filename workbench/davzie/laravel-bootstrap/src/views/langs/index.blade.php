@@ -10,6 +10,11 @@
 
 @section('content')
 
+    <div class="pull-right">
+        @if (allowed('langs', 'new'))
+        <a href="{{action($module .'@getNew')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
+        @endif
+    </div>
     <h1>Мови</h1>
 
     {{-- The error / success messaging partial --}}
@@ -22,7 +27,7 @@
                     <th>Назва</th>
                     <th>Код</th>
                     <th>За замовчуванням</th>
-                    <th>&nbsp;</th>
+                    <th class="options-200">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,16 +44,13 @@
                         </td>
                         <td>
                             <div class="btn-group">
-                                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Опції <span class="caret"></span></button>
-                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                    @if (allowed('langs', 'edit'))
-                                    <li><a href="{{$edit_url.$item->id}}">
-                                    <i class="glyphicon glyphicon-edit"></i> Редагувати</a></li>
-                                    @endif
-                                    @if (allowed('langs', 'delete'))
-                                    <li><a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i> Видалити</a></li>
-                                    @endif
-                                </ul>
+                                @if (allowed('langs', 'edit'))
+                                <a href="{{$edit_url.$item->id}}" class="btn btn-xs btn-default">
+                                <i class="glyphicon glyphicon-edit"></i></a>
+                                @endif
+                                @if (allowed('langs', 'delete'))
+                                <a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete btn btn-xs btn-danger" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i></a>
+                                @endif
                             </div>
                         </td>
                     </tr>
@@ -62,10 +64,5 @@
     @endif
     <div class="pull-left">
         {{$items->links()}}
-    </div>
-    <div class="pull-right">
-        @if (allowed('langs', 'new'))
-        <a href="{{action($module .'@getNew')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
-        @endif
     </div>
 @stop

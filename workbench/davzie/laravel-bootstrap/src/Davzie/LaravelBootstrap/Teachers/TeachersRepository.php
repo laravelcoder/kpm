@@ -22,8 +22,15 @@ class TeachersRepository extends EloquentBaseRepository implements TeachersInter
      */
     public function getAll()
     {
-        $lang = $this->lang_model->defaultLang();
-        $items = $this->model->where('lang_id', '=', $lang->id)->paginate(\Config::get('app.limit'));
+        $lang       = $this->lang_model->defaultLang();
+        $hidden     = $this->lang_model->getHidden();
+        $exists_ids = $this->model->where('lang_id', $lang->id)->lists('id');
+
+        if (empty($exists_ids)) {
+            $items  = $this->model->where('lang_id', $hidden->id)->orderBy('id', 'DESC')->groupBy('id')->paginate(\Config::get('app.limit'));
+        } else {
+            $items = $this->model->where('lang_id', $lang->id)->orWhereNotIn('id', $exists_ids)->where('lang_id', $hidden->id)->orderBy('id', 'DESC')->groupBy('id')->paginate(\Config::get('app.limit'));
+        }
 
         foreach ($items as &$item) {
             $item->thumbs = $this->storage_model->getThumbs($item->photo);

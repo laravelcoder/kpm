@@ -9,24 +9,29 @@ Route::filter('adminFilter', 'Davzie\LaravelBootstrap\Filters\Admin');
 Route::filter('langFilter', 'Davzie\LaravelBootstrap\Filters\Lang');
 
 Route::controller($urlSegment.'/users'     , 'Davzie\LaravelBootstrap\Controllers\UsersController');
-Route::controller($urlSegment.'/galleries' , 'Davzie\LaravelBootstrap\Controllers\GalleriesController');
 Route::controller($urlSegment.'/settings'  , 'Davzie\LaravelBootstrap\Controllers\SettingsController');
 Route::controller($urlSegment.'/blocks'    , 'Davzie\LaravelBootstrap\Controllers\BlocksController');
 Route::controller($urlSegment.'/posts'     , 'Davzie\LaravelBootstrap\Controllers\PostsController');
 Route::controller($urlSegment.'/roles'     , 'Davzie\LaravelBootstrap\Controllers\RolesController');
 
-Route::controller($urlSegment.'/langs', 'Davzie\LaravelBootstrap\Controllers\LangsController');
+Route::controller($urlSegment.'/langs'     , 'Davzie\LaravelBootstrap\Controllers\LangsController');
 
-Route::controller($urlSegment.'/rubrics', 'Davzie\LaravelBootstrap\Controllers\RubricsController');
-Route::controller($urlSegment.'/news'   , 'Davzie\LaravelBootstrap\Controllers\NewsController');
-Route::controller($urlSegment.'/pages'  , 'Davzie\LaravelBootstrap\Controllers\PagesController');
-Route::controller($urlSegment.'/adverts'   , 'Davzie\LaravelBootstrap\Controllers\AdvertsController');
+Route::controller($urlSegment.'/rubrics'   , 'Davzie\LaravelBootstrap\Controllers\RubricsController');
+Route::controller($urlSegment.'/news'      , 'Davzie\LaravelBootstrap\Controllers\NewsController');
+
+Route::get($urlSegment.'/pages/{id}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\PagesController@getIndex'))->where(array('id' => '\d+'));
+Route::controller($urlSegment.'/pages'     , 'Davzie\LaravelBootstrap\Controllers\PagesController');
+Route::controller($urlSegment.'/informing' , 'Davzie\LaravelBootstrap\Controllers\AdvertsController');
 Route::controller($urlSegment.'/feedback'  , 'Davzie\LaravelBootstrap\Controllers\FeedbackController');
 Route::controller($urlSegment.'/teachers'  , 'Davzie\LaravelBootstrap\Controllers\TeachersController');
+Route::controller($urlSegment.'/galleries' , 'Davzie\LaravelBootstrap\Controllers\GalleriesController');
+
+Route::get($urlSegment.'/menu/{id}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\MenuController@getIndex'))->where(array('id' => '\d+'));
+Route::controller($urlSegment.'/menu' , 'Davzie\LaravelBootstrap\Controllers\MenuController');
 
 
 Route::get($urlSegment.'/storage/{id}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\StorageController@getIndex'))->where(array('id' => '\d+'));
-Route::controller($urlSegment.'/storage', 'Davzie\LaravelBootstrap\Controllers\StorageController');
+Route::controller($urlSegment.'/storage'   , 'Davzie\LaravelBootstrap\Controllers\StorageController');
 
 Route::controller($urlSegment, 'Davzie\LaravelBootstrap\Controllers\DashController');
 

@@ -32,6 +32,12 @@
         </div>
     </div>
     <div class="form-group">
+        {{ Form::label( "parent_id" , 'Батьківська сторінка' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{ Form::select( "parent_id", ['' => ''] + $pages, Input::old( "parent_id", $default->parent_id ) , array( 'class'=>'form-control' , 'placeholder'=>'Батьківська сторінка' ) ) }}
+        </div>
+    </div>
+    <div class="form-group">
         {{ Form::label( "body" , 'Контент' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">
             {{ Form::textarea( "body" , Input::old( "body" ) , array( 'class'=>'form-control rich' , 'placeholder'=>'Контент', 'rows' => 30 ) ) }}

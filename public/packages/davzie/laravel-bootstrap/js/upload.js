@@ -24,7 +24,8 @@ $(function() {
 			$(this).siblings('#progress').removeClass('hide').find('.progress-bar').css('width', progress + '%');
 		},
 		error: function (e, data) {
-			$(this).siblings('.js-upload-message').text('Помилка при завантаженні')
+			$(this).siblings('.js-upload-message').text('Помилка при завантаженні');
+			$(this).siblings('#progress').addClass('hide').find('.progress-bar').css('width',  '0%');
 		}
 	});
 
@@ -36,6 +37,42 @@ $(function() {
 	    data.formData = {
 	    	dir: dir,
 	    	name: name
+	    };
+	});
+
+	$('.js-add-photo').fileupload({
+		dataType: 'json',
+		done: function (e, data) {
+			$(this).siblings('#progress').addClass('hide').find('.progress-bar').css('width',  '0%');
+
+			if (data.result.success) {
+				var html = Hbs('item', data.result);
+				$('.js-gallery-container').append(html);
+			} else {
+				$(this).siblings('.js-upload-message').text('Помилка при завантаженні')
+			}
+
+		},
+		progressall: function (e, data) {
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			$(this).siblings('.js-upload-message').text('');
+
+			$(this).siblings('#progress').removeClass('hide').find('.progress-bar').css('width', progress + '%');
+		},
+		error: function (e, data) {
+			$(this).siblings('.js-upload-message').text('Помилка при завантаженні');
+			$(this).siblings('#progress').addClass('hide').find('.progress-bar').css('width',  '0%');
+		}
+	}).bind('fileuploadsubmit', function (e, data) {
+	    // The example input, doesn't have to be part of the upload form:
+	    var dir  = $(this).attr('data-dir');
+	    var name = $(this).attr('name');
+	    var gallery_id = $(this).attr('data-gallery-id');
+
+	    data.formData = {
+	    	dir: dir,
+	    	name: name,
+	    	gallery_id: gallery_id
 	    };
 	});
 });

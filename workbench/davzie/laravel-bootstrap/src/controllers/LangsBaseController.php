@@ -16,6 +16,8 @@ abstract class LangsBaseController extends ObjectBaseController {
 			throw new Exception("Відсутня мова за замовчуванням", 1);
 		}
 
+		\View::share('hidden_lang', $this->lang_model->getHidden());
+		\View::share('default_lang', $this->lang_model->defaultLang());
 	}
 
 	/**
@@ -51,7 +53,7 @@ abstract class LangsBaseController extends ObjectBaseController {
 		$langs = $this->lang_model->getList();
 
 		// path to upload files
-		$path = $this->model->getPaths();
+		$path = $this->model->getPaths($item);
 
 		return View::make('laravel-bootstrap::'.$this->view_key.'.new')
 					->with('lang_id', $lang->id)
@@ -131,6 +133,10 @@ abstract class LangsBaseController extends ObjectBaseController {
 		$this->model->createHidden($record->id, Input::all());
 		$this->model->updateCommon($record->id, Input::all());
 		$this->model->saveRelations($record->id);
+
+		if (Input::has('_stay') && Input::get('_stay')) {
+			return Redirect::to($this->edit_url.$record->id)->with('success' , new MessageBag(array('Запис додано')));
+		}
 
 		// Redirect that shit man! You did good! Validated and saved, man mum would be proud!
 		return Redirect::to($this->object_url)->with('success' , new MessageBag(array('Запис додано')));

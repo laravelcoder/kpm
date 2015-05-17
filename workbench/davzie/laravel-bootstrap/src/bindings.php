@@ -21,12 +21,6 @@ App::bind('Davzie\LaravelBootstrap\Storage\StorageInterface', function(){
 	return new Davzie\LaravelBootstrap\Storage\StorageRepository( new Davzie\LaravelBootstrap\Storage\Storage );
 });
 
-// The Galleries Bindings
-App::bind('Davzie\LaravelBootstrap\Galleries\GalleriesInterface', function(){
-	return new Davzie\LaravelBootstrap\Galleries\GalleriesRepository( new Davzie\LaravelBootstrap\Galleries\Galleries );
-});
-
-
 // The Roles Bindings
 App::bind('Davzie\LaravelBootstrap\Roles\RolesInterface', function(){
 	return new Davzie\LaravelBootstrap\Roles\RolesRepository( new Davzie\LaravelBootstrap\Roles\Roles );
@@ -64,4 +58,12 @@ App::bind('Davzie\LaravelBootstrap\Adverts\AdvertsInterface', function(){
 // The Feedback Bindings
 App::bind('Davzie\LaravelBootstrap\Feedback\FeedbackInterface', function(){
 	return new Davzie\LaravelBootstrap\Feedback\FeedbackRepository( new Davzie\LaravelBootstrap\Feedback\Feedback );
+});
+// The Galleries Bindings
+App::bind('Davzie\LaravelBootstrap\Galleries\GalleriesInterface', function(){
+	return new Davzie\LaravelBootstrap\Galleries\GalleriesRepository( new Davzie\LaravelBootstrap\Galleries\Galleries );
+});
+// The Menu Bindings
+App::bind('Davzie\LaravelBootstrap\Menu\MenuInterface', function(){
+	return new Davzie\LaravelBootstrap\Menu\MenuRepository( new Davzie\LaravelBootstrap\Menu\Menu );
 });

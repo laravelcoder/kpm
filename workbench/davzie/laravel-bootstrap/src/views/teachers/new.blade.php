@@ -38,7 +38,7 @@
     {{Form::hidden('lang_id', Input::old('lang_id', $lang_id), array())}}
     {{Form::hidden('id', Input::old('id', $id), array())}}
 
-    @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'dir' => 'teachers'])
+    @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'dir' => 'teachers', 'value' => $default->photo_storage_id ? $default->photo_storage_id : ''])
 
     <div class="form-group">
         {{ Form::label( "birthdate" , 'Дата народження' , array( 'class'=>'col-lg-2 control-label' ) ) }}

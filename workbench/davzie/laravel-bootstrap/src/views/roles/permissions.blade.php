@@ -11,7 +11,6 @@
 @section('content')
 
     <h1>Права для ролі <small>{{$item->name}}</small></h1>
-    <p>Posts can be anything from blog posts, news items to event listings. Essentially they're a timestamp ordered list of content entries with images.</p>
 
     {{-- The error / success messaging partial --}}
     @include('laravel-bootstrap::partials.messaging')
