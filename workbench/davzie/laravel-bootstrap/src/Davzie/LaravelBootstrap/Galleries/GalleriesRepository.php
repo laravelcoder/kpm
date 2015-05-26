@@ -2,7 +2,7 @@
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\Galleries\Galleries;
 use Davzie\LaravelBootstrap\Departments\Departments;
-use Config, Input;
+use Config, Input, App;
 
 class GalleriesRepository extends EloquentBaseRepository implements GalleriesInterface
 {
@@ -81,6 +81,42 @@ class GalleriesRepository extends EloquentBaseRepository implements GalleriesInt
                 $photo->thumbs = $this->storage_model->getThumbs($photo);
             }
 
+        }
+
+        return $item;
+    }
+
+    /**
+     *
+     */
+    public function frontList()
+    {
+        $lang  = $this->lang_model->getByCode(App::getLocale());
+        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->paginate(\Config::get('app.limit'));
+
+        foreach ($items as &$item) {
+            $item->thumbs = $this->storage_model->getThumbs($item->photo);
+
+            foreach ($item->photos as &$photo) {
+                $photo->thumbs = $this->storage_model->getThumbs($photo);
+            }
+        }
+
+        return $items;
+    }
+
+    /**
+     *
+     */
+    public function frontView($id)
+    {
+        $lang  = $this->lang_model->getByCode(App::getLocale());
+        $items = $this->model->where('id', $id)->where('lang_id', $lang->id)->where('is_active', 1)->first();
+
+        $item->thumbs = $this->storage_model->getThumbs($item->photo);
+
+        foreach ($item->photos as &$photo) {
+            $photo->thumbs = $this->storage_model->getThumbs($photo);
         }
 
         return $item;

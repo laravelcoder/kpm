@@ -1,6 +1,7 @@
 <?php namespace Davzie\LaravelBootstrap\Pages;
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\Pages\Pages;
+use App;
 
 class PagesRepository extends EloquentBaseRepository implements PagesInterface
 {
@@ -87,6 +88,17 @@ class PagesRepository extends EloquentBaseRepository implements PagesInterface
         $children = $this->model->whereIn('parent_id', $ids)->groupBy('id')->lists('id');
 
         return $children + $this->getChild($children);
+    }
+
+    /**
+     * get one item by slug (front)
+     */
+    public function getBySlug($slug)
+    {
+        $lang = $this->lang_model->getByCode(App::getLocale());
+        $item = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->where('slug', $slug)->first();
+
+        return $item;
     }
 
 }

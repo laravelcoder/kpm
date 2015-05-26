@@ -2,6 +2,7 @@
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\Teachers\Teachers;
 use Davzie\LaravelBootstrap\Departments\Departments;
+use App;
 
 class TeachersRepository extends EloquentBaseRepository implements TeachersInterface
 {
@@ -37,5 +38,37 @@ class TeachersRepository extends EloquentBaseRepository implements TeachersInter
         }
 
         return $items;
+    }
+
+    /**
+     *
+     */
+    public function frontList()
+    {
+        $lang  = $this->lang_model->getByCode(App::getLocale());
+        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->get();
+
+        foreach ($items as &$item) {
+            $item->thumbs = $this->storage_model->getThumbs($item->photo);
+        }
+
+        return $items;
+    }
+
+    /**
+     * get one item by id (front)
+     */
+    public function getBySlug($id)
+    {
+        $lang = $this->lang_model->getByCode(App::getLocale());
+        $item = $this->model->where('id', $id)->where('lang_id', $lang->id)->where('is_active', 1)->first();
+
+        if (!$item) {
+            return false;
+        }
+
+        $item->thumbs = $this->storage_model->getThumbs($item->photo);
+
+        return $item;
     }
 }

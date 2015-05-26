@@ -1,7 +1,8 @@
 <?php namespace Davzie\LaravelBootstrap\News;
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\News\News;
-use Input, Config;
+use Input, Config, App;
+use Request;
 
 class NewsRepository extends EloquentBaseRepository implements NewsInterface
 {
@@ -69,6 +70,54 @@ class NewsRepository extends EloquentBaseRepository implements NewsInterface
     public function rubrics()
     {
         return $this->rubrics_model->getList();
+    }
+
+    /**
+     * get paginated list (front)
+     */
+    public function frontList()
+    {
+        $lang  = $this->lang_model->getByCode(App::getLocale());
+        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->where('time_publish', '<=', time())->paginate(\Config::get('app.limit'));
+
+        foreach ($items as &$item) {
+            $item->thumbs = $this->storage_model->getThumbs($item->photo);
+        }
+
+        return $items;
+    }
+
+    /**
+     * get one item by slug (front)
+     */
+    public function getBySlug($slug)
+    {
+        $lang = $this->lang_model->getByCode(App::getLocale());
+        $item = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->where('time_publish', '<=', time())->where('slug', $slug)->first();
+
+        if (!$item) {
+            return false;
+        }
+
+        $item->thumbs = $this->storage_model->getThumbs($item->photo);
+
+        return $item;
+    }
+
+    /**
+     *
+     */
+    public function changeViews($id)
+    {
+        $ip = Request::ip();
+
+        if (!$item = $this->model->find($id)) {
+            return false;
+        }
+
+        if (!$view = $item->views()->where('ip', $ip)->first()) {
+            $item->views()->insert(['ip' => $ip, 'new_id' => $id]);
+        }
     }
 
 }

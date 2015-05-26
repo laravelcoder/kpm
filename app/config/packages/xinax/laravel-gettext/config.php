@@ -63,6 +63,7 @@ return array(
 	 */
 	'source-paths' => array(
 		'controllers',
+		'models',
 		'views',
 	),
 

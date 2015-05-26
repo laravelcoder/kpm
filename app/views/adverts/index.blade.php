@@ -1,0 +1,1 @@
+/home/www/kpm/app/views/adverts/index.blade.php

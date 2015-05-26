@@ -8,7 +8,8 @@
 		"xinax/laravel-gettext": "dev-master",
 		"stevemo/cpanel": "dev-master",
 		"way/generators": "~2.0",
-		"intervention/image": "1.*"
+		"intervention/image": "1.*",
+		"way/generators": "~2.0"
 	},
 	"autoload": {
 		"classmap": [

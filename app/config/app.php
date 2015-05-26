@@ -148,7 +148,8 @@ return array(
 		'Stevemo\Cpanel\CpanelServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Davzie\LaravelBootstrap\LaravelBootstrapServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
 
 	),
 

@@ -1,0 +1,1 @@
+/home/www/kpm/app/views/galleries/index.blade.php

@@ -133,4 +133,12 @@ class News extends EloquentBaseModel
         return $list;
     }
 
+    /**
+     *
+     */
+    public function views()
+    {
+        return $this->hasMany('Davzie\LaravelBootstrap\Views\Views', 'new_id', 'id');
+    }
+
 }
