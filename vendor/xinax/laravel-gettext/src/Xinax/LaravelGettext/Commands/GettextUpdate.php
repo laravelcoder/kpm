@@ -48,14 +48,14 @@ class GettextUpdate extends BaseCommand
 
                 // We don't want a locale folder for the default language
                 if ($locale == $this->configuration->getLocale()) {
-                    continue;
+                    // continue;
                 }
 
                 $localePath = $this->fileSystem->getDomainPath($locale);
 
                 // New locale without .po file
                 if (!file_exists($localePath)) {
-                    
+
                     $this->fileSystem->addLocale($localePath, $locale);
                     $this->comment("New locale was added: $locale ($localePath)");
                     $addedCount++;
@@ -71,9 +71,9 @@ class GettextUpdate extends BaseCommand
                     foreach ($domains as $domain) {
                         $this->fileSystem->updateLocale($localePath, $locale, $domain);
                         $this->comment("PO file for locale: $locale/$domain were updated successfuly");
-                        $updatedCount++;    
+                        $updatedCount++;
                     }
-                    
+
                 }
 
             }
@@ -114,7 +114,7 @@ class GettextUpdate extends BaseCommand
             array(
                 'domain',
                 '-d',
-                InputOption::VALUE_OPTIONAL, 
+                InputOption::VALUE_OPTIONAL,
                 'Update files only for this domain',
                 null
             )

@@ -74,7 +74,7 @@ App::down(function()
 
 App::missing(function($exception)
 {
-    return Response::view('laravel-bootstrap::errors.404', array(), 404);
+    return Response::view('errors.404', array(), 404);
 });
 
 /*

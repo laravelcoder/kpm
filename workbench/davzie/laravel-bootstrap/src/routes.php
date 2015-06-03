@@ -33,6 +33,12 @@ Route::controller($urlSegment.'/menu' , 'Davzie\LaravelBootstrap\Controllers\Men
 Route::get($urlSegment.'/storage/{id}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\StorageController@getIndex'))->where(array('id' => '\d+'));
 Route::controller($urlSegment.'/storage'   , 'Davzie\LaravelBootstrap\Controllers\StorageController');
 
+Route::controller($urlSegment.'/polls' , 'Davzie\LaravelBootstrap\Controllers\PollsController');
+Route::get($urlSegment.'/polls-answers/{id}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\PollsAnswersController@getIndex'))->where(array('id' => '\d+'));
+Route::controller($urlSegment.'/polls-answers' , 'Davzie\LaravelBootstrap\Controllers\PollsAnswersController');
+Route::controller($urlSegment.'/links' , 'Davzie\LaravelBootstrap\Controllers\LinksController');
+Route::controller($urlSegment.'/comments' , 'Davzie\LaravelBootstrap\Controllers\CommentsController');
+
 Route::controller($urlSegment, 'Davzie\LaravelBootstrap\Controllers\DashController');
 
 

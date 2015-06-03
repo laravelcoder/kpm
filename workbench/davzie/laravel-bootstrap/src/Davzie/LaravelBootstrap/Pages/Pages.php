@@ -59,4 +59,12 @@ class Pages extends EloquentBaseModel
         }
     }
 
+    /**
+     *
+     */
+    public function sub()
+    {
+        return $this->hasMany('Davzie\LaravelBootstrap\Pages\Pages', 'parent_id', 'id')->where('lang_id', $this->lang_id)->where('is_active', 1);
+    }
+
 }

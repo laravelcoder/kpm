@@ -41,9 +41,9 @@
     @include('laravel-bootstrap::partials.upload', ['name' => 'photo_storage_id', 'label' => 'Фото', 'path' => $path['photo_storage_id'], 'value' => $item->photo_storage_id, 'dir' => 'adverts'])
 
     <div class="form-group">
-        {{ Form::label( "birthdate" , 'Дата народження' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        {{ Form::label( "status" , 'Вчене звання' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">
-            {{ Form::text( "birthdate" , Input::old( "birthdate", $item->birthdate ) , array( 'class'=>'form-control datepicker' , 'placeholder'=>'Дата народження' ) ) }}
+            {{ Form::text( "status" , Input::old( "status", $item->status ) , array( 'class'=>'form-control' , 'placeholder'=>'Вчене звання' ) ) }}
         </div>
     </div>
 

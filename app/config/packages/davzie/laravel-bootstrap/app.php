@@ -50,7 +50,7 @@ return array(
         'storage'=>array(
             'name'=>'Файли',
             'icon'=>'hdd',
-            'top'=>false,
+            'top'=>true,
             'module' => 'Storage'
         ),
         'settings'=>array(
@@ -106,6 +106,24 @@ return array(
             'icon'=>'',
             'top'=>false,
             'module' => 'Menu'
+        ),
+        'polls' =>array(
+            'name'=>'Опитування',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Polls'
+        ),
+        'links' =>array(
+            'name'=>'Корисні посилання',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Links'
+        ),
+        'comments' =>array(
+            'name'=>'Коментарі',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Comments'
         ),
     )
 );

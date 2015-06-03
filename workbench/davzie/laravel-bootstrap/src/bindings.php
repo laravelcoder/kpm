@@ -67,3 +67,19 @@ App::bind('Davzie\LaravelBootstrap\Galleries\GalleriesInterface', function(){
 App::bind('Davzie\LaravelBootstrap\Menu\MenuInterface', function(){
 	return new Davzie\LaravelBootstrap\Menu\MenuRepository( new Davzie\LaravelBootstrap\Menu\Menu );
 });
+// The Polls Bindings
+App::bind('Davzie\LaravelBootstrap\Polls\PollsInterface', function(){
+	return new Davzie\LaravelBootstrap\Polls\PollsRepository( new Davzie\LaravelBootstrap\Polls\Polls );
+});
+// The PollsAnswers Bindings
+App::bind('Davzie\LaravelBootstrap\PollsAnswers\PollsAnswersInterface', function(){
+	return new Davzie\LaravelBootstrap\PollsAnswers\PollsAnswersRepository( new Davzie\LaravelBootstrap\PollsAnswers\PollsAnswers );
+});
+// The Links Bindings
+App::bind('Davzie\LaravelBootstrap\Links\LinksInterface', function(){
+	return new Davzie\LaravelBootstrap\Links\LinksRepository( new Davzie\LaravelBootstrap\Links\Links );
+});
+// The Comments Bindings
+App::bind('Davzie\LaravelBootstrap\Comments\CommentsInterface', function(){
+	return new Davzie\LaravelBootstrap\Comments\CommentsRepository( new Davzie\LaravelBootstrap\Comments\Comments );
+});

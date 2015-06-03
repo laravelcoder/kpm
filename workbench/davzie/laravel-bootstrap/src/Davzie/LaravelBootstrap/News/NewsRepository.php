@@ -75,10 +75,23 @@ class NewsRepository extends EloquentBaseRepository implements NewsInterface
     /**
      * get paginated list (front)
      */
-    public function frontList()
+    public function frontList($limit = null)
     {
         $lang  = $this->lang_model->getByCode(App::getLocale());
-        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->where('time_publish', '<=', time())->paginate(\Config::get('app.limit'));
+        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->where('time_publish', '<=', time());
+        $s     = Input::get('s', false);
+
+        if ($s) {
+            $s = htmlspecialchars($s);
+            $s = "%{$s}%";
+            $items = $items->where(function ($query) use ($s) {
+                $query->where('title', 'LIKE', $s)
+                      ->orWhere('descr', 'LIKE', $s)
+                      ->orWhere('body', 'LIKE', $s);
+            });
+        }
+
+        $items = $items->orderBy('time_publish', 'DESC')->paginate($limit ? $limit : \Config::get('app.limit'));
 
         foreach ($items as &$item) {
             $item->thumbs = $this->storage_model->getThumbs($item->photo);

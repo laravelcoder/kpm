@@ -138,6 +138,10 @@ abstract class LangsBaseController extends ObjectBaseController {
 			return Redirect::to($this->edit_url.$record->id)->with('success' , new MessageBag(array('Запис додано')));
 		}
 
+		if (Input::has('_r_url') && Input::get('_r_url')) {
+			return Redirect::to(Input::get('_r_url'))->with('success' , new MessageBag(array('Запис додано')));
+		}
+
 		// Redirect that shit man! You did good! Validated and saved, man mum would be proud!
 		return Redirect::to($this->object_url)->with('success' , new MessageBag(array('Запис додано')));
 	}
@@ -155,6 +159,7 @@ abstract class LangsBaseController extends ObjectBaseController {
 
 		$lang = $this->lang_model->getByCode($lang_code);
 		$record = $this->model->getNew(Input::all()+ ['id' => $id], true);
+
 		$record->fill(Input::all() + ['id' => $id]);
 
 		$data = $record->getAttributes();
@@ -168,6 +173,10 @@ abstract class LangsBaseController extends ObjectBaseController {
 		$this->model->update($id, $lang->id, $data);
 		$this->model->updateCommon($id, Input::all());
 		$this->model->updateRelations($id);
+
+		if (Input::has('_r_url') && Input::get('_r_url')) {
+			return Redirect::to(Input::get('_r_url'))->with('success' , new MessageBag(array('Зміни збережено')));
+		}
 
 		// Redirect that shit man! You did good! Validated and saved, man mum would be proud!
 		return Redirect::to($this->object_url)->with('success' , new MessageBag(array('Зміни збережено')));

@@ -14,7 +14,12 @@ class Teachers extends EloquentBaseModel
      * These are the mass-assignable keys
      * @var array
      */
-    protected $fillable = array('name', 'surname', 'second_name', 'photo_storage_id', 'about', 'birthdate', 'is_active', 'id', 'lang_id');
+    protected $fillable = array('name', 'surname', 'second_name', 'photo_storage_id', 'about', 'status', 'is_active', 'id', 'lang_id');
+
+     /**
+     *
+     */
+    protected $common_fields = array('photo_storage_id', 'is_active');
 
     /**
      * Validation rules
@@ -22,16 +27,18 @@ class Teachers extends EloquentBaseModel
     protected $validationRules = [
         'name'           => 'required',
         'surname'        => 'required',
-        'second_name'      => 'required',
+        'second_name'    => 'required',
+        'status'         => 'required',
     ];
 
     /**
      * Validation messages
      */
     protected $messages = [
-        'name.required'          => 'Поле Ім`я обовязкове для заповнення',
-        'surname.required'       => 'Поле Прізвище обовязкове для заповнення',
-        'second_name.required'     => 'Поле По-батькові обовязкове для заповнення',
+        'name.required'         => 'Поле Ім`я обовязкове для заповнення',
+        'surname.required'      => 'Поле Прізвище обовязкове для заповнення',
+        'second_name.required'  => 'Поле По-батькові обовязкове для заповнення',
+        'status.required'       => 'Поле Вчене звання обовязкове для заповнення',
     ];
 
     /**

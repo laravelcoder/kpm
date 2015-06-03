@@ -37,7 +37,7 @@
     		<div class="alert alert-info">Для сортування перемістіть елементи</div>
     	@endif
         	<form action="" name="sort">
-        <ul @if (allowed('menu', 'sort')) id="sortable" data-url="/admin/menu/sort" @endif >
+        <ul class="can-sort" @if (allowed('menu', 'sort')) id="sortable" data-url="/admin/menu/sort" @endif >
         	@foreach ($items as $item)
         		<li class="ui-state-default">
         			<span>{{$item->title}}</span>

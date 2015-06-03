@@ -85,7 +85,7 @@ class UsersController extends ObjectBaseController {
         // model interactions and save it.
         $record->save();
 
-        $this->model->saveItems(\Input::get('role_id'), $id);
+        $this->model->saveItems(\Input::get('role_id'), $record->id);
 
         // Redirect that shit man! You did good! Validated and saved, man mum would be proud!
         return \Redirect::to($this->object_url)->with('success' , new MessageBag(array('Запис додано')));

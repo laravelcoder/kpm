@@ -51,4 +51,12 @@ class Menu extends EloquentBaseModel
         }
     }
 
+    /**
+     *
+     */
+    public function items()
+    {
+        return $this->hasMany('Davzie\LaravelBootstrap\Menu\Menu', 'parent_id', 'id')->where('lang_id', $this->lang_id)->orderBy('order');
+    }
+
 }

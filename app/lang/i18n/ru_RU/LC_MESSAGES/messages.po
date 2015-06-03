@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MultilanguageLaravelApplication\n"
-"POT-Creation-Date: 2015-05-25 18:22+0300\n"
-"PO-Revision-Date: 2015-05-25 18:23+0300\n"
+"POT-Creation-Date: 2015-06-01 10:20+0000\n"
+"PO-Revision-Date: 2015-06-01 10:20+0000\n"
 "Last-Translator: James Translator <james@translations.colm>\n"
 "Language-Team: James Translator <james@translations.colm>\n"
 "Language: ru_RU\n"
@@ -14,8 +14,9 @@ msgstr ""
 "X-Poedit-Basepath: ../../../../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: controllers\n"
-"X-Poedit-SearchPath-1: views\n"
-"X-Poedit-SearchPath-2: ./storage/views/messages/\n"
+"X-Poedit-SearchPath-1: models\n"
+"X-Poedit-SearchPath-2: views\n"
+"X-Poedit-SearchPath-3: ./storage/views/messages/\n"
 
 #: controllers/NewsController.php:8
 #: storage/views/messages//3e3e46128a635bfb614b6ae3ae941d30.php:8

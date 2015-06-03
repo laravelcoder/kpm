@@ -85,11 +85,24 @@ class EloquentBaseModel extends Eloquent
 		$preparedRules = [];
 
 		foreach ($rules as $key => $rule) {
-			if (false !== strpos($rule, "<id>")) {
-				if ($this->exists) {
-					$rule = str_replace("<id>", $this->getAttribute($this->primaryKey), $rule);
-				} else {
-					$rule = str_replace("<id>", "", $rule);
+
+			if (is_array($rule)) {
+				foreach ($rule as &$item) {
+					if (false !== strpos($item, "<id>")) {
+						if ($this->exists) {
+							$item = str_replace("<id>", $this->getAttribute($this->primaryKey), $item);
+						} else {
+							$item = str_replace("<id>", "", $item);
+						}
+					}
+				}
+			} else {
+				if (false !== strpos($rule, "<id>")) {
+					if ($this->exists) {
+						$rule = str_replace("<id>", $this->getAttribute($this->primaryKey), $rule);
+					} else {
+						$rule = str_replace("<id>", "", $rule);
+					}
 				}
 			}
 

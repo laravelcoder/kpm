@@ -384,6 +384,8 @@ class StorageRepository extends EloquentBaseRepository implements StorageInterfa
 			}
 		}
 
+		$result['o'] = $this->getPath($filename);
+
 		return $result;
 	}
 

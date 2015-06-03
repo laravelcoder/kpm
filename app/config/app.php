@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'uk',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'fallback_locale' => 'en',
+	'fallback_locale' => 'uk',
 
 	/**
 	 * locales
@@ -100,7 +100,7 @@ return array(
 	*/
 
 	'thumbs' => array(
-		'100x'
+		'100x', '283x189'
 	),
 
 	/*
@@ -150,6 +150,7 @@ return array(
 		'Davzie\LaravelBootstrap\LaravelBootstrapServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+		'Widgets\WidgetsServiceProvider',
 
 	),
 

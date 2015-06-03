@@ -27,13 +27,29 @@ class FeedbackController extends ObjectBaseController {
 
         if ($type == 'unchecked') {
             $items = $this->model->getUnchecked();
-            \View::share('items', $items);
         } elseif ($type == 'checked') {
             $items = $this->model->getChecked();
-            \View::share('items', $items);
+        } else {
+            $items = $this->model->getAll();
         }
+            \View::share('items', $items);
 
         return \View::make('laravel-bootstrap::'.$this->view_key.'.index')
                         ->with('type', $type);
+    }
+
+    /**
+     *
+     */
+    public function getView($id)
+    {
+        if (!$item = $this->model->requireById($id)) {
+            return \App::abort(404);
+        }
+
+        $item->is_checked = 1;
+        $item->save();
+
+        return parent::getView($id);
     }
 }

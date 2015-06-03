@@ -101,4 +101,14 @@ class PagesRepository extends EloquentBaseRepository implements PagesInterface
         return $item;
     }
 
+    /**
+     *
+     */
+    public function getActivePages()
+    {
+        $lang = $this->lang_model->getByCode(App::getLocale());
+
+        return $this->model->where('lang_id', $lang->id)->where('parent_id', null)->where('is_active', 1)->get();
+    }
+
 }

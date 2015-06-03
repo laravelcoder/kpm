@@ -36,6 +36,9 @@ class BaseController extends Controller {
 	public function __construct()
 	{
 		$this->lang_code = App::getLocale();
+
+		$composed_views = array('*');
+        View::composer($composed_views, 'Davzie\LaravelBootstrap\Front\Page');
 	}
 
 }

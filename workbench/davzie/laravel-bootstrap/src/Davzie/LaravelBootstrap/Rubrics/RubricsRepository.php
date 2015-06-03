@@ -1,6 +1,7 @@
 <?php namespace Davzie\LaravelBootstrap\Rubrics;
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\Rubrics\Rubrics;
+use App;
 
 class RubricsRepository extends EloquentBaseRepository implements RubricsInterface
 {
@@ -29,6 +30,15 @@ class RubricsRepository extends EloquentBaseRepository implements RubricsInterfa
         } else {
             return $this->model->where('lang_id', $lang->id)->orWhereNotIn('id', $exists_ids)->where('lang_id', $hidden->id)->orderBy('id', 'DESC')->groupBy('id')->paginate(\Config::get('app.limit'));
         }
+    }
+
+    /**
+     *
+     */
+    public function frontList()
+    {
+        $lang = $this->lang_model->getByCode(App::getLocale());
+        return $this->model->where('lang_id', '=', $lang->id)->where('is_active', 1)->get();
     }
 
     /**

@@ -10,18 +10,18 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 $locales = array('en' => 'en_US', 'ru' => 'ru_RU', 'uk' => 'uk_UA');
 
 $locale = Request::segment(1);
+App::setLocale('uk');
+LaravelGettext::setLocale('uk_UA');
 
 if (in_array($locale, Config::get('app.available_locales'))) {
-    \App::setLocale($locale);
+    App::setLocale($locale);
+	LaravelGettext::setLocale($locales[$locale]);
 } else {
     $locale = null;
 }
-
-LaravelGettext::setLocale($locale ? $locales[$locale] : 'uk_UA');
 
 Route::group(array('prefix' => $locale), function() {
 	Route::get('/', 'HomeController@index');
@@ -43,7 +43,14 @@ Route::group(array('prefix' => $locale), function() {
 	// pages view
 	Route::get('/contact', 'PagesController@getContact');
 	Route::post('/contact', 'PagesController@postContact');
+	Route::get('/sitemap', 'PagesController@getSitemap');
+	Route::get('/rss', 'PagesController@getRss');
+	Route::get('/group-schedule', 'PagesController@getGroupSchedule');
+	Route::get('/teacher-schedule', 'PagesController@getTeacherSchedule');
 	// last action
 	Route::get('/{slug}', 'PagesController@getView')->where(['slug' => '[a-z0-9\-]+']);
 });
+
+$composed_views = array('*');
+View::composer($composed_views, 'Davzie\LaravelBootstrap\Front\Page');
 

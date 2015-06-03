@@ -19,7 +19,7 @@ $(function () {
 	});
 
 	$('.datetimepicker').datetimepicker({
-		format: 'DD-MM-YYYY, HH:mm:ss'
+		format: 'DD-MM-YYYY, HH:mm'
 	});
 
 	$('.datepicker').datetimepicker({

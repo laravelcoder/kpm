@@ -2,7 +2,7 @@
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\Teachers\Teachers;
 use Davzie\LaravelBootstrap\Departments\Departments;
-use App;
+use App, Input;
 
 class TeachersRepository extends EloquentBaseRepository implements TeachersInterface
 {
@@ -46,7 +46,34 @@ class TeachersRepository extends EloquentBaseRepository implements TeachersInter
     public function frontList()
     {
         $lang  = $this->lang_model->getByCode(App::getLocale());
-        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->get();
+        $s     = Input::get('s', false);
+        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1);
+
+        if ($s) {
+            $s = "%{$s}%";
+            $items = $items->where(function ($query) use ($s) {
+                $query->where('surname', 'LIKE', $s)
+                      ->orWhere('name', 'LIKE', $s)
+                      ->orWhere('second_name', 'LIKE', $s);
+            });
+        }
+
+        $items = $items->get();
+
+        foreach ($items as &$item) {
+            $item->thumbs = $this->storage_model->getThumbs($item->photo);
+        }
+
+        return $items;
+    }
+
+    /**
+     *
+     */
+    public function getRandom($limit = 4)
+    {
+        $lang  = $this->lang_model->getByCode(App::getLocale());
+        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->orderByRaw('RAND()')->take($limit)->get();
 
         foreach ($items as &$item) {
             $item->thumbs = $this->storage_model->getThumbs($item->photo);
@@ -58,7 +85,7 @@ class TeachersRepository extends EloquentBaseRepository implements TeachersInter
     /**
      * get one item by id (front)
      */
-    public function getBySlug($id)
+    public function frontView($id)
     {
         $lang = $this->lang_model->getByCode(App::getLocale());
         $item = $this->model->where('id', $id)->where('lang_id', $lang->id)->where('is_active', 1)->first();

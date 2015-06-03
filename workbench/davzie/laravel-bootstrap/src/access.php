@@ -17,6 +17,10 @@ Access::module('Teachers', 'Викладачі', false);
 Access::module('Feedback', 'Зворотній зв`язок', false);
 Access::module('Galleries', 'Фотогалареї', false);
 Access::module('Menu', 'Меню', false);
+Access::module('Polls', 'Опитування', false);
+Access::module('PollsAnswers', 'Варіанти відповідей опитувань', false);
+Access::module('Links', 'Корисні посилання', false);
+Access::module('Comments', 'Коментарі', false);
 
 
 
@@ -34,6 +38,7 @@ Access::storage('upload', 'Завантаження', true);
 Access::storage('image', 'Image', true);
 Access::storage('file', 'Перегляд файлу', false);
 Access::menu('sort', 'Сортування меню', false);
+Access::pollsAnswers('sort', 'Сортування відповідей', false);
 Access::langs('changeDefault', 'Зміна мови', true);
 
 // to all modules

@@ -69,4 +69,12 @@ class MenuRepository extends EloquentBaseRepository implements MenuInterface
     	return Pages::where('lang_id', $lang->id)->where('is_active', 1)->get();
     }
 
+    /**
+     *
+     */
+    public function updateCommon($id, $data)
+    {
+        return true;
+    }
+
 }

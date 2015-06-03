@@ -20,6 +20,10 @@ class Feedback extends EloquentBaseModel
      * Validation rules
      */
     protected $validationRules = [
+        'subject' => 'required',
+        'email'   => 'required|email',
+        'from'    => 'required',
+        'body'    => 'required',
     ];
 
     /**
@@ -27,6 +31,16 @@ class Feedback extends EloquentBaseModel
      */
     protected $messages = [
     ];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->messages['subject.required'] = _('Поле Тема обовязкове для заповнення');
+        $this->messages['email.required'] = _('Поле Емейл обовязкове для заповнення');
+        $this->messages['email.email'] = _('Поле Емейл має бути валідном email-адресою');
+        $this->messages['from.required'] = _('Поле Імя обовязкове для заповнення');
+        $this->messages['body.required'] = _('Поле Повідомлення обовязкове для заповнення');
+    }
 
     /**
      *

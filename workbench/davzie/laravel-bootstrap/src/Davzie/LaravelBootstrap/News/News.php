@@ -72,7 +72,7 @@ class News extends EloquentBaseModel
      */
     public function getTimePublishAttribute()
     {
-        return date('d-m-Y, H:i:s',$this->attributes['time_publish']);
+        return date('d.m.Y, H:i',$this->attributes['time_publish']);
     }
 
     /**
@@ -139,6 +139,14 @@ class News extends EloquentBaseModel
     public function views()
     {
         return $this->hasMany('Davzie\LaravelBootstrap\Views\Views', 'new_id', 'id');
+    }
+
+    /**
+     *
+     */
+    public function comments()
+    {
+        return $this->hasMany('Davzie\LaravelBootstrap\Comments\Comments', 'new_id', 'id');
     }
 
 }

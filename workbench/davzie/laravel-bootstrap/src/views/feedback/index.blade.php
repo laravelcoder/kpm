@@ -39,11 +39,11 @@
 		                    <tr>
 		                        <td>{{$item->subject}}</td>
 		                        <td>{{$item->from}}</td>
-		                        <td>{{$item->mail}}</td>
+		                        <td>{{$item->email}}</td>
 		                        <td>
 		                            <div class="btn-group">
 		                            	@if (allowed('feedback', 'view'))
-	                                    	<a href="{{action($module.'@getView', array($item->id))}}" class="btn btn-default btn-xs"><i class="icon {{$item->is_checked ? 'icon-eye-open' : 'icon-eye-closed'}}"></i></a>
+	                                    	<a href="{{action($module.'@getView', array($item->id))}}" class="btn btn-default btn-xs"><i class="icon {{$item->is_checked ? 'icon-eye-open' : 'icon-eye-close'}}"></i></a>
 	                                    @endif
 	                                    @if (allowed('feedback', 'delete'))
 	                                    	<a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete btn btn-danger btn-xs" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i></a>
