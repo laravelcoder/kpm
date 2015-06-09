@@ -83,3 +83,7 @@ App::bind('Davzie\LaravelBootstrap\Links\LinksInterface', function(){
 App::bind('Davzie\LaravelBootstrap\Comments\CommentsInterface', function(){
 	return new Davzie\LaravelBootstrap\Comments\CommentsRepository( new Davzie\LaravelBootstrap\Comments\Comments );
 });
+// The PollsVotes Bindings
+App::bind('Davzie\LaravelBootstrap\PollsVotes\PollsVotesInterface', function(){
+	return new Davzie\LaravelBootstrap\PollsVotes\PollsVotesRepository( new Davzie\LaravelBootstrap\PollsVotes\PollsVotes );
+});

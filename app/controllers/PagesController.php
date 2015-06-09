@@ -1,6 +1,8 @@
 <?php
 
 use Davzie\LaravelBootstrap\Pages\PagesInterface;
+use Davzie\LaravelBootstrap\PollsAnswers\PollsAnswers;
+use Davzie\LaravelBootstrap\PollsVotes\PollsVotes;
 use Illuminate\Support\MessageBag;
 
 class PagesController extends BaseController {
@@ -19,7 +21,7 @@ class PagesController extends BaseController {
 	 */
 	public function getView($slug)
 	{
-		if (!$item = $this->model->getBySlug($slug)) {
+		if (!$item = $this->model->getVisibleBySlug($slug)) {
 			return App::abort(404);
 		}
 
@@ -32,7 +34,12 @@ class PagesController extends BaseController {
 	 */
 	public function getContact()
 	{
-		return View::make('pages.contact');
+		$adress = $this->model->getBySlug('contact');
+		$info   = $this->model->getBySlug('hours');
+
+		return View::make('pages.contact')
+					->with('adress', $adress)
+					->with('info', $info);
 	}
 
 	/**
@@ -218,6 +225,48 @@ class PagesController extends BaseController {
 
 		return View::make('pages.sitemap')
 					->with('pages', $pages);
+	}
+
+	/**
+	 *
+	 */
+	public function postVote()
+	{
+		if (!$answer_id = Input::get('answer_id', false)) {
+			return ['success' => 0];
+		}
+
+		if (!$token = Input::get('token', false)) {
+			return ['success' => 0];
+		}
+
+		if (!Hash::check('token', $token)) {
+			return ['success' => 234];
+		}
+
+		$answer = PollsAnswers::where('id', $answer_id)->where('is_active', 1)->first();
+
+		if (!$answer) {
+			return ['success' => 0];
+		}
+
+		$ip = Request::ip();
+		$polls_votes_model = App::make('Davzie\LaravelBootstrap\PollsVotes\PollsVotesInterface');
+		if ($voted = $polls_votes_model->get($answer_id, $ip)) {
+			return ['success' => 0];
+		}
+
+		$record = $polls_votes_model->getNew([
+			'ip' => $ip,
+			'polls_answer_id' => $answer_id
+		]);
+
+		if ($record->save()) {
+			$results = $polls_votes_model->getResults($answer_id);
+			return ['success' => 1, 'results' => $results];
+		}
+
+		return ['success' => 0];
 	}
 
 }

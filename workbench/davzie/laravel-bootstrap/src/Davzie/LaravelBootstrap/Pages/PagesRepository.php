@@ -93,6 +93,17 @@ class PagesRepository extends EloquentBaseRepository implements PagesInterface
     /**
      * get one item by slug (front)
      */
+    public function getVisibleBySlug($slug)
+    {
+        $lang = $this->lang_model->getByCode(App::getLocale());
+        $item = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->where('is_visible', 1)->where('slug', $slug)->first();
+
+        return $item;
+    }
+
+    /**
+     * get one item by slug (front)
+     */
     public function getBySlug($slug)
     {
         $lang = $this->lang_model->getByCode(App::getLocale());
@@ -108,7 +119,7 @@ class PagesRepository extends EloquentBaseRepository implements PagesInterface
     {
         $lang = $this->lang_model->getByCode(App::getLocale());
 
-        return $this->model->where('lang_id', $lang->id)->where('parent_id', null)->where('is_active', 1)->get();
+        return $this->model->where('lang_id', $lang->id)->where('parent_id', null)->where('is_active', 1)->where('is_visible', 1)->get();
     }
 
 }

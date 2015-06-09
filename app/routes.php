@@ -41,6 +41,7 @@ Route::group(array('prefix' => $locale), function() {
 	// Route::get('/links', 'PagesController@getLinks');
 
 	// pages view
+	Route::post('/vote', 'PagesController@postVote');
 	Route::get('/contact', 'PagesController@getContact');
 	Route::post('/contact', 'PagesController@postContact');
 	Route::get('/sitemap', 'PagesController@getSitemap');

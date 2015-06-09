@@ -50,6 +50,13 @@
             {{ Form::checkbox( "is_active" , Input::old("is_active", 1), $default->is_active) }}
         </div>
     </div>
+    <div class="form-group">
+        {{ Form::label( "is_visible" , 'Видима' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{Form::hidden('is_visible', 0)}}
+            {{ Form::checkbox( "is_visible" , Input::old("is_visible", 1), $default->is_visible) }}
+        </div>
+    </div>
 
 @stop
 

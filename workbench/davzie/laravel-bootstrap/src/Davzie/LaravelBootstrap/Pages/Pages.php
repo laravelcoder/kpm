@@ -14,7 +14,7 @@ class Pages extends EloquentBaseModel
      * These are the mass-assignable keys
      * @var array
      */
-    protected $fillable = array('lang_id', 'parent_id', 'title', 'body', 'is_active', 'slug', 'time_add', 'id');
+    protected $fillable = array('lang_id', 'parent_id', 'title', 'body', 'is_active', 'slug', 'time_add', 'id', 'is_visible');
 
     /**
      *
@@ -64,7 +64,7 @@ class Pages extends EloquentBaseModel
      */
     public function sub()
     {
-        return $this->hasMany('Davzie\LaravelBootstrap\Pages\Pages', 'parent_id', 'id')->where('lang_id', $this->lang_id)->where('is_active', 1);
+        return $this->hasMany('Davzie\LaravelBootstrap\Pages\Pages', 'parent_id', 'id')->where('lang_id', $this->lang_id)->where('is_active', 1)->where('is_visible', 1);
     }
 
 }

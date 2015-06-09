@@ -71,14 +71,17 @@
 		   	 <!-- <p>We do not build websites but user experiences. We judge our performance according to the impact it makes</p> -->
 		   </div>
 		   <div class="grid_2 text-center">
+		   		@include('partials.polls-tpl')
 		   		@foreach ($polls as $poll)
 					<div class="col-md-3 box_3 polls-c">
 					    <div class="blog_desc">
 					       <h3>{{$poll->title}}</h3>
+					       {{ Form::open( array('class'=>'form-horizontal form-top-margin js-vote-form' , 'role'=>'form' ) ) }}
+					       <input type="hidden" name="token" value="{{Hash::make('token')}}">
 					       @if (!$poll->voted())
 						       <div class="poll">
 						       		@foreach ($poll->answers as $answer)
-						       			<div><label><input type="radio" name="n1"> <span class="">{{$answer->title}}</span></label></div>
+						       			<div><label><input type="radio" name="answer_id" value="{{$answer->id}}"> <span class="">{{$answer->title}}</span></label></div>
 						       		@endforeach
 						       </div>
 						    @endif
@@ -86,16 +89,17 @@
 					       		@foreach ($poll->answers as $answer)
 						       		<div class="vote-item">
 						       			<div class="text-muted">{{$answer->title}}</div>
-						       			<div class="vote-result-value" style="width: {{$answer->votes->count()}}%;">{{$answer->votes->count()}}%</div>
+						       			<div class="vote-result-value" style="width: {{$answer->count}}%;">{{$answer->count}}%</div>
 						       		</div>
 						       	@endforeach
 					       </div>
 					        @if (!$poll->voted())
 						       <div class="poll-control">
-									<button class="btn btn-default" type="submit">{{_('Голосувати')}}</button>
+									<button class="btn btn-default js-vote" data-action="{{action('PagesController@postVote')}}" type="submit">{{_('Голосувати')}}</button>
 									<a href="#" class="js-toggle-poll" data-text="{{_('Опитування')}}">{{_('Результати')}}</a>
 								</div>
 							@endif
+							{{Form::close()}}
 					   </div>
 					</div>
 				@endforeach

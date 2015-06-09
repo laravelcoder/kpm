@@ -44,6 +44,7 @@
 		{{-- include scripts --}}
 		<script src="/public/js/jquery-1.11.1.min.js"> </script>
 		<script src="/public/js/jquery.swipebox.min.js"></script>
+		<script src="/public/js/handlebars.js"></script>
 		<script src="/public/js/script.js"></script>
 		<script src="/public/js/main.js"></script>
 	    <script type="text/javascript">

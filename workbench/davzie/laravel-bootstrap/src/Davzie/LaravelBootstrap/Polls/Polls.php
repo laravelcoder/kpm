@@ -70,6 +70,14 @@ class Polls extends EloquentBaseModel
     /**
      *
      */
+    public function activeAnswers()
+    {
+        return $this->hasMany('Davzie\LaravelBootstrap\PollsAnswers\PollsAnswers', 'poll_id', 'id')->where('polls_answers.lang_id', $this->lang_id)->where('polls_answers.is_active', 1)->orderBy('order');
+    }
+
+    /**
+     *
+     */
     public function voted()
     {
         foreach ($this->answers as $answer) {

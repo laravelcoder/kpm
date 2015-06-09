@@ -103,6 +103,7 @@ return array(
     'DavzieControllerCommand' => $baseDir . '/app/commands/DavzieControllerCommand.php',
     'DavzieModelCommand' => $baseDir . '/app/commands/DavzieModelCommand.php',
     'DavzieViewCommand' => $baseDir . '/app/commands/DavzieViewCommand.php',
+    'Feedback' => $baseDir . '/app/models/Feedback.php',
     'File_ANSI' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ANSI.php',
     'File_ASN1' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
     'File_ASN1_Element' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',

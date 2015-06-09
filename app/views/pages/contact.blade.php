@@ -50,27 +50,13 @@
 		 </div>
 		 <div class="col-md-3 contact_right">
 		 	<h2>{{_('Контакти')}}</h2>
-		 	<ul class="address">
-		 		<i class="address_icon"> </i>
-		 		<li class="address_desc">
-		 			<p>standard dummy text ever since</p>
-		 		</li>
-		 		<div class="clearfix"> </div>
-		 	</ul>
-		 	<ul class="address">
-		 		<li class="address_desc">
-		 			<p><a href="malito:mail@demolink.org">mail(at)namaste.com</a></p>
-		 		</li>
-		 	</ul>
-		 	<ul class="address">
-		 		<li class="address_desc">
-		 			<p>+215-5487-5487<br> +215-3487-5887</p>
-		 		</li>
-		 	</ul>
+		 	@if ($adress)
+		 		{{$adress->body}}
+		 	@endif
 		 	<h2 class="m_5">{{_('Години роботи')}}</h2>
-		 	<p>Monday-Friday : 9am to 10pm</p>
-		 	<p>Saturday : 9am to 7pm</p>
-		 	<p>Sunday : Day Off</p>
+		 	@if ($info)
+		 		{{$info->body}}
+		 	@endif
 		 </div>
 	 </div>
 </div>

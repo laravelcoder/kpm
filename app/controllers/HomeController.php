@@ -61,6 +61,22 @@ class HomeController extends BaseController {
 		// get polls
 		$polls = $this->polls_model->frontList();
 
+		foreach ($polls as &$poll) {
+			$total = 0;
+
+			foreach ($poll->answers as $answer) {
+				$total += $answer->votes->count();
+			}
+
+			foreach ($poll->answers as &$answer) {
+				$answer->count = 0;
+
+				if ($total) {
+					$answer->count = round(100*($answer->votes->count()/$total), 2);
+				}
+			}
+		}
+
 		return View::make('index')
 					->with('news', $news)
 					->with('links', $links)

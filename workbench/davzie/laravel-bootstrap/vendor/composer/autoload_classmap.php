@@ -48,6 +48,7 @@ return array(
     'Davzie\\LaravelBootstrap\\Controllers\\PagesController' => $baseDir . '/src/controllers/PagesController.php',
     'Davzie\\LaravelBootstrap\\Controllers\\PollsAnswersController' => $baseDir . '/src/controllers/PollsAnswersController.php',
     'Davzie\\LaravelBootstrap\\Controllers\\PollsController' => $baseDir . '/src/controllers/PollsController.php',
+    'Davzie\\LaravelBootstrap\\Controllers\\PollsVotesController' => $baseDir . '/src/controllers/PollsVotesController.php',
     'Davzie\\LaravelBootstrap\\Controllers\\PostsController' => $baseDir . '/src/controllers/PostsController.php',
     'Davzie\\LaravelBootstrap\\Controllers\\RolesController' => $baseDir . '/src/controllers/RolesController.php',
     'Davzie\\LaravelBootstrap\\Controllers\\RubricsController' => $baseDir . '/src/controllers/RubricsController.php',
