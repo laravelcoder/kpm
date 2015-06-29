@@ -116,7 +116,7 @@ class News extends EloquentBaseModel
      */
     public function rubrics()
     {
-        return $this->belongsToMany('Davzie\LaravelBootstrap\Rubrics\Rubrics', 'news_has_rubrics', 'new_id', 'rubric_id');
+        return $this->belongsToMany('Davzie\LaravelBootstrap\Rubrics\Rubrics', 'news_has_rubrics', 'new_id', 'rubric_id')->where('rubrics.lang_id', $this->lang_id);
     }
 
     /**

@@ -88,8 +88,8 @@ class LaravelGettext
     /**
      * Returns the language selector object
      *
-     * @param  Array $labels
-     * @return LanguageSelector
+     * @param  Array $labels 
+     * @return LanguageSelector         
      */
     public function getSelector($labels = [])
     {
@@ -98,7 +98,7 @@ class LaravelGettext
 
     /**
      * Sets the current domain
-     *
+     * 
      * @param String $domain
      */
     public function setDomain($domain)

@@ -1,5 +1,7 @@
 $body = $('body');
 
+$('input').attr('autocomplete','off');
+
 $body.on('click', '.js-toggle-poll' ,function (e) {
 	e.preventDefault();
 

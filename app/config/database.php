@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'production',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -53,6 +53,17 @@ return array(
 		),
 
 		'mysql' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'kpm',
+			'username'  => 'root',
+			'password'  => 'root',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'production' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'kpm',

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MultilanguageLaravelApplication\n"
-"POT-Creation-Date: 2015-06-01 10:20+0000\n"
-"PO-Revision-Date: 2015-06-01 10:20+0000\n"
+"POT-Creation-Date: 2015-06-22 08:54+0300\n"
+"PO-Revision-Date: 2015-06-22 08:55+0300\n"
 "Last-Translator: James Translator <james@translations.colm>\n"
 "Language-Team: James Translator <james@translations.colm>\n"
 "Language: en_US\n"
@@ -18,28 +18,304 @@ msgstr ""
 "X-Poedit-SearchPath-2: views\n"
 "X-Poedit-SearchPath-3: ./storage/views/messages/\n"
 
+#: controllers/PagesController.php:61
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:61
+msgid "Ваш лист відправлено"
+msgstr "Your letter sent"
+
+#: controllers/PagesController.php:115 controllers/PagesController.php:185
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:115
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:185
+msgid "Понеділок"
+msgstr "Monday"
+
+#: controllers/PagesController.php:116 controllers/PagesController.php:186
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:116
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:186
+msgid "Вівторок"
+msgstr "Tuesday"
+
+#: controllers/PagesController.php:117 controllers/PagesController.php:187
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:117
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:187
+msgid "Середа"
+msgstr "Wednesday"
+
+#: controllers/PagesController.php:118 controllers/PagesController.php:188
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:118
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:188
+msgid "Четвер"
+msgstr "Thursday"
+
+#: controllers/PagesController.php:119 controllers/PagesController.php:189
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:119
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:189
+msgid "П`ятниця"
+msgstr "Friday"
+
+#: controllers/PagesController.php:120 controllers/PagesController.php:190
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:120
+#: storage/views/messages//7bd1c2477c50ac02576b81ebd238c0df.php:190
+msgid "Субота"
+msgstr "Saturday"
+
+#: models/Feedback.php:40
+#: storage/views/messages//224d4bae281c2a58f3a1f568b5f6c7bb.php:40
+msgid "Поле Тема обовязкове для заповнення"
+msgstr "Field Subject is required"
+
+#: models/Feedback.php:41
+#: storage/views/messages//224d4bae281c2a58f3a1f568b5f6c7bb.php:41
+msgid "Поле Емейл обовязкове для заповнення"
+msgstr "Field Email is required"
+
+#: models/Feedback.php:42
+#: storage/views/messages//224d4bae281c2a58f3a1f568b5f6c7bb.php:42
+msgid "Поле Емейл має бути валідном email-адресою"
+msgstr "Field Email must be valid email addres"
+
+#: models/Feedback.php:43
+#: storage/views/messages//224d4bae281c2a58f3a1f568b5f6c7bb.php:43
+msgid "Поле Імя обовязкове для заповнення"
+msgstr "Field Name is required"
+
+#: models/Feedback.php:44
+#: storage/views/messages//224d4bae281c2a58f3a1f568b5f6c7bb.php:44
+msgid "Поле Повідомлення обовязкове для заповнення"
+msgstr "Field message is required"
+
+#: storage/views/messages//e81b88f371d41c60b00310f44de072e3.php:2
+#: storage/views/messages//2f4808f9099c103875d55aa62112c687.php:1
+#: storage/views/messages//2f4808f9099c103875d55aa62112c687.php:9
+#: storage/views/messages//7686e9bed671933b497a550d5fca30bb.php:1
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:55
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:12
+msgid "Викладачі"
+msgstr "Teachers"
+
+#: storage/views/messages//a9efdea4e8c9a348678725b67db1f456.php:1
+#: storage/views/messages//a9efdea4e8c9a348678725b67db1f456.php:59
+#: storage/views/messages//358b9ba5c5eb9c18298d167907b21b90.php:1
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:13
+msgid "Розклад для студентів"
+msgstr "Schedule for students"
+
+#: storage/views/messages//a9efdea4e8c9a348678725b67db1f456.php:8
+#: storage/views/messages//358b9ba5c5eb9c18298d167907b21b90.php:8
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:65
+msgid "Розклад занять"
+msgstr "Lessons schedule"
+
+#: storage/views/messages//a9efdea4e8c9a348678725b67db1f456.php:13
+msgid "Викладач"
+msgstr "Teacher"
+
+#: storage/views/messages//a9efdea4e8c9a348678725b67db1f456.php:16
+#: storage/views/messages//358b9ba5c5eb9c18298d167907b21b90.php:16
+msgid "Тиждень"
+msgstr "Week"
+
+#: storage/views/messages//a9efdea4e8c9a348678725b67db1f456.php:19
+#: storage/views/messages//358b9ba5c5eb9c18298d167907b21b90.php:19
+msgid "Вибрати"
+msgstr "Choose"
+
+#: storage/views/messages//a9efdea4e8c9a348678725b67db1f456.php:25
+#: storage/views/messages//358b9ba5c5eb9c18298d167907b21b90.php:25
+msgid "Час"
+msgstr "Time"
+
+#: storage/views/messages//e5b3a7763eaf7bb48a15d48e313c1c26.php:1
+#: storage/views/messages//e5b3a7763eaf7bb48a15d48e313c1c26.php:8
+#: storage/views/messages//6c5c18f297ba11b7cb1dabbbd7e0dc92.php:11
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:81
+msgid "Корисні посилання"
+msgstr "Links"
+
+#: storage/views/messages//e5b3a7763eaf7bb48a15d48e313c1c26.php:20
+#: storage/views/messages//2f4808f9099c103875d55aa62112c687.php:25
+#: storage/views/messages//aea15d159694016429a4f791ad73d04e.php:33
+#: storage/views/messages//e78e89e0d97ac6d07d2cbcd1682d6ba6.php:28
+#: storage/views/messages//be5e3f14cc3866f64b0815b24a32e3b7.php:32
+msgid "Список порожній"
+msgstr "List is empty"
+
+#: storage/views/messages//ab5d4b3cfa09f5d5f5750e3d85bb7a6c.php:4
 #: storage/views/messages//aea15d159694016429a4f791ad73d04e.php:1
-#: storage/views/messages//aea15d159694016429a4f791ad73d04e.php:8
+#: storage/views/messages//aea15d159694016429a4f791ad73d04e.php:9
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:23
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:11
+#: storage/views/messages//be5e3f14cc3866f64b0815b24a32e3b7.php:1
 msgid "Новини"
 msgstr "News"
+
+#: storage/views/messages//ab5d4b3cfa09f5d5f5750e3d85bb7a6c.php:6
+msgid "Новини кафедри прикладної математики та інформатики"
+msgstr "News of Department of Applied Mathematics and Informatics"
+
+#: storage/views/messages//36e572f8397e013387ec47aff250adf2.php:2
+msgid "Рубрики"
+msgstr "Rubrics"
+
+#: storage/views/messages//2f4808f9099c103875d55aa62112c687.php:2
+msgid "Викладачі кафедри прикладної математики та інформатики"
+msgstr "Teachers of Department of Applied Mathematics and Informatics"
+
+#: storage/views/messages//2f4808f9099c103875d55aa62112c687.php:11
+#: storage/views/messages//aea15d159694016429a4f791ad73d04e.php:11
+#: storage/views/messages//e78e89e0d97ac6d07d2cbcd1682d6ba6.php:11
+#: storage/views/messages//be5e3f14cc3866f64b0815b24a32e3b7.php:10
+msgid "Пошук за запитом"
+msgstr "Search for"
+
+#: storage/views/messages//aea15d159694016429a4f791ad73d04e.php:2
+msgid "Новини кафедри прикладної математики"
+msgstr "News of Department of Applied Mathematics"
+
+#: storage/views/messages//358b9ba5c5eb9c18298d167907b21b90.php:13
+msgid "Група"
+msgstr "Group"
+
+#: storage/views/messages//358b9ba5c5eb9c18298d167907b21b90.php:59
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:14
+msgid "Розклад для викладачів"
+msgstr "Schedule for teachers"
+
+#: storage/views/messages//a203f5ae67896963754c69c21c1c437e.php:37
+msgid "Пошук по новинах"
+msgstr "Search by news"
+
+#: storage/views/messages//6c5c18f297ba11b7cb1dabbbd7e0dc92.php:10
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:60
+#: storage/views/messages//296335821fd082403da4036ab818eb21.php:1
+#: storage/views/messages//e78e89e0d97ac6d07d2cbcd1682d6ba6.php:1
+#: storage/views/messages//e78e89e0d97ac6d07d2cbcd1682d6ba6.php:9
+#: storage/views/messages//7cd273427e9a5324c6b19127800b8f8d.php:2
+msgid "Оголошення"
+msgstr "Advertisement"
+
+#: storage/views/messages//6c5c18f297ba11b7cb1dabbbd7e0dc92.php:12
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:70
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:1
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:21
+msgid "Контакти"
+msgstr "Contacts"
+
+#: storage/views/messages//6c5c18f297ba11b7cb1dabbbd7e0dc92.php:13
+msgid "Studvel"
+msgstr "Studvel"
+
+#: storage/views/messages//6c5c18f297ba11b7cb1dabbbd7e0dc92.php:14
+msgid "Moodle"
+msgstr "Moodle"
+
+#: storage/views/messages//6c5c18f297ba11b7cb1dabbbd7e0dc92.php:15
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:23
+msgid "RSS"
+msgstr "RSS"
+
+#: storage/views/messages//6c5c18f297ba11b7cb1dabbbd7e0dc92.php:37
+#: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:16
+#: storage/views/messages//0dc806b65aedb0eacd5e1ff7d1a2111e.php:5
+msgid "Кафедра прикладної математики та інформатики"
+msgstr "Department of Applied Mathematics and Informatics"
 
 #: storage/views/messages//cfe70995a861af4aa420739c1db1361c.php:1
 #: storage/views/messages//cfe70995a861af4aa420739c1db1361c.php:9
 msgid "Сторінку не знайдено"
-msgstr ""
+msgstr "Page not found"
+
+#: storage/views/messages//7686e9bed671933b497a550d5fca30bb.php:20
+msgid "Пошук по викладачах"
+msgstr "Search by teachers"
 
 #: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:1
 msgid "Головна сторінка"
-msgstr ""
+msgstr "Home page"
 
 #: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:1
 msgid "Інформація про кафедру, новини, опитування, викладачі"
+msgstr "Information about department, news, polls, teachers"
+
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:49
+msgid "Дивіться також"
+msgstr "See also"
+
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:100
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:130
+msgid "Опитування"
+msgstr "Polls"
+
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:129
+msgid "Голосувати"
+msgstr "Vote"
+
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:130
+msgid "Результати"
+msgstr "Results"
+
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:139
+msgid "Опитування відсутні"
+msgstr "Polls are empty"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:2
+msgid "Контактна інформація кафедри прикладної математики та інформатики"
 msgstr ""
+"Contact information of Department of Applied Mathematics and Informatics"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:17
+msgid "Контактна інформація"
+msgstr "Contact information"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:27
+msgid "Зворотній зв'язок"
+msgstr "Feedback"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:30
+msgid "Помилка"
+msgstr "Error"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:49
+msgid "Імя"
+msgstr "Name"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:51
+msgid "Тема"
+msgstr "Subject"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:53
+msgid "Ел. пошта"
+msgstr "Email"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:57
+msgid "Повідомлення"
+msgstr "Message"
+
+#: storage/views/messages//7935ed4ad7bdd29b3a40f9dbcead16e2.php:61
+msgid "Відправити"
+msgstr "Send"
+
+#: storage/views/messages//296335821fd082403da4036ab818eb21.php:34
+msgid "Пошук по оголошеннях"
+msgstr "Search by advertisements"
+
+#: storage/views/messages//e78e89e0d97ac6d07d2cbcd1682d6ba6.php:2
+msgid "Оголошення кафедри прикладної математики"
+msgstr "Advertisements of Department of Applied Mathematics and Informatics"
+
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:1
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:8
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:22
+msgid "Карта сайту"
+msgstr "Sitemap"
+
+#: storage/views/messages//313c9a478cc1d37b5dd9dbe70fdfee18.php:10
+msgid "Голова сторінка"
+msgstr "Home page"
 
 #: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:7
-#: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:16
 msgid "Кафедра прикладної математики та інформатки"
-msgstr ""
+msgstr "Department of Applied Mathematics and Informatics"
 
 #: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:9
 #: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:17
@@ -47,6 +323,9 @@ msgid ""
 "Сайт кафедри прикладної математики та інформатики Східноєвропейського "
 "національного університету. Про кафедру, новини, оголошення, розклад занять"
 msgstr ""
+"Department of Applied Mathematics and Informatics East Europe National "
+"University named after Lesya Ukrainka. About department, news, adverts, "
+"lessons schedule"
 
 #: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:10
 msgid ""
@@ -54,18 +333,25 @@ msgid ""
 "кафедри, оголошення, розклад занять, університет, навчання, математичний "
 "факультет"
 msgstr ""
+"Applied mathematics, informatics, about department, department news, news, "
+"adverts, lessons schedule, university, education,  mathematic faculty"
 
 #: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:13
-msgid "Кафедра прикладної математики та інформатки СНУ ім. Лесі Українки"
+msgid "Кафедра прикладної математики та інформатики СНУ ім. Лесі Українки"
 msgstr ""
+"Department of Applied Mathematics and Informatics East Europe National "
+"University named after Lesya Ukrainka"
 
-#: storage/views/messages//0dc806b65aedb0eacd5e1ff7d1a2111e.php:5
-msgid "Кафедра прикладної математики та інформатики"
-msgstr ""
+#: storage/views/messages//be5e3f14cc3866f64b0815b24a32e3b7.php:8
+msgid "Новини рубрики"
+msgstr "Rubric news"
 
-#: storage/views/messages//0dc806b65aedb0eacd5e1ff7d1a2111e.php:16
-msgid "Пошук"
-msgstr ""
+#: storage/views/messages//c63dd3505b1f9dfb92b13b332e5c6936.php:2
+msgid "Останні новини"
+msgstr "Last news"
+
+#~ msgid "Пошук"
+#~ msgstr "Search"
 
 #~ msgid "Текст перекладу"
 #~ msgstr "Translated text"

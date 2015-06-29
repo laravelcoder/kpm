@@ -77,7 +77,7 @@ class PagesRepository extends EloquentBaseRepository implements PagesInterface
     }
 
     /**
-     *
+     * get child pages
      */
     public function getChild(array $ids)
     {
@@ -113,7 +113,7 @@ class PagesRepository extends EloquentBaseRepository implements PagesInterface
     }
 
     /**
-     *
+     * get active pages list
      */
     public function getActivePages()
     {

@@ -33,7 +33,7 @@
             <tbody>
                 @foreach($items as $item)
                     <tr>
-                        <td><img src="{{$item->thumbs['100x']}}" alt="" width="60" height="60" class="thumbnail"></td>
+                        <td><img src="{{$item->thumbs['100x100']}}" alt="" width="60" height="60" class="thumbnail"></td>
                         <td>{{$item->surname}} {{$item->name}} {{$item->second_name}}</td>
                         <td>
                             <div class="btn-group">

@@ -1,3 +1,5 @@
+if (!RedactorPlugins) var RedactorPlugins = {};
+
 $(function () {
 	// Main js
 	// Connect plugins to app
@@ -8,9 +10,27 @@ $(function () {
 	if( taggables.length )
 		$(taggables).tagsInput({});
 
+	RedactorPlugins.underline = function() {
+	    return {
+	        init: function()
+	        {
+	            var button = this.button.addAfter('italic', 'underline', 'Underline');
+	            this.button.addCallback(button, this.underline.format);
+	        },
+	        format: function()
+	        {
+	            this.inline.format('u');
+	        }
+	    };
+	};
+
 	if( richText.length ) {
 		$(richText).redactor({
+			lang: 'ua',
 			buttonSource: true,
+			imageUpload: '/admin/storage/redactor-upload/',
+			fileUpload: '/admin/storage/redactor-upload/',
+            plugins: ['imagemanager', 'filemanager', 'underline', 'fontsize']
 		});
 	}
 
@@ -201,7 +221,6 @@ $(function () {
 			compleate: function () {
 				$this.removeClass('disabled');
 				$label.find('i').remove();
-				alert('1');
 			}
 		});
 	});

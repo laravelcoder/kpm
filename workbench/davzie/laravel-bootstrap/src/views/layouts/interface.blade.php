@@ -137,7 +137,11 @@
 			<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 
 			<script src="https://select2.github.io/dist/js/select2.full.js"></script>
-			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/redactor.min.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/redactor.min.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/ua.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/filemanager.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/imagemanager.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/fontsize.js') }}"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			{{ HTML::script('public/packages/davzie/laravel-bootstrap/js/vendor/datetimepicker.js') }}
 			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/fileupload/js/vendor/jquery.ui.widget.js') }}"></script>

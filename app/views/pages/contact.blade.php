@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('title') {{_('Контакти')}} @stop
+@section('description') {{_('Контактна інформація кафедри прикладної математики та інформатики')}} @stop
 
 @section('content')
 	<div class="contact_box">
@@ -10,12 +11,20 @@
 	    <div class="container">
 		 <div class="col-md-9">
 		 	<div class="single_contact contact_left">
-	  			  <h1>{{_('Контактна інформація')}}</h1>
+	  			  <h1>
+	  			  	@if (isset($info->title))
+	  			  	{{$info->title}}
+	  			  	@else
+	  			  	{{_('Контактна інформація')}}
+	  			  	@endif
+	  			  </h1>
 	  			  <style>
 	  			  	.single_contact p {
 	  			  		margin-bottom: 0px;
 	  			  	}
 	  			  </style>
+	  			  <div>@if (isset($info->title)){{$info->body}}@endif</div>
+	  			  <h3 class="feedback">{{_("Зворотній зв'язок")}}</h3>
 	  			  @if( $errors->all() )
 				    <div class="alert alert-danger">
 				        <p><strong>{{_('Помилка')}}</strong></p>
@@ -49,14 +58,6 @@
 		       </div>
 		 </div>
 		 <div class="col-md-3 contact_right">
-		 	<h2>{{_('Контакти')}}</h2>
-		 	@if ($adress)
-		 		{{$adress->body}}
-		 	@endif
-		 	<h2 class="m_5">{{_('Години роботи')}}</h2>
-		 	@if ($info)
-		 		{{$info->body}}
-		 	@endif
 		 </div>
 	 </div>
 </div>

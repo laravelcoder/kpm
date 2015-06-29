@@ -34,11 +34,9 @@ class PagesController extends BaseController {
 	 */
 	public function getContact()
 	{
-		$adress = $this->model->getBySlug('contact');
-		$info   = $this->model->getBySlug('hours');
+		$info = $this->model->getBySlug('contact');
 
 		return View::make('pages.contact')
-					->with('adress', $adress)
 					->with('info', $info);
 	}
 
@@ -267,6 +265,17 @@ class PagesController extends BaseController {
 		}
 
 		return ['success' => 0];
+	}
+
+	/**
+	 *
+	 */
+	public function getLinks()
+	{
+		$links_model = App::make('Davzie\LaravelBootstrap\Links\LinksInterface');
+		$links = $links_model->frontList();
+
+		return View::make('pages.links')->with('links', $links);
 	}
 
 }

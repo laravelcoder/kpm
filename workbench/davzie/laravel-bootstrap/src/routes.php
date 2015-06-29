@@ -39,6 +39,15 @@ Route::controller($urlSegment.'/polls-answers' , 'Davzie\LaravelBootstrap\Contro
 Route::controller($urlSegment.'/links' , 'Davzie\LaravelBootstrap\Controllers\LinksController');
 Route::controller($urlSegment.'/comments' , 'Davzie\LaravelBootstrap\Controllers\CommentsController');
 
+// Route::pattern('code', '^[0-9]+$');
+Route::get($urlSegment.'/users/compleate/{code}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\UsersController@getCompleate'));
+
+Route::post($urlSegment.'/users/compleate/{code}', array('uses' => 'Davzie\LaravelBootstrap\Controllers\UsersController@postCompleate'));
+
+Route::get($urlSegment.'/users/restore/', array('uses' => 'Davzie\LaravelBootstrap\Controllers\UsersController@getRestore'));
+
+Route::post($urlSegment.'/users/restore/', array('uses' => 'Davzie\LaravelBootstrap\Controllers\UsersController@postRestore'));
+
 Route::controller($urlSegment, 'Davzie\LaravelBootstrap\Controllers\DashController');
 
 

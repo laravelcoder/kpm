@@ -18,12 +18,15 @@ class GalleriesRepository extends EloquentBaseRepository implements GalleriesInt
     }
 
     /**
-     *
+     * get all galleries
      */
     public function getAll()
     {
+        // get default lang
     	$lang       = $this->lang_model->defaultLang();
+        // get hidden lang
         $hidden     = $this->lang_model->getHidden();
+        // get records, exists on this lang
         $exists_ids = $this->model->where('lang_id', $lang->id)->lists('id');
 
         if (empty($exists_ids)) {
@@ -40,7 +43,7 @@ class GalleriesRepository extends EloquentBaseRepository implements GalleriesInt
     }
 
     /**
-     *
+     * save model relations
      */
     public function saveRelations($storage_id = null)
     {
@@ -55,7 +58,7 @@ class GalleriesRepository extends EloquentBaseRepository implements GalleriesInt
     }
 
     /**
-     *
+     * update model relations
      */
     public function updateRelations($storage_id = null)
     {
@@ -87,7 +90,7 @@ class GalleriesRepository extends EloquentBaseRepository implements GalleriesInt
     }
 
     /**
-     *
+     * get galleries list
      */
     public function frontList()
     {
@@ -106,7 +109,7 @@ class GalleriesRepository extends EloquentBaseRepository implements GalleriesInt
     }
 
     /**
-     *
+     * get one gallery
      */
     public function frontView($id)
     {

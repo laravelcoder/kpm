@@ -40,6 +40,20 @@ class EloquentBaseModel extends Eloquent
 	/**
 	 *
 	 */
+	public function withOut(array $fields)
+	{
+		foreach ($fields as $field) {
+			if (isset($this->validationRules[$field])) {
+				unset($this->validationRules[$field]);
+			}
+		}
+
+		return $this;
+	}
+
+	/**
+	 *
+	 */
 	public function isValid( $data = array() )
 	{
 		if ( ! isset($this->validationRules)) {

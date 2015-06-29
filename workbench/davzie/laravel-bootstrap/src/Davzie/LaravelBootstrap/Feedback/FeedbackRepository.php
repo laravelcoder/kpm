@@ -1,7 +1,7 @@
 <?php namespace Davzie\LaravelBootstrap\Feedback;
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\Feedback\Feedback;
-use Davzie\LaravelBootstrap\Departments\Departments;
+use Config;
 
 class FeedbackRepository extends EloquentBaseRepository implements FeedbackInterface
 {
@@ -21,7 +21,7 @@ class FeedbackRepository extends EloquentBaseRepository implements FeedbackInter
      */
     public function getChecked()
     {
-    	return $this->model->getChecked()->paginate(20);
+    	return $this->model->getChecked()->paginate(Config::get('app.limit'));
     }
 
     /**
@@ -29,7 +29,7 @@ class FeedbackRepository extends EloquentBaseRepository implements FeedbackInter
      */
     public function getUnchecked()
     {
-    	return $this->model->getUnchecked()->paginate(20);
+    	return $this->model->getUnchecked()->paginate(Config::get('app.limit'));
     }
 
 }

@@ -18,7 +18,8 @@ class PollsRepository extends EloquentBaseRepository implements PollsInterface
     }
 
     /**
-     *
+     * get all polls
+     * for admin side
      */
     public function getAll()
     {

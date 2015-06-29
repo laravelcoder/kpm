@@ -9,7 +9,6 @@
 
 @if( $success->all() )
     <div class="alert alert-success">
-        <p><strong>Інформація</strong></p>
         @foreach ($success->all('<p>:message</p>') as $msg)
             {{ $msg }}
         @endforeach

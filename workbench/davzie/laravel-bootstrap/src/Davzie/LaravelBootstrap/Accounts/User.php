@@ -27,7 +27,7 @@ class User extends EloquentBaseModel implements LaravelUserInterface, Remindable
         'first_name'    => array('required'),
         'last_name'   => array('required'),
         'email'       => array('required', 'email', 'unique:users,email,<id>,id'),
-        'password'    => array('confirmed', 'min:5'),
+        'password'    => array('required', 'confirmed', 'min:5'),
         'is_active'   => array('regex:/(0|1)$/'),
     ];
 
@@ -108,7 +108,7 @@ class User extends EloquentBaseModel implements LaravelUserInterface, Remindable
     }
 
     /**
-     *
+     * roles relationship
      */
     public function roles()
     {

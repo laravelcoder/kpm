@@ -35,6 +35,7 @@ Access::users('ownPassword', 'Зміна свого паролю', true);
 Access::storage('addDir', 'Створення папок', false);
 Access::storage('editDir', 'Редагування папок', false);
 Access::storage('upload', 'Завантаження', true);
+Access::storage('redactorUpload', 'Завантаження для редактора', true);
 Access::storage('image', 'Image', true);
 Access::storage('file', 'Перегляд файлу', false);
 Access::menu('sort', 'Сортування меню', false);

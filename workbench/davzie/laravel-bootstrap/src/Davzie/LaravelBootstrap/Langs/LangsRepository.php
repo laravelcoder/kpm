@@ -27,7 +27,7 @@ class LangsRepository extends EloquentBaseRepository implements LangsInterface
     }
 
     /**
-     *
+     * get all langs
      */
     public function getAll()
     {
@@ -35,7 +35,15 @@ class LangsRepository extends EloquentBaseRepository implements LangsInterface
     }
 
     /**
-     *
+     * get active langs
+     */
+    public function getActive()
+    {
+        return $this->model->where('is_base', '=', 0)->where('is_active', 1)->get();
+    }
+
+    /**
+     * get list without pagination
      */
     public function getList()
     {
@@ -43,7 +51,7 @@ class LangsRepository extends EloquentBaseRepository implements LangsInterface
     }
 
     /**
-     *
+     * get lang by code
      */
     public function getByCode($lang_code)
     {
@@ -51,7 +59,7 @@ class LangsRepository extends EloquentBaseRepository implements LangsInterface
     }
 
     /**
-     *
+     * get default lang
      */
     public function defaultLang()
     {
@@ -63,7 +71,7 @@ class LangsRepository extends EloquentBaseRepository implements LangsInterface
     }
 
     /**
-     *
+     * get hidden lang
      */
     public function getHidden()
     {
@@ -75,7 +83,7 @@ class LangsRepository extends EloquentBaseRepository implements LangsInterface
     }
 
     /**
-     *
+     * chage default lang to other
      */
     public function changeDefault($lang)
     {

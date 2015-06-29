@@ -13,11 +13,11 @@ class Page {
      */
     public function compose($view)
     {
-        $settings   = App::make('Davzie\LaravelBootstrap\Settings\SettingsInterface');
+        $settings_model = App::make('Davzie\LaravelBootstrap\Settings\SettingsInterface');
         $lang_model = App::make('Davzie\LaravelBootstrap\Langs\LangsInterface');
         $curr_lang  = $lang_model->getByCode(App::getLocale());
 
-        $langs      = $lang_model->getAll();
+        $langs      = $lang_model->getActive();
         $lang_urls  = [];
         $url        = Request::server('REQUEST_URI');
 
@@ -34,10 +34,12 @@ class Page {
         }
 
         $menu = Menu::where('parent_id', NULL)->where('lang_id', $curr_lang->id)->orderBy('order')->get();
+        $settings = $settings_model->get();
 
         $view->with('user', Auth::user())
              ->with('lang_urls', $lang_urls)
              ->with('menu', $menu)
+             ->with('settings', $settings)
              ->with('default_lang', $lang_model->defaultLang())
              ->with('success', Session::get('success' , new MessageBag ) );
     }

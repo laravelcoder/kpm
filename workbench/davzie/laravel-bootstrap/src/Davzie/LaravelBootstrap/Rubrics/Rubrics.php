@@ -54,4 +54,12 @@ class Rubrics extends EloquentBaseModel
         return $this;
     }
 
+    /**
+     *
+     */
+    public function news()
+    {
+        return $this->belongsToMany('Davzie\LaravelBootstrap\News\News', 'news_has_rubrics', 'rubric_id', 'new_id')->where('news.lang_id', $this->lang_id);
+    }
+
 }

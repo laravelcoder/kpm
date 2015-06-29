@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="pull-right">
-        @if (allowed('storage', 'new'))
+        @if (allowed('storage', 'addDir'))
         <a href="{{$object_url . '/add-dir/' . $dir_id}}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus"></i> Створити папку</a>
         @endif
 
@@ -48,7 +48,7 @@
                             @if ($item->is_dir == 1)
                                 <i class="folder icon icon-folder-open"></i>
                             @else
-                                <img src="{{$item->thumbs['100x']}}" class="thumbnail" width="40" height="40" style="margin-bottom: 0px;" alt="">
+                                <img src="{{$item->thumbs['100x100']}}" class="thumbnail" width="40" height="40" style="margin-bottom: 0px;" alt="">
                             @endif
                         </td>
                         <td>

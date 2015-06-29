@@ -26,6 +26,7 @@
                 <tr>
                     <th>Назва</th>
                     <th>Код</th>
+                    <th>Увімкнена</th>
                     <th>За замовчуванням</th>
                     <th class="options-200">&nbsp;</th>
                 </tr>
@@ -35,6 +36,13 @@
                     <tr>
                         <td><a href="{{$edit_url . $item->id}}">{{$item->name}}</a>
                         <td>{{$item->code}}</td>
+                        <td>
+                            @if ($item->is_active)
+                                Так
+                            @else
+                                Ні
+                            @endif
+                        </td>
                         <td>
                             @if ($item->is_default)
                                 Так

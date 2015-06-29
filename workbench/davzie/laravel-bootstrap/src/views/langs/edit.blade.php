@@ -30,6 +30,14 @@
     </div>
 
     <div class="form-group">
+        {{ Form::label( "is_active" , 'Активна' , array( 'class'=>'col-lg-2 control-label' ) ) }}
+        <div class="col-lg-10">
+            {{Form::hidden('is_active', 0)}}
+            {{ Form::checkbox( "is_active" , Input::old("is_active", 1), $item->is_active) }}
+        </div>
+    </div>
+
+    <div class="form-group">
         {{ Form::label( "is_default" , 'За замовчуванням' , array( 'class'=>'col-lg-2 control-label' ) ) }}
         <div class="col-lg-10">
             {{Form::hidden('is_default', 0)}}

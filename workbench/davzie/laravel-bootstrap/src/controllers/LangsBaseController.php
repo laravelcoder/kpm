@@ -57,6 +57,7 @@ abstract class LangsBaseController extends ObjectBaseController {
 
 		return View::make('laravel-bootstrap::'.$this->view_key.'.new')
 					->with('lang_id', $lang->id)
+					->with('_lang_code', $lang->code)
 					->with('langs', $langs)
 					->with('id', $id)
 					->with('path', $path)
@@ -86,6 +87,11 @@ abstract class LangsBaseController extends ObjectBaseController {
 			}
 		}
 
+		// get language by code
+		if (!$lang = $this->lang_model->getByCode($lang_code)) {
+			return \App::abort(404);
+		}
+
 		// get all langs, exclude base lang
 		$langs = $this->lang_model->getList();
 
@@ -93,6 +99,7 @@ abstract class LangsBaseController extends ObjectBaseController {
 		$path = $this->model->getPaths($item->getAttributes());
 
 		return View::make('laravel-bootstrap::'.$this->view_key.'.edit')
+					->with('_lang_code', $lang->code)
 					->with('item', $item)
 					->with('path', $path)
 					->with('langs', $langs);
@@ -120,7 +127,7 @@ abstract class LangsBaseController extends ObjectBaseController {
 			return Redirect::back()->withErrors($record->getErrors())->withInput();
 		}
 
-		if (!empty($this->model->findById($id, $lang_code))) {
+		if ($this->model->findById($id, $lang_code)) {
 			$class = get_class($this);
 			return Redirect::action("{$class}@getEdit", array('id' => $id, 'lang_code' => $lang_code));
 		}

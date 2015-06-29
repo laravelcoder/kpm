@@ -19,7 +19,7 @@ class PollsVotesRepository extends EloquentBaseRepository implements PollsVotesI
     }
 
     /**
-     *
+     * get poll vote by answer_id and ip-address
      */
     public function get($answer_id, $ip)
     {
@@ -27,7 +27,7 @@ class PollsVotesRepository extends EloquentBaseRepository implements PollsVotesI
     }
 
     /**
-     *
+     * find poll results
      */
     public function getResults($answer_id)
     {

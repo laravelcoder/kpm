@@ -35,7 +35,7 @@
             <tbody>
                 @foreach($items as $item)
                     <tr>
-                        <td><img src="{{$item->thumbs['100x']}}" alt="" width="60" height="60" class="thumbnail"></td>
+                        <td><img src="{{$item->thumbs['100x100']}}" alt="" width="60" height="60" class="thumbnail"></td>
                         <td>{{$item->title}}</td>
                         <td>{{$item->time_start}}</td>
                         <td>{{$item->time_end}}</td>

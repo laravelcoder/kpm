@@ -87,3 +87,8 @@ App::bind('Davzie\LaravelBootstrap\Comments\CommentsInterface', function(){
 App::bind('Davzie\LaravelBootstrap\PollsVotes\PollsVotesInterface', function(){
 	return new Davzie\LaravelBootstrap\PollsVotes\PollsVotesRepository( new Davzie\LaravelBootstrap\PollsVotes\PollsVotes );
 });
+
+// The Confirms Bindings
+App::bind('Davzie\LaravelBootstrap\Confirms\ConfirmsInterface', function(){
+	return new Davzie\LaravelBootstrap\Confirms\ConfirmsRepository( new Davzie\LaravelBootstrap\Confirms\Confirms );
+});

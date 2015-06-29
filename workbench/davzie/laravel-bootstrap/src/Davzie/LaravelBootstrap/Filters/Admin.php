@@ -2,6 +2,9 @@
 use Auth, Redirect, Config, Session;
 use Davzie\LaravelBootstrap\Access;
 
+/**
+ * admin filter (check is logged, check access)
+ */
 class Admin {
 
 	/**
@@ -10,10 +13,9 @@ class Admin {
 	 */
 	public function filter()
 	{
+		// if is guest then show login page
 		if (Auth::guest()) {
 			return \View::make('laravel-bootstrap::login');
-
-			// return Redirect::guest( Config::get('laravel-bootstrap::app.access_url').'/login');
 		}
 
 		// check action exsists

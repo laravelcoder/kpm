@@ -18,7 +18,7 @@ class MenuRepository extends EloquentBaseRepository implements MenuInterface
     }
 
     /**
-     *
+     * get menu items with parent id
      */
     public function getItems($id = null)
     {
@@ -42,11 +42,11 @@ class MenuRepository extends EloquentBaseRepository implements MenuInterface
     {
     	$lang  = $this->lang_model->defaultLang();
 
-    	return $this->model->where('lang_id', $lang->id)->where('parent_id', null)->orderBy('order')->lists('title', 'id');
+    	return $this->model->where('lang_id', $lang->id)->orderBy('order')->lists('title', 'id');
     }
 
     /**
-     *
+     * save menu items order
      */
     public function saveItems($items)
     {
@@ -60,7 +60,7 @@ class MenuRepository extends EloquentBaseRepository implements MenuInterface
     }
 
     /**
-     *
+     * get pages list for add page link as menu item link
      */
     public function getPages()
     {

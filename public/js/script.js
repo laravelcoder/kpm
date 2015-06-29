@@ -127,7 +127,7 @@
 
 				var mainmenu = $('#menu-button').siblings('ul');
 
-				if (mainmenu.hasClass('open')) {
+				if (mainmenu.hasClass('open') && window.innerWidth <= 924) {
 					mainmenu.hide().removeClass('open');
 				}
 

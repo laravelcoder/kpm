@@ -44,7 +44,9 @@
 
                         {{ Form::password('password', array( 'placeholder'=>'Пароль' , 'class'=>'form-control' ) ) }}
 
-                        {{ Form::submit('Вхід' , array( 'class'=>'btn btn-primary btn-block' ) ) }}
+                        {{ Form::submit('Вхід' , array( 'class'=>'btn btn-primary' ) ) }}
+
+                        <a href="{{action('Davzie\LaravelBootstrap\Controllers\UsersController@getRestore')}}" class="btn btn-default pull-right">Відновлення пароля</a>
 
                     {{ Form::close() }}
                 </div>

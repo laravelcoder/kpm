@@ -17,7 +17,7 @@ class RubricsRepository extends EloquentBaseRepository implements RubricsInterfa
     }
 
     /**
-     *
+     * get all rubrics for admin side
      */
     public function getAll()
     {
@@ -33,7 +33,7 @@ class RubricsRepository extends EloquentBaseRepository implements RubricsInterfa
     }
 
     /**
-     *
+     * get front rubrics list
      */
     public function frontList()
     {

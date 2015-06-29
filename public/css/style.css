@@ -13,6 +13,10 @@ p {margin: 0;}
 	opacity: 0.5;
 }
 
+.mh220 {
+	max-height: 220px;
+}
+
 html, body{
     font-family: 'PT Sans', sans-serif;
     font-size: 100%;
@@ -38,7 +42,7 @@ body a{
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  min-height:750px;
+  min-height:650px;
   text-align: center;
   padding-top: 3em;
   /*z-index: 1;*/
@@ -51,7 +55,7 @@ body a{
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  min-height:200px;
+  min-height:300px;
   padding-top: 3em;
 }
 .icon{
@@ -179,11 +183,11 @@ a.boxclose{
   vertical-align: middle;
 }
 .content_top{
-	padding: 6em 0 1em 0;
+	padding: 4em 0 1em 0;
 }
 .grid_1{
 	text-align:center;
-	margin-bottom: 5em;
+	margin-bottom: 4em;
 }
 .grid_1 h3{
   color: #898f99;
@@ -195,7 +199,7 @@ a.boxclose{
 .grid_1 h1, .grid_1 h2, .grid_1 h4{
   color: #0ec8cb;
   text-transform: uppercase;
-  font-size: 3em;
+  font-size: 2.5em;
   font-family: 'Montserrat', sans-serif;
   margin: 30px 0;
 }
@@ -429,7 +433,7 @@ ul.gallery li{
 	color: #B9B9B9;
 }
 .blog_desc p{
-	margin-bottom:5em;
+	margin-bottom:1em;
 }
 .box_3:hover{
 	background:#fff;
@@ -647,7 +651,7 @@ h2.m_5 {
 }
 /*--blog_single--*/
 .single{
-	padding:5em 0;
+	padding:5em 0 0 0;
 }
 ul.list {
 	margin:30px 0 0 0;
@@ -761,6 +765,9 @@ li.middle {
 	-o-border-radius: 3px;
 	position: relative;
 	/*margin-bottom: 2em;*/
+}
+.search.ggl {
+	border: 0px;
 }
 .search form input[type="text"] {
 	padding: 8px 15px;
@@ -910,8 +917,16 @@ ul.blog-list3 li.blog-list3-desc p{
 }
 /*--responsive design--*/
 
+.header1 {
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	background-color: rgba(255,255,255,.95);
+}
+
 .links h3 {
 	font-size: 14px;
+	text-align: center;
 }
 
 .left {
@@ -1069,6 +1084,29 @@ div.vote-result-value {
 	padding-left: 2px;
 }
 
+h3.feedback {
+	margin: 30px 0px;
+	text-transform: uppercase;
+	color: #0ec8cb;
+}
+
+.container p a {
+	color: #0ec8cb;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert-danger p {
+  color: #a94442;
+}
+
+.alert-success p {
+  color: #3c763d;
+ }
 
 /* google search styles */
 .gsc-control-searchbox-only
@@ -1088,7 +1126,7 @@ div.vote-result-value {
 
 .search.ggl {
 	/*border: 0px;*/
-	margin-top: 3px;
+	margin-top: 5px;
 }
 
 .gsc-search-box-tools .gsc-search-box .gsc-input {

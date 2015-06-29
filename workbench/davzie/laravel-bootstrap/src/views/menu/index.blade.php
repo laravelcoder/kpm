@@ -49,9 +49,7 @@
                         @if (allowed('menu', 'delete'))
                             <a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete btn btn-danger btn-xs" data-message="Видалити?" style="color: #fff;"><i class="glyphicon glyphicon-trash"></i></a>
                         @endif
-                        @if ($item->parent_id == null)
                         	<a href="{{$object_url.'/'.$item->id}}" class="btn btn-xs btn-primary" style="color: #fff;">Підпункти</a>
-                        @endif
                         @if ($item->lang_id == $hidden_lang->id)
                             <a href="{{action($module.'@getNew', ['lang_code' => $default_lang->code, 'id' => $item->id])}}" class="btn btn-xs btn-default"><i class="icon icon-plus"> Створити запис</i></a>
                         @endif

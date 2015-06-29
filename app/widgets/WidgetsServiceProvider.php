@@ -12,5 +12,6 @@ class WidgetsServiceProvider extends ServiceProvider
         View::composer('widgets.last-posts', '\Widgets\LatestNews');
         View::composer('widgets.rubrics', '\Widgets\Rubrics');
         View::composer('widgets.teachers', '\Widgets\Teachers');
+        View::composer('widgets.adverts', '\Widgets\Adverts');
     }
 }

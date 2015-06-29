@@ -2,7 +2,7 @@
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\Adverts\Adverts;
 use Davzie\LaravelBootstrap\Departments\Departments;
-use App;
+use App, Input;
 
 class AdvertsRepository extends EloquentBaseRepository implements AdvertsInterface
 {
@@ -41,12 +41,27 @@ class AdvertsRepository extends EloquentBaseRepository implements AdvertsInterfa
     }
 
     /**
+     * get adverts list
      *
+     * @param int $limit
      */
-    public function frontList()
+    public function frontList($limit = null)
     {
         $lang  = $this->lang_model->getByCode(App::getLocale());
-        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->where('time_start', '<=', time())->where('time_end', '>=', time())->paginate(\Config::get('app.limit'));
+        $items = $this->model->where('lang_id', $lang->id)->where('is_active', 1)->where('time_start', '<=', time())->where('time_end', '>=', time());
+        $s     = Input::get('s', false);
+
+        if ($s) {
+            $s = htmlspecialchars($s);
+            $s = "%{$s}%";
+            $items = $items->where(function ($query) use ($s) {
+                $query->where('title', 'LIKE', $s)
+                      ->orWhere('descr', 'LIKE', $s)
+                      ->orWhere('body', 'LIKE', $s);
+            });
+        }
+
+        $items = $items->orderBy('time_end')->paginate($limit ? $limit : \Config::get('app.limit'));
 
         foreach ($items as &$item) {
             $item->thumbs = $this->storage_model->getThumbs($item->photo);
@@ -56,7 +71,7 @@ class AdvertsRepository extends EloquentBaseRepository implements AdvertsInterfa
     }
 
     /**
-     *
+     * get adverts by id
      */
     public function frontView($id)
     {

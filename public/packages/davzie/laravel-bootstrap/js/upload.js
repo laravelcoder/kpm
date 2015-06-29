@@ -5,10 +5,17 @@ $(function() {
 	$uploadTarget.fileupload({
 		dataType: 'json',
 		done: function (e, data) {
+			var reload = $(this).attr('data-reload') || false;
 			$(this).siblings('#progress').addClass('hide').find('.progress-bar').css('width',  '0%');
 
 			if (data.result.success) {
+
+				if (reload) {
+					return location.reload();
+				}
+
 				var name = data.result.key;
+
 				$('input[name=' + name + '].js-upload-target').val(data.result.id);
 				$(this).siblings('.js-upload-message').text('Файл завантажено');
 				$(this).siblings('.upload-cover').attr('src', data.result.path);

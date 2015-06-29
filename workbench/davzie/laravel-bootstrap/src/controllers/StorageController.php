@@ -39,6 +39,24 @@ class StorageController extends ObjectBaseController {
     }
 
     /**
+     * upload files and images for redactor
+     */
+    public function postRedactorUpload()
+    {
+        $result = ['success' => 0];
+
+        if ($data = $this->model->doUpload('file', 'redactor')) {
+            $result = [
+                'success'  => 1,
+                'filename' => $data['filename'],
+                'filelink' => $data['path']
+            ];
+        }
+
+        return \Response::json($result);
+    }
+
+    /**
      * get list of files for dir
      */
     public function getIndex($dir_id = null)
@@ -55,8 +73,12 @@ class StorageController extends ObjectBaseController {
 
         if (!$dir_id) {
             $dir = false;
-        } elseif (!$dir   = $this->model->requireById($dir_id)) {
-            $dir = false;
+        } else {
+            $dir = $this->model->requireById($dir_id);
+        }
+
+        if ($dir) {
+            $dir->path = $this->model->getDirPath($dir_id);
         }
 
         return \View::make('laravel-bootstrap::'.$this->view_key.'.index')

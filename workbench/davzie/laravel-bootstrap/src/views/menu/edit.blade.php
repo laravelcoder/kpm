@@ -40,7 +40,7 @@
     		<select name="page" class="form-control js-select-to" data-target="[name=link]" style="display: none;" id="">
     			<option value="">Оберіть сторінку</option>
     			@foreach ($pages as $page)
-    				<option value="/{{$page->slug}}">{{$page->title}}</option>
+    				<option value="@if ($_lang_code != $default_lang->code)/{{$_lang_code}}@endif/{{$page->slug}}">{{$page->title}}</option>
     			@endforeach
     		</select>
     	</div>

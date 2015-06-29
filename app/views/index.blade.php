@@ -7,7 +7,12 @@
 		<div class="wrap">
 		   <div class="header_top">
 		         <div class="logo">
-			     	<h2>hello, world ;)</h2>
+		         	<?php $logo_title = 'home_title_' . App::getLocale(); ?>
+			     	<h2>
+			     		@if (isset($settings[$logo_title]))
+			     			{{$settings[$logo_title]}}
+			     		@endif
+			     	</h2>
 			     </div>
 			     <div class="header_arrow">
 		          <a href="#arrow" class="scroll"><span> </span></a>
@@ -28,7 +33,7 @@
 		   <div class="grid_2 text-center">
 		   		@foreach ($news as $item)
 					<div class="col-md-3 box_3"><a href="{{action('NewsController@getView', array($item->slug))}}">
-					    <img src="{{$item->thumbs['283x189']}}" width="283" class="img-responsive" alt=""/>
+					    <img src="{{$item->thumbs['300x200']}}" width="283" class="img-responsive mh220" alt=""/>
 					    <div class="blog_desc">
 					       <h3>{{{$item->title}}}</h3>
 					       <p>{{{Str::limit($item->descr, 120)}}}</p>
@@ -48,6 +53,38 @@
 		<div class="container">
 			<div class="grid_1">
 				<h3></h3>
+				<h2>{{_('Дивіться також')}}</h2>
+				<p></p>
+		   </div>
+		   <div class="grid_2 text-center links">
+				<div class="col-md-3 box_3"><a href="{{action('TeachersController@getIndex')}}">
+				    <div class="blog_desc">
+				       <h3 style="margin-bottom: 0px;">{{_('Викладачі')}}</h3>
+				   </div>
+				</a></div>
+				<div class="col-md-3 box_3"><a href="{{action('AdvertsController@getIndex')}}">
+				    <div class="blog_desc">
+				       <h3 style="margin-bottom: 0px;">{{_('Оголошення')}}</h3>
+				   </div>
+				</a></div>
+				<div class="col-md-3 box_3"><a href="{{action('PagesController@getGroupSchedule')}}">
+				    <div class="blog_desc">
+				       <h3 style="margin-bottom: 0px;">{{_('Розклад занять')}}</h3>
+				   </div>
+				</a></div>
+				<div class="col-md-3 box_3"><a href="{{action('PagesController@getContact')}}">
+				    <div class="blog_desc">
+				       <h3 style="margin-bottom: 0px;">{{_('Контакти')}}</h3>
+				   </div>
+				</a></div>
+				<div class="clearfix"> </div>
+		   </div>
+		</div>
+	</div>
+	<div class="content_top" id="works">
+		<div class="container">
+			<div class="grid_1">
+				<h3></h3>
 				<h2>{{_('Корисні посилання')}}</h2>
 				<p></p>
 		   </div>
@@ -55,7 +92,7 @@
 		   		@foreach ($links as $link)
 					<div class="col-md-3 box_3"><a href="{{$link->link}}">
 					    <div class="blog_desc">
-					       <h3>{{$link->title}}</h3>
+					       <h3 style="margin-bottom: 0px;">{{$link->title}}</h3>
 					   </div>
 					</a></div>
 				@endforeach
@@ -103,6 +140,9 @@
 					   </div>
 					</div>
 				@endforeach
+				@if ($polls->isEmpty())
+					<h5>{{_('Опитування відсутні')}}</h5>
+				@endif
 
 				<div class="clearfix"> </div>
 		   </div>

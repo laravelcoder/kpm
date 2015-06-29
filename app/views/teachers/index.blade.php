@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('title') {{_('Викладачі')}} @stop
+@section('description') {{_('Викладачі кафедри прикладної математики та інформатики')}} @stop
 
 @section('content')
 	<div class="single">
@@ -16,7 +17,7 @@
 					@foreach ($items as $item)
 						<div class="col-md-4 teacher-item">
 							<a href="{{action('TeachersController@getView', array($item->id))}}">
-							    <img src="{{$item->thumbs['283x189']}}" width="150" height="150" class="img-responsive" alt=""/>
+							    <img src="{{$item->thumbs['170x170']}}" width="150" height="150" class="img-responsive" alt=""/>
 							    <h3>{{$item->surname}} {{$item->name}} {{$item->second_name}}</h3>
 							    <p class="text-muted">{{$item->status}}</p>
 							</a>

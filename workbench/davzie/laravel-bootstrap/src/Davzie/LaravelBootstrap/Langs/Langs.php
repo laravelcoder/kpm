@@ -14,7 +14,7 @@ class Langs extends EloquentBaseModel
      * These are the mass-assignable keys
      * @var array
      */
-    protected $fillable = array('name', 'code', 'is_default');
+    protected $fillable = array('name', 'code', 'is_default', 'is_active');
 
     /**
      * Validation rules

@@ -10,6 +10,11 @@ class AdvertsController extends LangsBaseController {
     protected $view_key = 'adverts';
 
     /**
+     *
+     */
+    protected $object_url = 'informing';
+
+    /**
      * Construct Shit
      */
     public function __construct(AdvertsInterface $model)

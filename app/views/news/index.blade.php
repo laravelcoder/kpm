@@ -1,6 +1,7 @@
 @extends('base')
 
-@section('title') {{_('Новини')}} @stop
+@section('title'){{_('Новини')}}@stop
+@section('description'){{_('Новини кафедри прикладної математики')}}@stop
 
 @section('content')
 	<div class="single">
@@ -17,7 +18,7 @@
 				@foreach ($items as $item)
 					<div class="col-md-3 box_3"><a href="{{action('NewsController@getView', array($item->slug))}}">
 						@if (!empty($item->thumbs))
-					    	<img src="{{$item->thumbs['283x189']}}" width="283" class="img-responsive" alt=""/>
+					    	<img src="{{$item->thumbs['300x200']}}" width="283" class="img-responsive mh220" alt=""/>
 					    @endif
 					    <div class="blog_desc">
 					       <h3>{{$item->title}}</h3>

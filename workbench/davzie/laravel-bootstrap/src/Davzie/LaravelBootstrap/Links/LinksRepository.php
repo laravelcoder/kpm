@@ -18,11 +18,13 @@ class LinksRepository extends EloquentBaseRepository implements LinksInterface
     }
 
     /**
-     *
+     * get all links
      */
     public function getAll()
     {
+        // get lang
     	$lang       = $this->lang_model->defaultLang();
+        // get hidden lang
         $hidden     = $this->lang_model->getHidden();
         $exists_ids = $this->model->where('lang_id', $lang->id)->lists('id');
 

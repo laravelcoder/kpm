@@ -2,7 +2,7 @@
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
 use Davzie\LaravelBootstrap\Utilities\ImgHelper;
 use Intervention\Image\Image;
-use Config, File, Input;
+use Config, File, Input, Request;
 
 class StorageRepository extends EloquentBaseRepository implements StorageInterface
 {
@@ -193,7 +193,8 @@ class StorageRepository extends EloquentBaseRepository implements StorageInterfa
 			// Insert the data into the uploads model
 			return [
 				'id' => $id,
-				'path' => $this->isImg($mime) ? $this->getPath($filename) : ''
+				'filename' => $name,
+				'path' => $this->getPath($filename)
 			];
 		}
 
@@ -201,10 +202,10 @@ class StorageRepository extends EloquentBaseRepository implements StorageInterfa
 	}
 
 	/**
-	 *
+	 * check is image
 	 */
 	public function isImg($mime) {
-		return strpos('image', $mime) == 0;
+		return strpos($mime, 'image') === 0;
 	}
 
 	/**
@@ -225,8 +226,9 @@ class StorageRepository extends EloquentBaseRepository implements StorageInterfa
 		$resizepath .= "/{$filename}";
 
 		// resize and save image
-		$img = Image::make(base_path().$filepath);
-		$img->resize($w, $h, true , true )->save($resizepath);
+		$img        = Image::make(base_path().$filepath);
+
+		$img->resizeCanvas($w, $h, 'center', false, 'ffffff')->resize($w, $h, true, true)->save($resizepath);
 	}
 
 	/**
@@ -344,6 +346,25 @@ class StorageRepository extends EloquentBaseRepository implements StorageInterfa
 	}
 
 	/**
+	 * get dir path (with parent dirs)
+	 */
+	public function getDirPath($dir_id = false)
+	{
+		if ($dir_id == false) {
+			return '';
+		}
+
+		$dirs = [];
+
+		while ($dir = $this->requireById($dir_id)) {
+			$dirs[] = $dir->filename;
+			$dir_id = $dir->parent_id;
+		}
+
+		return implode('/', array_reverse($dirs));
+	}
+
+	/**
 	 * create img thumbs
 	 */
 	public function createThumbs($filename)
@@ -380,7 +401,7 @@ class StorageRepository extends EloquentBaseRepository implements StorageInterfa
 			$result[$thumb] = '';
 
 			if ($resized = $this->getResized($filename, $width, $height)) {
-				$result[$thumb] = 'http://' . $_SERVER['SERVER_NAME'] . $this->getResized($filename, $width, $height);
+				$result[$thumb] = 'http://' . Request::server('SERVER_NAME', null) . $this->getResized($filename, $width, $height);
 			}
 		}
 

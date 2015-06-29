@@ -1,9 +1,9 @@
 @extends('base')
 
-@section('title') {{$item->title}} @stop
+@section('title'){{$item->title}}@stop
+@section('description'){{Str::limit(strip_tags($item->body), 200) }}@stop
 
 @section('content')
-	<div class="single">
 		<div class="single">
 			<div class="container">
 			  <div class="col-md-12">
@@ -14,5 +14,4 @@
 			 </div>
 		     <div class="clearfix"> </div>
 		 </div>
-	</div>
 @stop

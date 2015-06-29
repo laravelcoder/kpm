@@ -6,7 +6,7 @@
 			@foreach ($items as $item)
 				<div class="pull-left">
 					<a class="btn btn-xs btn-danger js-remove-from-gallery" data-storage-id="{{$item->id}}" data-gallery-id="{{$id}}" data-url="/admin/galleries/delete-item" style="position:absolute;">&times;</a>
-					<img src="{{$item->thumbs['100x']}}" class="thumbnail" width="90" height="90" style="margin-right: 4px;"/>
+					<img src="{{$item->thumbs['100x100']}}" class="thumbnail" width="90" height="90" style="margin-right: 4px;"/>
 				</div>
 			@endforeach
 			{{--<div class="pull-left">

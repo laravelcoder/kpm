@@ -17,7 +17,9 @@ class PollsAnswersRepository extends EloquentBaseRepository implements PollsAnsw
     }
 
     /**
+     * get poll answers by poll_id
      *
+     * @param int $poll_id
      */
     public function getAllAnswers($poll_id)
     {
@@ -33,7 +35,7 @@ class PollsAnswersRepository extends EloquentBaseRepository implements PollsAnsw
     }
 
     /**
-     *
+     * get poll by id
      */
     public function getPoll($id)
     {
@@ -42,7 +44,7 @@ class PollsAnswersRepository extends EloquentBaseRepository implements PollsAnsw
     }
 
     /**
-     *
+     * save poll answers order
      */
     public function saveItems($items)
     {

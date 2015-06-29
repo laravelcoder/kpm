@@ -69,7 +69,7 @@ class Adverts extends EloquentBaseModel
      */
     public function getTimeStartAttribute()
     {
-        return date('d-m-Y, H:i:s',$this->attributes['time_start']);
+        return date('d.m.Y, H:i',$this->attributes['time_start']);
     }
 
     /**
@@ -85,7 +85,7 @@ class Adverts extends EloquentBaseModel
      */
     public function getTimeEndAttribute()
     {
-        return date('d-m-Y, H:i:s',$this->attributes['time_end']);
+        return date('d.m.Y, H:i',$this->attributes['time_end']);
     }
 
     /**

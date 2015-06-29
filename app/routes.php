@@ -28,6 +28,7 @@ Route::group(array('prefix' => $locale), function() {
 
 	Route::get('/news', 'NewsController@getIndex');
 	Route::get('/new/{slug}', 'NewsController@getView')->where(['slug' => '[a-z0-9\-]+']);
+	Route::get('/rubric/{slug}', 'RubricsController@getView')->where(['slug' => '[a-z0-9\-]+']);
 
 	Route::get('/informing', 'AdvertsController@getIndex');
 	Route::get('/informing/{id}', 'AdvertsController@getView')->where(['id' => '\d+']);
@@ -38,7 +39,7 @@ Route::group(array('prefix' => $locale), function() {
 	Route::get('/galleries', 'GalleriesController@getIndex');
 	Route::get('/gallery/{id}', 'GalleriesController@getView')->where(['id' => '\d+']);
 
-	// Route::get('/links', 'PagesController@getLinks');
+	Route::get('/links', 'PagesController@getLinks');
 
 	// pages view
 	Route::post('/vote', 'PagesController@postVote');
