@@ -1,6 +1,26 @@
 <?php
 
+use Davzie\LaravelBootstrap\News\NewsInterface;
+use Davzie\LaravelBootstrap\Links\LinksInterface;
+use Davzie\LaravelBootstrap\Polls\PollsInterface;
+use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
+
 class HomeController extends BaseController {
+
+	/**
+	 *
+	 */
+	public $news_model;
+
+	/**
+	 *
+	 */
+	public $links_model;
+
+	/**
+	 *
+	 */
+	public $polls_model;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -14,6 +34,13 @@ class HomeController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
+	public function __construct()
+	{
+		parent::__construct();
+		$this->news_model  = App::make('Davzie\LaravelBootstrap\News\NewsInterface');
+		$this->links_model = App::make('Davzie\LaravelBootstrap\Links\LinksInterface');
+		$this->polls_model = App::make('Davzie\LaravelBootstrap\Polls\PollsInterface');
+	}
 
 	public function showWelcome()
 	{
@@ -23,33 +50,37 @@ class HomeController extends BaseController {
 	/**
 	 *
 	 */
-	public function users($id)
-	{
-		$user = new User();
-		// $data = array(
-		// 	'name' => 'test1',
-		// 	'login' => 'lol',
-		// 	'password' => 'lol2',
-		// 	'is_active' => 1
-		// );
-
-		// $user->insert($data);
-		// echo "Inserted success!";
-		$user = $user->find($id);
-
-		if (empty($user)) {
-			App::abort(404);
-		}
-
-		return View::make('user', array('user' => $user));
-	}
-
-	/**
-	 *
-	 */
 	public function index()
 	{
-		return View::make('index');
+		// get 4 news
+		$news  = $this->news_model->frontList(4);
+
+		// get links
+		$links = $this->links_model->frontList();
+
+		// get polls
+		$polls = $this->polls_model->frontList();
+
+		foreach ($polls as &$poll) {
+			$total = 0;
+
+			foreach ($poll->answers as $answer) {
+				$total += $answer->votes->count();
+			}
+
+			foreach ($poll->answers as &$answer) {
+				$answer->count = 0;
+
+				if ($total) {
+					$answer->count = round(100*($answer->votes->count()/$total), 2);
+				}
+			}
+		}
+
+		return View::make('index')
+					->with('news', $news)
+					->with('links', $links)
+					->with('polls', $polls);
 	}
 
 }

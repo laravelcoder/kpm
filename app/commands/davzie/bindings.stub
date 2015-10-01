@@ -1,0 +1,5 @@
+
+// The {{class}} Bindings
+App::bind('Davzie\LaravelBootstrap\{{class}}\{{class}}Interface', function(){
+	return new Davzie\LaravelBootstrap\{{class}}\{{class}}Repository( new Davzie\LaravelBootstrap\{{class}}\{{class}} );
+});

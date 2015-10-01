@@ -1,35 +1,62 @@
 @extends('laravel-bootstrap::layouts.interface')
 
 @section('title')
-    Manage Website Settings
+    Налаштування
+@stop
+
+@section('breadcrumbs')
+    <li class="active">Налаштування</li>
 @stop
 
 @section('content')
 
-    <h1>Website Settings</h1>
-    <p>Update settings related to your website below:</p>
-    @if($items)
-        {{ Form::open( array( 'url'=>$object_url , 'class'=>'form-horizontal' , 'role'=>'form' ) ) }}
+    <div class="pull-right">
+        @if (allowed('settings', 'new'))
+        <a href="{{action($module .'@getNew')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Додати</a>
+        @endif
+    </div>
 
-            {{-- The error / success messaging partial --}}
-            @include('laravel-bootstrap::partials.messaging')
+    <h1>Налаштування</h1>
 
-            {{-- Loop through each setting and get it prepped for stuff --}}
-            @foreach($items as $item)
+    {{-- The error / success messaging partial --}}
+    @include('laravel-bootstrap::partials.messaging')
 
-                <div class="form-group">
-                    {{ Form::label( "settings[$item->id]" , $item->label , array( 'class'=>'col-lg-2 control-label' ) ) }}
-                    
-                    <div class="col-lg-10">
-                        {{ Form::text( "settings[$item->id]" , Input::old( "settings[$item->id]" , $item->value ) , array( 'class'=>'form-control' , 'placeholder'=>$item->label ) ) }}
-                    </div>
-                </div>
-
-            @endforeach
-
-            {{ Form::submit('Save Settings' , array('class'=>'btn btn-large btn-primary pull-right')) }}
-
-        {{ Form::close() }}
+    @if( !$items->isEmpty() )
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Назва</th>
+                    <th>Ключ</th>
+                    <th>Значення</th>
+                    <th width="100">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($items as $item)
+                    <tr>
+                        <td><a href="{{$edit_url . $item->id}}">{{$item->label}}</a></td>
+                        <td>{{$item->key}}</td>
+                        <td>{{$item->value}}</td>
+                        <td>
+                            <div class="btn-group">
+                                @if (allowed('settings', 'edit'))
+                                    <a href="{{$edit_url.$item->id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-edit"></i></a>
+                                @endif
+                                @if (allowed('settings', 'delete'))
+                                    <a href="{{$delete_url.$item->id.'/?token='.Hash::make('delete')}}" class="js-delete btn btn-xs btn-danger" data-message="Видалити?"><i class="glyphicon glyphicon-trash"></i></a>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        <div class="alert alert-info">
+            <strong>Список порожній</strong>
+        </div>
     @endif
-
+    <div class="pull-left">
+        {{$items->links()}}
+    </div>
 @stop

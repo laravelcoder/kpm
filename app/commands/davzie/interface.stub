@@ -1,0 +1,4 @@
+<?php namespace Davzie\LaravelBootstrap\{{class}};
+
+interface {{class}}Interface {
+}

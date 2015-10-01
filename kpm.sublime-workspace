@@ -19,7 +19,7 @@
 			"file": "workbench/davzie/laravel-bootstrap/src/controllers/LangsBaseController.php",
 			"settings":
 			{
-				"buffer_size": 1523,
+				"buffer_size": 5655,
 				"line_ending": "Windows"
 			}
 		},
@@ -27,7 +27,7 @@
 			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 92,
+				"buffer_size": 116,
 				"line_ending": "Windows"
 			}
 		},
@@ -60,7 +60,7 @@
 			"file": "workbench/davzie/laravel-bootstrap/src/routes.php",
 			"settings":
 			{
-				"buffer_size": 1223,
+				"buffer_size": 3646,
 				"line_ending": "Windows"
 			}
 		}
@@ -155,25 +155,6 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/C/xampp/htdocs/kpm",
-		"/C/xampp/htdocs/kpm/app",
-		"/C/xampp/htdocs/kpm/app/commands",
-		"/C/xampp/htdocs/kpm/app/controllers",
-		"/C/xampp/htdocs/kpm/public",
-		"/C/xampp/htdocs/kpm/public/packages",
-		"/C/xampp/htdocs/kpm/public/packages/stevemo",
-		"/C/xampp/htdocs/kpm/public/packages/stevemo/cpanel",
-		"/C/xampp/htdocs/kpm/public/packages/stevemo/cpanel/js",
-		"/C/xampp/htdocs/kpm/workbench",
-		"/C/xampp/htdocs/kpm/workbench/davzie",
-		"/C/xampp/htdocs/kpm/workbench/davzie/laravel-bootstrap",
-		"/C/xampp/htdocs/kpm/workbench/davzie/laravel-bootstrap/src",
-		"/C/xampp/htdocs/kpm/workbench/davzie/laravel-bootstrap/src/controllers",
-		"/C/xampp/htdocs/kpm/workbench/davzie/laravel-bootstrap/src/Davzie",
-		"/C/xampp/htdocs/kpm/workbench/davzie/laravel-bootstrap/src/Davzie/LaravelBootstrap"
-	],
 	"file_history":
 	[
 		"/E/vagrant/app.js",
@@ -392,15 +373,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1523,
+						"buffer_size": 5655,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								862,
-								860
+								0,
+								0
 							]
 						],
 						"settings":
@@ -421,15 +402,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 92,
+						"buffer_size": 116,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								24,
-								24
+								0,
+								0
 							]
 						],
 						"settings":
@@ -536,15 +517,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1223,
+						"buffer_size": 3646,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								115,
-								115
+								0,
+								0
 							]
 						],
 						"settings":

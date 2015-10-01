@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MultilanguageLaravelApplication\n"
+"POT-Creation-Date: 2015-06-10 17:31+0000\n"
+"PO-Revision-Date: 2015-06-10 17:31+0000\n"
+"Last-Translator: James Translator <james@translations.colm>\n"
+"Language-Team: James Translator <james@translations.colm>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-Basepath: ../../../../\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: controllers\n"
+"X-Poedit-SearchPath-1: models\n"
+"X-Poedit-SearchPath-2: views\n"
+"X-Poedit-SearchPath-3: ./storage/views/messages/\n"
+
+#: storage/views/messages//aea15d159694016429a4f791ad73d04e.php:1
+#: storage/views/messages//aea15d159694016429a4f791ad73d04e.php:8
+msgid "Новини"
+msgstr "Новини"
+
+#: storage/views/messages//cfe70995a861af4aa420739c1db1361c.php:1
+#: storage/views/messages//cfe70995a861af4aa420739c1db1361c.php:9
+msgid "Сторінку не знайдено"
+msgstr ""
+
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:1
+msgid "Головна сторінка"
+msgstr ""
+
+#: storage/views/messages//877292599447e3afa4ad8034ef220ab6.php:1
+msgid "Інформація про кафедру, новини, опитування, викладачі"
+msgstr ""
+
+#: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:7
+#: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:16
+msgid "Кафедра прикладної математики та інформатки"
+msgstr ""
+
+#: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:9
+#: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:17
+msgid ""
+"Сайт кафедри прикладної математики та інформатики Східноєвропейського "
+"національного університету. Про кафедру, новини, оголошення, розклад занять"
+msgstr ""
+
+#: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:10
+msgid ""
+"Прикладна математика, інформатика, сайт кафедри, про кафедру, новини "
+"кафедри, оголошення, розклад занять, університет, навчання, математичний "
+"факультет"
+msgstr ""
+
+#: storage/views/messages//b69e734ccaac32ae61ad84b133aa5df2.php:13
+msgid "Кафедра прикладної математики та інформатки СНУ ім. Лесі Українки"
+msgstr ""
+
+#: storage/views/messages//0dc806b65aedb0eacd5e1ff7d1a2111e.php:5
+msgid "Кафедра прикладної математики та інформатики"
+msgstr ""
+
+#: storage/views/messages//0dc806b65aedb0eacd5e1ff7d1a2111e.php:16
+msgid "Пошук"
+msgstr ""
+
+#~ msgid "Текст перекладу"
+#~ msgstr "Текст перекладу"

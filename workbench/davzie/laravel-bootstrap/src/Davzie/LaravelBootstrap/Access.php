@@ -23,6 +23,17 @@ class Access {
         self::$rules[$name]['rules'][$rule]['enabled'] = (bool)$enabled;
     }
 
+    /**
+     *
+     */
+    public static function toAll($rule, $alias, $enabled)
+    {
+    	foreach (self::$rules as $name => $val) {
+    		self::$rules[$name]['rules'][$rule]['alias'] = $alias;
+    		self::$rules[$name]['rules'][$rule]['enabled'] = (bool)$enabled;
+    	}
+    }
+
 	/**
 	 *
 	 */

@@ -18,7 +18,7 @@ return array(
     /**
      * The base path to put uploads into
      */
-    'upload_base_path'=>'uploads/',
+    'upload_base_path'=>'public/files',
 
     /**
      * The URL key to access the main admin area
@@ -29,30 +29,101 @@ return array(
      * The menu items shown at the top and side of the application
      */
     'menu_items'=>array(
-        'posts'=>array(
-            'name'=>'Posts',
-            'icon'=>'list',
-            'top'=>true
+        'langs'=>array(
+            'name'=>'Мови',
+            'icon'=>'flag',
+            'top'=>true,
+            'module' => 'Langs'
         ),
-        'blocks'=>array(
-            'name'=>'Content Blocks',
-            'icon'=>'th-large',
-            'top'=>true
-        ),
-        'galleries'=>array(
-            'name'=>'Galleries',
-            'icon'=>'picture',
-            'top'=>true
+        'roles'=>array(
+            'name'=>'Ролі',
+            'icon'=>'group',
+            'top'=>true,
+            'module' => 'Roles'
         ),
         'users'=>array(
-            'name'=>'Users',
+            'name'=>'Користувачі',
             'icon'=>'user',
-            'top'=>true
+            'top'=>true,
+            'module' => 'Users'
+        ),
+        'storage'=>array(
+            'name'=>'Файли',
+            'icon'=>'hdd',
+            'top'=>true,
+            'module' => 'Storage'
         ),
         'settings'=>array(
-            'name'=>'Settings',
+            'name'=>'Налаштування',
             'icon'=>'cog',
-            'top'=>true
-        )
+            'top'=>true,
+            'module' => 'Settings'
+        ),
+        'rubrics' =>array(
+            'name'=>'Рубрики',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Rubrics'
+        ),
+        'news' =>array(
+            'name'=>'Новини',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'News'
+        ),
+        'pages' =>array(
+            'name'=>'Сторінки',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Pages'
+        ),
+        'informing' =>array(
+            'name'=>'Оголошення',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Adverts'
+        ),
+        'teachers' =>array(
+            'name'=>'Викладачі',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Teachers'
+        ),
+        'feedback' =>array(
+            'name'=>'Зворотній зв`язок',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Feedback'
+        ),
+        'galleries' =>array(
+            'name'=>'Галереї',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Galleries'
+        ),
+        'menu' =>array(
+            'name'=>'Меню',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Menu'
+        ),
+        'polls' =>array(
+            'name'=>'Опитування',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Polls'
+        ),
+        'links' =>array(
+            'name'=>'Корисні посилання',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Links'
+        ),
+        'comments' =>array(
+            'name'=>'Коментарі',
+            'icon'=>'',
+            'top'=>false,
+            'module' => 'Comments'
+        ),
     )
 );

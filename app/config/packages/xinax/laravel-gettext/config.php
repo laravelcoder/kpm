@@ -32,7 +32,7 @@ return array(
 	/**
 	 * Fallback locale: When default locale is not available
 	 */
-	'fallback-locale' => 'en_US',
+	'fallback-locale' => 'uk_UA',
 
 	/**
 	 * Domain used for translations: It is the file name for .po and .mo files
@@ -63,6 +63,7 @@ return array(
 	 */
 	'source-paths' => array(
 		'controllers',
+		'models',
 		'views',
 	),
 

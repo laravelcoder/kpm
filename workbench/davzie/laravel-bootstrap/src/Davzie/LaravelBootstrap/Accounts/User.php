@@ -26,9 +26,9 @@ class User extends EloquentBaseModel implements LaravelUserInterface, Remindable
     protected $validationRules = [
         'first_name'    => array('required'),
         'last_name'   => array('required'),
-        'email'       => array('required', 'email'),
-        'password'    => array('confirmed', 'min:5'),
-        'is_active'   => array('regex:~^(0|1)$~'),
+        'email'       => array('required', 'email', 'unique:users,email,<id>,id'),
+        'password'    => array('required', 'confirmed', 'min:5'),
+        'is_active'   => array('regex:/(0|1)$/'),
     ];
 
     /**
@@ -108,7 +108,7 @@ class User extends EloquentBaseModel implements LaravelUserInterface, Remindable
     }
 
     /**
-     *
+     * roles relationship
      */
     public function roles()
     {

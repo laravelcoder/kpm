@@ -10,8 +10,8 @@
     @section('css')
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/login.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/login.css') }}">
     @show
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -30,8 +30,8 @@
     </div>
 
     @section('scripts')
-        <script src="{{ asset('packages/davzie/laravel-bootstrap/js/jquery.js') }}"></script>
-        <script src="{{ asset('packages/davzie/laravel-bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/jquery.js') }}"></script>
+        <script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/bootstrap.min.js') }}"></script>
     @show
 </body>
 </html>

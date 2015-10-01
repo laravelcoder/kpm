@@ -10,13 +10,14 @@
 
 		<!-- Bootstrap core CSS -->
 		@section('css')
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/bootstrap.min.css') }}">
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/styles.css') }}">
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/jquery.tagsinput.min.css') }}">
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/redactor.css') }}">
-			<link rel="stylesheet" href="{{ asset('packages/davzie/laravel-bootstrap/css/select2.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/bootstrap.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/styles.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/jquery.tagsinput.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/redactor.css') }}">
+			<link rel="stylesheet" href="{{ asset('public/packages/davzie/laravel-bootstrap/css/select2.css') }}">
 			<link href="//rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 			<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+			<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		@show
 
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -28,7 +29,7 @@
 
 	<body @if (!isset($_GET['window'])) class="interface" @endif>
 			@if (!isset($_GET['window']))
-		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="navbar navbar-default navbar-fixed-top transporent-9" role="navigation">
 			<div class="container">
 
 				<div class="navbar-header">
@@ -61,8 +62,22 @@
 				<div class="collapse navbar-right navbar-collapse">
 					<ul></ul>
 					<div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Мова <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        	@foreach ($langs_list as $lang)
+                        		<li>
+                        			<a href="/admin/langs/change-default/?lang={{$lang->code}}">@if ($lang->id == $default_lang->id)
+                        				<i class="icon icon-check"></i>
+                        			@endif {{$lang->name}}</a></li>
+                        	@endforeach
+                        </ul>
+                    </div>
+					<div class="btn-group">
                         <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> {{$user->first_name}} <span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        	<li><a href="{{ url( $urlSegment.'/users/profile/' ) }}"><i class="icon icon-user"></i> Редагування профілю</a></li>
+                        	<li><a href="{{site_url()}}" target="_blank">Перейти на сайт</a></li>
+                        	<li class="divider"></li>
                         	<li><a href="{{ url( $urlSegment.'/logout' ) }}">Вихід</a></li>
                         </ul>
                     </div>
@@ -83,9 +98,9 @@
 					@if($menu_items)
 						<div class="list-group">
 							@foreach($menu_items as $url=>$item)
-								@if (allowed($item['module'], 'index'))
-								<a class="list-group-item {{ Request::is( "$urlSegment/$url/*" ) ? 'active' : '' }}" href="{{ url( $urlSegment.'/'.$url ) }}">
-									<span class="glyphicon glyphicon-{{ $item['icon'] }}"></span> {{ $item['name'] }}
+								@if (allowed($item['module'], 'index') && !$item['top'])
+								<a class="list-group-item {{ Request::is( "$urlSegment/$url*" ) ? 'active' : '' }}" href="{{ url( $urlSegment.'/'.$url ) }}">
+									<span class="icon icon-{{ $item['icon'] }}"></span> {{ $item['name'] }}
 								</a>
 								@endif
 							@endforeach
@@ -118,15 +133,24 @@
 
 		@section('scripts')
 			<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 			<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 
 			<script src="https://select2.github.io/dist/js/select2.full.js"></script>
-			<script src="{{ asset('packages/davzie/laravel-bootstrap/js/redactor.min.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/redactor.min.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/ua.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/filemanager.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/imagemanager.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/vendor/fontsize.js') }}"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-			<script src="//rawgit.com/Eonasdan/bootstrap-datetimepicker/master/src/js/bootstrap-datetimepicker.js"></script>
-			<script src="{{ asset('packages/davzie/laravel-bootstrap/js/modal-select.js') }}"></script>
-			<script src="{{ asset('packages/davzie/laravel-bootstrap/js/selector.js') }}"></script>
-			<script src="{{ asset('packages/davzie/laravel-bootstrap/js/main.js') }}"></script>
+			{{ HTML::script('public/packages/davzie/laravel-bootstrap/js/vendor/datetimepicker.js') }}
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/fileupload/js/vendor/jquery.ui.widget.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/fileupload/js/jquery.fileupload.js') }}"></script>
+			{{ HTML::script('public/packages/davzie/laravel-bootstrap/js/vendor/speaking-url.js') }}
+        	{{ HTML::script('public/packages/davzie/laravel-bootstrap/js/vendor/speaking-url.uk.js') }}
+        	{{ HTML::script('public/packages/davzie/laravel-bootstrap/js/vendor/handlebars.js') }}
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/main.js') }}"></script>
+			<script src="{{ asset('public/packages/davzie/laravel-bootstrap/js/upload.js') }}"></script>
 		@show
 	</body>
 </html>

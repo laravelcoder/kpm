@@ -1,0 +1,36 @@
+<?php namespace Davzie\LaravelBootstrap\{{class}};
+use Davzie\LaravelBootstrap\Core\EloquentBaseModel;
+
+class {{class}} extends EloquentBaseModel
+{
+    public $timestamps = false;
+    /**
+     * The table to get the data from
+     * @var string
+     */
+    protected $table    = '{{table}}';
+
+    /**
+     * These are the mass-assignable keys
+     * @var array
+     */
+    protected $fillable = array();
+
+    /**
+     *
+     */
+    protected $common_fields = array();
+
+    /**
+     * Validation rules
+     */
+    protected $validationRules = [
+    ];
+
+    /**
+     * Validation messages
+     */
+    protected $messages = [
+    ];
+
+}

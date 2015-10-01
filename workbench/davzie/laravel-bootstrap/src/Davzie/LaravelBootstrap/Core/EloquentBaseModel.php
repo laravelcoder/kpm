@@ -1,6 +1,7 @@
 <?php namespace Davzie\LaravelBootstrap\Core;
 use Davzie\LaravelBootstrap\Core\Exceptions\NoValidationRulesFoundException;
 use Validator, Eloquent, ReflectionClass, Input;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Base Eloquent Class Built On From Shawn McCool <-- This guy is pretty amazing
@@ -25,14 +26,49 @@ class EloquentBaseModel extends Eloquent
 	/**
 	 *
 	 */
+	protected $common_fields = [];
+
+
+	/**
+	 *
+	 */
+	public function getCommonFields()
+	{
+		return $this->common_fields;
+	}
+
+	/**
+	 *
+	 */
+	public function withOut(array $fields)
+	{
+		foreach ($fields as $field) {
+			if (isset($this->validationRules[$field])) {
+				unset($this->validationRules[$field]);
+			}
+		}
+
+		return $this;
+	}
+
+	/**
+	 *
+	 */
 	public function isValid( $data = array() )
 	{
-		if ( ! isset($this->validationRules) or empty($this->validationRules)) {
+		if ( ! isset($this->validationRules)) {
 			throw new NoValidationRulesFoundException('no validation rules found in class ' . get_called_class());
 		}
 
-		if( !$data )
+		$this->validationRules = $this->getPreparedRules();
+
+		if (empty($this->validationRules)) {
+			return true;
+		}
+
+		if(!$data) {
 			$data = $this->getAttributes();
+		}
 
 		$this->validator = Validator::make($data , $this->validationRules, $this->messages);
 
@@ -49,7 +85,7 @@ class EloquentBaseModel extends Eloquent
 
 	protected function getPreparedRules()
 	{
-		if ( ! $this->validationRules) {
+		if (!$this->validationRules) {
 			return [];
 		}
 
@@ -63,11 +99,24 @@ class EloquentBaseModel extends Eloquent
 		$preparedRules = [];
 
 		foreach ($rules as $key => $rule) {
-			if (false !== strpos($rule, "<id>")) {
-				if ($this->exists) {
-					$rule = str_replace("<id>", $this->getAttribute($this->primaryKey), $rule);
-				} else {
-					$rule = str_replace("<id>", "", $rule);
+
+			if (is_array($rule)) {
+				foreach ($rule as &$item) {
+					if (false !== strpos($item, "<id>")) {
+						if ($this->exists) {
+							$item = str_replace("<id>", $this->getAttribute($this->primaryKey), $item);
+						} else {
+							$item = str_replace("<id>", "", $item);
+						}
+					}
+				}
+			} else {
+				if (false !== strpos($rule, "<id>")) {
+					if ($this->exists) {
+						$rule = str_replace("<id>", $this->getAttribute($this->primaryKey), $rule);
+					} else {
+						$rule = str_replace("<id>", "", $rule);
+					}
 				}
 			}
 
@@ -134,5 +183,23 @@ class EloquentBaseModel extends Eloquent
 	{
 		return $this->table;
 	}
+
+	/**
+	 *
+	 */
+	protected function setKeysForSaveQuery(Builder $query)
+    {
+        $keys = $this->getKeyName();
+
+        if (!is_array($keys)) {
+        	$query = $query->where($keys, '=', $this->getAttribute($keys));
+        } else {
+	        foreach ($keys as $key) {
+	        	$query = $query->where($key, '=', $this->getAttribute($key));
+	        }
+	    }
+
+        return $query;
+    }
 
 }

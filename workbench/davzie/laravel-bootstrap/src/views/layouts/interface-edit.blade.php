@@ -11,19 +11,16 @@
             {{-- The menu partial --}}
             {{--@include('laravel-bootstrap::partials.edit-menu')--}}
 
-            {{ Form::open( array( 'url'=>$edit_url.$item->id , 'class'=>'form-horizontal form-top-margin' , 'role'=>'form', 'id'=>'item-form' ) ) }}
+            {{ Form::open( array(  'class'=>'form-horizontal form-top-margin' , 'role'=>'form', 'id'=>'item-form' ) ) }}
 
                 {{-- The error / success messaging partial --}}
                 @include('laravel-bootstrap::partials.messaging')
 
-                <div class="tab-content">
-                    <div class="tab-pane active" id="main">
-                        @yield('form-items')
-                    </div>
-                    @include('laravel-bootstrap::partials.images')
-                    @include('laravel-bootstrap::partials.tagging')
-                </div>
+                @yield('form-items')
 
+                @if (isset($langs))
+                    @include('laravel-bootstrap::partials.langs', ['langs' => $langs, 'lang_id' => $item->lang_id, 'id' => $item->id])
+                @endif
                 @yield('form-additional-block')
                 {{ Form::submit('Зберегти' , array('class'=>'btn btn-large btn-primary')) }}
 

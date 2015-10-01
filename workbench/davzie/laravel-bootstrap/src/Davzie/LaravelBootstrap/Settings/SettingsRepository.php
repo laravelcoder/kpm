@@ -36,4 +36,19 @@ class SettingsRepository extends EloquentBaseRepository implements SettingsInter
         return Config::get('laravel-bootstrap::app.name');
     }
 
+    /**
+     *
+     */
+    public function get()
+    {
+        $result = [];
+        $items = $this->model->all();
+
+        foreach ($items as $item) {
+            $result[$item->key] = $item->value;
+        }
+
+        return $result;
+    }
+
 }

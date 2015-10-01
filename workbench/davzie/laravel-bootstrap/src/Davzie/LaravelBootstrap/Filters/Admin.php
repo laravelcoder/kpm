@@ -1,7 +1,10 @@
 <?php namespace Davzie\LaravelBootstrap\Filters;
-use Auth, Redirect, Config;
+use Auth, Redirect, Config, Session;
 use Davzie\LaravelBootstrap\Access;
 
+/**
+ * admin filter (check is logged, check access)
+ */
 class Admin {
 
 	/**
@@ -10,23 +13,32 @@ class Admin {
 	 */
 	public function filter()
 	{
+		// if is guest then show login page
 		if (Auth::guest()) {
 			return \View::make('laravel-bootstrap::login');
-
-			// return Redirect::guest( Config::get('laravel-bootstrap::app.access_url').'/login');
 		}
 
+		// check action exsists
 		if (!$this->checkExists()) {
 			return  \Response::make(\View::make('laravel-bootstrap::errors.404'), 404);
 		}
+
+		// check access to this page
 		if (!$this->checkAccess()) {
+
+			// redirect to dashboard, if access denied after login
+			if (Session::has('_login')) {
+				Session::forget('_login');
+				return \Redirect::to('/admin/')->with('success', new MessageBag(array('Вхід в систему здійснено успішно')));
+			}
+
 			return  \Response::make(\View::make('laravel-bootstrap::errors.403'), 403);
 		}
 
 	}
 
 	/**
-	 *
+	 * check method does not exists
 	 */
 	public function checkExists()
 	{
@@ -41,7 +53,7 @@ class Admin {
 	}
 
 	/**
-	 *
+	 * check access to the page
 	 */
 	public function checkAccess()
 	{
@@ -59,7 +71,5 @@ class Admin {
 		$action = lcfirst($action);
 
 		return Access::check($ctrl, $action);
-
 	}
-
 }

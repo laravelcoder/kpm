@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'uk',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'fallback_locale' => 'en',
+	'fallback_locale' => 'uk',
 
 	/**
 	 * locales
@@ -92,6 +92,16 @@ return array(
 	'key' => 'vOMzqqREzaZzURFEjxMoh2MmGsdLIp57',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
+
+	/*
+	|--------------------------------------------------------------------------
+	| thumbs sizes
+	|--------------------------------------------------------------------------
+	*/
+
+	'thumbs' => array(
+		'300x200', '100x100', '170x170'
+	),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -138,7 +148,9 @@ return array(
 		'Stevemo\Cpanel\CpanelServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Davzie\LaravelBootstrap\LaravelBootstrapServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
+		'Widgets\WidgetsServiceProvider',
 
 	),
 

@@ -14,7 +14,12 @@ class Teachers extends EloquentBaseModel
      * These are the mass-assignable keys
      * @var array
      */
-    protected $fillable = array('name', 'surname', 'last_name', 'department_id', 'graduate', 'about');
+    protected $fillable = array('name', 'surname', 'second_name', 'photo_storage_id', 'about', 'status', 'is_active', 'id', 'lang_id');
+
+     /**
+     *
+     */
+    protected $common_fields = array('photo_storage_id', 'is_active');
 
     /**
      * Validation rules
@@ -22,34 +27,57 @@ class Teachers extends EloquentBaseModel
     protected $validationRules = [
         'name'           => 'required',
         'surname'        => 'required',
-        'last_name'      => 'required',
-        'department_id'  => 'required',
+        'second_name'    => 'required',
+        'status'         => 'required',
     ];
 
     /**
      * Validation messages
      */
     protected $messages = [
-        'name.required'          => 'Поле Ім`я обовязкове для заповнення',
-        'surname.required'       => 'Поле Прізвище обовязкове для заповнення',
-        'last_name.required'     => 'Поле По-батькові обовязкове для заповнення',
-        'department_id.required' => 'Поле Кафедра обовязкове для заповнення'
+        'name.required'         => 'Поле Ім`я обовязкове для заповнення',
+        'surname.required'      => 'Поле Прізвище обовязкове для заповнення',
+        'second_name.required'  => 'Поле По-батькові обовязкове для заповнення',
+        'status.required'       => 'Поле Вчене звання обовязкове для заповнення',
     ];
 
     /**
-     *
+     * Fill the model up like we usually do but also allow us to fill some custom stuff
+     * @param  array $array The array of data, this is usually Input::all();
+     * @return void
      */
-    public function department()
+    public function fill(array $attributes)
     {
-        return $this->belongsTo('Davzie\LaravelBootstrap\Departments\Departments', 'department_id', 'id');
+        parent::fill($attributes);
+
+        if (!isset($attributes['photo_storage_id']) || empty($attributes['photo_storage_id'])) {
+            $this->photo_storage_id = NULL;
+        }
+
+        return $this;
     }
 
     /**
      *
      */
-    public function subjects()
+    public function setBirthdateAttribute($value)
     {
-        return $this->hasMany('Davzie\LaravelBootstrap\Subjects\Subjects', 'subject_id', 'id');
+        $this->attributes['birthdate'] = strtotime($value);
     }
 
+    /**
+     *
+     */
+    public function getBirthdateAttribute()
+    {
+        return date('d.m.Y',$this->attributes['birthdate']);
+    }
+
+    /**
+     *
+     */
+    public function photo()
+    {
+        return $this->belongsTo('Davzie\LaravelBootstrap\Storage\Storage', 'photo_storage_id', 'id');
+    }
 }

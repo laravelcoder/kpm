@@ -1,6 +1,5 @@
 <?php namespace Davzie\LaravelBootstrap\Accounts;
 use Davzie\LaravelBootstrap\Core\EloquentBaseRepository;
-use Davzie\LaravelBootstrap\Universities\UniversitiesHasUsers;
 use Davzie\LaravelBootstrap\Roles\Roles;
 
 class UserRepository extends EloquentBaseRepository implements UserInterface
@@ -16,60 +15,18 @@ class UserRepository extends EloquentBaseRepository implements UserInterface
     }
 
     /**
-     * get university users
-     *
-     * @param $id university_id
-     * @return array
-     */
-    public function findNoUniversityUsers($id = null)
-    {
-        //
-        return UniversitiesHasUsers::where('university_id', '!=', $id)->paginate(20);
-    }
-
-    /**
-     *
-     */
-    public function addUniversityUser($id, $user_id)
-    {
-        $uhu = new UniversitiesHasUsers;
-        $uhu->university_id = $id;
-        $uhu->user_id       = $user_id;
-
-        return $uhu->save();
-    }
-
-    /**
-     *
-     */
-    public function getUsersList($id)
-    {
-        $uu = UniversitiesHasUsers::where('university_id', '=', $id)->get();
-        $exists_users = [];
-
-        foreach ($uu as $one) {
-            $exists_users[] = $one->user_id;
-        }
-
-        if (empty($exists_users)) {
-            return User::where('is_active', '=', 1)->paginate(10);
-        }
-
-        return User::whereNotIn('id', $exists_users)->where('is_active', '=', 1)->paginate(10);
-    }
-
-    /**
-     * reload permissions
+     * reload logged user permissions
      */
     public static function reloadPermssions($user_id)
     {
-        //
+        // init
         $roles = [];
         $perms = [];
-        $usp = UsersHasRoles::where('user_id', '=', $user_id)->get();
+        // get user roles
+        $roles = UsersHasRoles::where('user_id', '=', $user_id)->lists('role_id');
 
-        foreach ($usp as $one) {
-            $roles[] = $one->role_id;
+        if (empty($roles)) {
+            return false;
         }
 
         $roles = Roles::whereIn('id', $roles)->get();
@@ -113,7 +70,7 @@ class UserRepository extends EloquentBaseRepository implements UserInterface
     /**
      * save user roles
      */
-    public function saveItems($roles, $id)
+    public function saveItems(array $roles, $id)
     {
         foreach ($roles as $role) {
             $uhr = new UsersHasRoles;
@@ -122,7 +79,9 @@ class UserRepository extends EloquentBaseRepository implements UserInterface
             $uhr->save();
         }
 
-        self::reloadPermssions(\Auth::user()->id);
+        if (!\Auth::guest()) {
+            self::reloadPermssions(\Auth::user()->id);
+        }
     }
 
     /**
@@ -140,6 +99,14 @@ class UserRepository extends EloquentBaseRepository implements UserInterface
     public function setUserPasswordModel()
     {
         $this->model = new UserPassword;
+    }
+
+    /**
+     *
+     */
+    public function getByEmail($email)
+    {
+        return $this->model->where('email', $email)->where('is_active', 1)->first();
     }
 
 }
