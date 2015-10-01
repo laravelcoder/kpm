@@ -3,6 +3,14 @@
 	{
 		"selected_items":
 		[
+			[
+				"conn",
+				"conn"
+			],
+			[
+				"co",
+				"connection"
+			]
 		]
 	},
 	"buffers":
@@ -11,8 +19,33 @@
 			"file": "workbench/davzie/laravel-bootstrap/src/controllers/LangsBaseController.php",
 			"settings":
 			{
-				"buffer_size": 294,
+				"buffer_size": 1523,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 92,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/commands/TestCommand.php",
+			"settings":
+			{
+				"buffer_size": 1041,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Artisan::add(new CustomCommand);",
+			"settings":
+			{
+				"buffer_size": 32,
+				"line_ending": "Windows",
+				"name": "Artisan::add(new CustomCommand);"
 			}
 		},
 		{
@@ -24,34 +57,10 @@
 			}
 		},
 		{
-			"file": "app/controllers/BaseController.php",
-			"settings":
-			{
-				"buffer_size": 256,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "workbench/davzie/laravel-bootstrap/src/bindings.php",
-			"settings":
-			{
-				"buffer_size": 1674,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "workbench/davzie/laravel-bootstrap/src/routes.php",
 			"settings":
 			{
 				"buffer_size": 1223,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "workbench/davzie/laravel-bootstrap/src/controllers/ObjectBaseController.php",
-			"settings":
-			{
-				"buffer_size": 7633,
 				"line_ending": "Windows"
 			}
 		}
@@ -59,9 +68,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 265.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
 			[
 				"lararo",
 				"Laravel Facade: Route"
@@ -146,17 +159,13 @@
 	[
 		"/C/xampp/htdocs/kpm",
 		"/C/xampp/htdocs/kpm/app",
+		"/C/xampp/htdocs/kpm/app/commands",
 		"/C/xampp/htdocs/kpm/app/controllers",
-		"/C/xampp/htdocs/kpm/vendor",
-		"/C/xampp/htdocs/kpm/vendor/intervention",
-		"/C/xampp/htdocs/kpm/vendor/intervention/image",
-		"/C/xampp/htdocs/kpm/vendor/intervention/image/src",
-		"/C/xampp/htdocs/kpm/vendor/intervention/image/src/Intervention",
-		"/C/xampp/htdocs/kpm/vendor/intervention/image/src/Intervention/Image",
-		"/C/xampp/htdocs/kpm/vendor/stevemo",
-		"/C/xampp/htdocs/kpm/vendor/stevemo/cpanel",
-		"/C/xampp/htdocs/kpm/vendor/stevemo/cpanel/src",
-		"/C/xampp/htdocs/kpm/vendor/way",
+		"/C/xampp/htdocs/kpm/public",
+		"/C/xampp/htdocs/kpm/public/packages",
+		"/C/xampp/htdocs/kpm/public/packages/stevemo",
+		"/C/xampp/htdocs/kpm/public/packages/stevemo/cpanel",
+		"/C/xampp/htdocs/kpm/public/packages/stevemo/cpanel/js",
 		"/C/xampp/htdocs/kpm/workbench",
 		"/C/xampp/htdocs/kpm/workbench/davzie",
 		"/C/xampp/htdocs/kpm/workbench/davzie/laravel-bootstrap",
@@ -167,6 +176,12 @@
 	],
 	"file_history":
 	[
+		"/E/vagrant/app.js",
+		"/C/xampp/htdocs/kpm/workbench/davzie/laravel-bootstrap/src/bindings.php",
+		"/E/vagrant/Vagrantfile",
+		"/E/vagrant-r/Vagrantfile",
+		"/C/Users/Admin/Downloads/скачанные файлы",
+		"/C/xampp/htdocs/kpm/workbench/davzie/laravel-bootstrap/src/controllers/ObjectBaseController.php",
 		"/C/xampp/htdocs/kpm/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
 		"/C/xampp/htdocs/kpm/vendor/composer/ClassLoader.php",
 		"/C/xampp/htdocs/kpm/vendor/bin/classpreloader.php",
@@ -274,6 +289,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"co",
+			"connection",
+			"this->pages",
+			"pages",
+			"rubric",
+			"lang_code",
 			"loadClass",
 			"includeFile",
 			"packages",
@@ -362,7 +383,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -371,20 +392,49 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 294,
+						"buffer_size": 1523,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								294,
-								294
+								862,
+								860
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 92,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24,
+								24
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -394,7 +444,64 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
+					"file": "app/commands/TestCommand.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1041,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								175,
+								175
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 482.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 32,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								32,
+								32
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Artisan::add(new CustomCommand);",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "workbench/davzie/laravel-bootstrap/src/controllers/BlocksController.php",
 					"semi_transient": false,
 					"settings":
@@ -420,69 +527,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app/controllers/BaseController.php",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 256,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "workbench/davzie/laravel-bootstrap/src/bindings.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1674,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1254,
-								1254
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 164.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "workbench/davzie/laravel-bootstrap/src/routes.php",
 					"semi_transient": false,
 					"settings":
@@ -506,36 +555,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "workbench/davzie/laravel-bootstrap/src/controllers/ObjectBaseController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7633,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								249,
-								269
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -626,7 +646,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 341.0,
+	"side_bar_width": 270.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
